@@ -1,0 +1,18 @@
+{
+  "name": "gtfo-cdo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ovchingus/gtfo-cdo.git",
+  "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^9.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
