@@ -1,5 +1,5 @@
-function HomePage() {
-    return <div>Welcome to Next.js!</div>
-  }
-  
-  export default HomePage
+function HomePage () {
+  return <div>Welcome to Next.js!</div>
+}
+
+export default HomePage
