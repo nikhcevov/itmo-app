@@ -20,7 +20,7 @@
     "client/src/**/*.{js,jsx}": [
       "yarn lint:client"
     ],
-    "server/**/*.{js}": [
+    "server/src/**/*.{js}": [
       "yarn lint:server"
     ]
   },
