@@ -30,7 +30,7 @@ export default function ButtonAppBar () {
         </Toolbar>
       </AppBar>
 
-      <StaticDatePicker/>
+      <StaticDatePicker />
 
     </div>
   )

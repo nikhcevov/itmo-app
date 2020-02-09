@@ -8,7 +8,19 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "standard --fix"
+  },
+  "lint-staged": {
+    "pages/**/*.{js,jsx}": [
+      "yarn lint", 
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "@date-io/date-fns": "1.x",
@@ -21,6 +33,8 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.7",
     "standard": "^14.3.1"
   }
 }

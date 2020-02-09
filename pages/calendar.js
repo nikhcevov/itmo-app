@@ -1,27 +1,29 @@
-import React, { useState } from "react";
-import { DatePicker } from "@material-ui/pickers";
-
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import React, { useState } from 'react'
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import Container from '@material-ui/core/Container'
 
 // pick a date util library
-import DateFnsUtils from '@date-io/date-fns';
+import DateFnsUtils from '@date-io/date-fns'
 
 const StaticDatePicker = () => {
-  const [date, changeDate] = useState(new Date());
+  const [date, changeDate] = useState(new Date())
 
   // prettier-ignore
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <DatePicker
-        autoOk
-        orientation="landscape"
-        variant="static"
-        openTo="date"
-        value={date}
-        onChange={changeDate}
-      />
-    </MuiPickersUtilsProvider>
-  );
-};
+      <Container width='xs'>
+        <DatePicker
+          autoOk
+          orientation='portrait'
+          variant='dialog'
+          openTo='date'
+          value={date}
+          onChange={changeDate}
+        />
+      </Container>
 
-export default StaticDatePicker;
+    </MuiPickersUtilsProvider>
+  )
+}
+
+export default StaticDatePicker
