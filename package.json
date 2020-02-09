@@ -6,9 +6,9 @@
   "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
     "lint": "standard --fix"
   },
   "lint-staged": {
