@@ -7,11 +7,12 @@
   "license": "MIT",
   "scripts": {
     "client:start": "cd client && yarn start",
+    "client:dev": "cd client && yarn dev",
     "client:build": "cd client && yarn build",
     "server:start": "cd server && yarn start",
     "postinstall": "cd client && yarn install  && yarn build && cd ../server && yarn install",
     "start": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
-    "dev": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:dev\"",
     "lint:client": "cd client && yarn lint",
     "lint:server": "cd server && yarn lint"
   },
