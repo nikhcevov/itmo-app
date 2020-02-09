@@ -6,11 +6,14 @@
   "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "first-run": "yarn install && concurrently \"cd client && yarn install\" \"cd server && yarn install\"", 
-    "start": "concurrently \"cd server && yarn start\" \"cd client && yarn build && yarn start\"",
-    "dev": "concurrently \"cd server && yarn start\" \"cd client && yarn dev\"",
-    "lint:client": "cd client && standard --fix",
-    "lint:server": "cd server && standard --fix"
+    "client:start": "cd client && yarn start",
+    "client:build": "cd client && yarn build",
+    "server:start": "cd server && yarn start",
+    "postinstall": "cd client && yarn install  && yarn build && cd ../server && yarn install",
+    "start": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
+    "lint:client": "cd client && yarn lint",
+    "lint:server": "cd server && yarn lint"
   },
   "lint-staged": {
     "client/src/**/*.{js,jsx}": [
@@ -30,7 +33,6 @@
   },
   "devDependencies": {
     "husky": "^4.2.1",
-    "lint-staged": "^10.0.7",
-    "standard": "^14.3.1"
+    "lint-staged": "^10.0.7"
   }
 }
