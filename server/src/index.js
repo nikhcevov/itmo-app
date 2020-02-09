@@ -1,4 +1,8 @@
 const express = require('express')
+const fetch = require('node-fetch')
+const jsdom = require('jsdom')
+
+const { JSDOM } = jsdom
 const app = express()
 const port = 5000
 
@@ -12,11 +16,8 @@ async function getWatchersRoutine () {
       'Content-Type': 'text/plain'
     }
   })
-  const ans = await res.text()
-
-  const el = document.createElement('html')
-  el.innerHTML = ans
-  console.log(el.getElementsByTagName('div'))
+  const { document } = (new JSDOM(await res.text())).window
+  console.log(document.getElementsByTagName('div'))
 }
 
 getWatchersRoutine()
