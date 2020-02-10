@@ -3,7 +3,9 @@ import App from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+
 import theme from '../theme'
+import Header from '../components/Header'
 
 export default class MyApp extends App {
   componentDidMount () {
@@ -25,6 +27,7 @@ export default class MyApp extends App {
         </Head>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <Header />
           <Component {...pageProps} />
         </ThemeProvider>
       </>

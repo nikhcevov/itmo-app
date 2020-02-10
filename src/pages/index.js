@@ -1,15 +1,10 @@
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
+
 import SimpleTable from '../modules/SimpleTable'
-import AppBar from '../components/AppBar'
 
 function Schedule ({ watchersSchedule }) {
-  return (
-    <>
-      <AppBar />
-      <SimpleTable data={watchersSchedule} />
-    </>
-  )
+  return <SimpleTable data={watchersSchedule} />
 }
 
 Schedule.getInitialProps = async () => {

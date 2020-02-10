@@ -1,8 +1,9 @@
 import React from 'react'
 
-export default function WIP () {
-  return (
-    <div>
-      Страница в разработке
-    </div>)
+import WorkInProgress from '../modules/WorkInProgress'
+
+const text = 'Здесь будут распологаться проверенные ответы к большинству заданий ЦДО.'
+
+export default function Answers () {
+  return <WorkInProgress extraText={text} />
 }
