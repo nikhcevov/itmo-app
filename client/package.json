@@ -1,0 +1,26 @@
+{
+  "name": "gtfo-cdo",
+  "version": "1.0.0",
+  "repository": "git@github.com:ovchingus/gtfo-cdo.git",
+  "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "standard --fix"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.1",
+    "@material-ui/icons": "^4.9.1",
+    "clsx": "^1.1.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.2.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "standard": "^14.3.1"
+  }
+}
