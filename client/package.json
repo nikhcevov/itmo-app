@@ -8,6 +8,16 @@
     "start": "next start",
     "lint": "standard --fix"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "yarn lint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "@material-ui/core": "^4.9.1",
     "@material-ui/icons": "^4.9.1",
