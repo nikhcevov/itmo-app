@@ -1,7 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
+
 import theme from '../theme'
 
 const useStyles = makeStyles({
@@ -28,6 +30,10 @@ function WorkInProgress ({ extraText }) {
       </Container>
     </div>
   )
+}
+
+WorkInProgress.propTypes = {
+  extraText: PropTypes.string
 }
 
 export default WorkInProgress
