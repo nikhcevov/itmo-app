@@ -14,44 +14,41 @@ const useStyles = makeStyles({
   }
 })
 
-function createData (date, person, difficulty) {
-  return { date, person, difficulty }
+function sortByDate (first, second) {
+  return (first[0] + first[0] * 100) - (second[0] + second[0] * 100)
 }
 
-const rows = [
-  createData('11 FEB', 'Babka #1', 'EASY'),
-  createData('12 FEB', 'Babka #2', 'HARD'),
-  createData('13 FEB', 'Babka #3', 'NORMAL'),
-  createData('14 FEB', 'Babka #4', 'EASY'),
-  createData('15 FEB', 'Babka #1', 'HARD'),
-  createData('16 FEB', 'Babka #2', 'NORMAL'),
-  createData('17 FEB', 'Babka #3', 'EASY'),
-  createData('18 FEB', 'Babka #4', 'HARD'),
-  createData('19 FEB', 'Babka #1', 'NORMAL'),
-  createData('20 FEB', 'Babka #2', 'EASY'),
-  createData('21 FEB', 'Babka #3', 'HARD'),
-  createData('22 FEB', 'Babka #4', 'NORMAL'),
-  createData('23 FEB', 'Babka #1', 'EASY'),
-  createData('24 FEB', 'Babka #2', 'HARD'),
-  createData('25 FEB', 'Babka #3', 'NORMAL'),
-  createData('26 FEB', 'Babka #4', 'EASY'),
-  createData('27 FEB', 'Babka #1', 'HARD'),
-  createData('28 FEB', 'Babka #4', 'NORMAL'),
-  createData('29 FEB', 'Babka #3', 'EASY'),
-  createData('30 FEB', 'Babka #2', 'HARD')
-]
+function prepareData (data) {
+  const prepared = []
+  for (const person of data) {
+    for (const date of person.schedule) {
+      prepared.push({
+        name: person.name,
+        date: date.split('.'),
+        difficulty: 'Пока не ясно'
+      })
+    }
+  }
+  return prepared.sort((a, b) =>
+    sortByDate(a.date, b.date)
+  ).map(row => ({
+    ...row,
+    date: row.date.join('.')
+  }))
+}
 
-export default function SimpleTable () {
+export default function SimpleTable ({ data }) {
   const classes = useStyles()
-
+  const rows = prepareData(data)
+  console.log(rows)
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell align='left'>Person</TableCell>
-            <TableCell align='left'>Difficulty</TableCell>
+            <TableCell>Дата</TableCell>
+            <TableCell align='left'>Надзиратель</TableCell>
+            <TableCell align='left'>Сложность</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -60,7 +57,7 @@ export default function SimpleTable () {
               <TableCell component='th' scope='row'>
                 {row.date}
               </TableCell>
-              <TableCell align='left'>{row.person}</TableCell>
+              <TableCell align='left'>{row.name}</TableCell>
               <TableCell align='left'>{row.difficulty}</TableCell>
             </TableRow>
           ))}
