@@ -5,14 +5,15 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "lint": "standard --fix"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "jsdom": "^16.1.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "nodemon": "^2.0.2",
     "standard": "^14.3.1"
   }
 }
