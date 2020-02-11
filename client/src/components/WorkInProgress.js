@@ -9,6 +9,7 @@ import theme from '../theme'
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    height: '90vh',
     marginTop: theme.spacing(4)
   }
 })

@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 import theme from '../theme'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 export default class MyApp extends App {
   componentDidMount () {
@@ -29,6 +30,7 @@ export default class MyApp extends App {
           <CssBaseline />
           <Header />
           <Component {...pageProps} />
+          <Footer />
         </ThemeProvider>
       </>
     )
