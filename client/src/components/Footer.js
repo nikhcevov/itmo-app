@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
     minHeight: 128,
     alignItems: 'flex-start',
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
+    color: 'rgba(255,255,255,0.7)'
   },
   extraInfo: {
     justifyContent: 'center'
@@ -28,6 +29,9 @@ function Footer () {
       <AppBar position='static'>
         <Toolbar className={classes.toolbar}>
           <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <br />
+            </Grid>
             <Grid item xs={4}>
               <Typography variant='body1' noWrap>
                 Приложение
@@ -51,12 +55,12 @@ function Footer () {
             </Grid>
 
             <Grid item xs={4}>
-              <Typography variant='body1' noWrap>
+              <Typography variant='body2' noWrap>
                 Связаться с разработчиками
               </Typography>
             </Grid>
             <Grid item xs={8}>
-              <Typography variant='body1' noWrap>
+              <Typography variant='body2' noWrap>
                 Спонсорство
               </Typography>
             </Grid>
