@@ -8,9 +8,6 @@ import Grid from '@material-ui/core/Grid'
 import Link from './Link'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
   toolbar: {
     minHeight: 128,
     alignItems: 'flex-start',
@@ -27,74 +24,72 @@ function Footer () {
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
-      <AppBar position='static'>
-        <Toolbar className={classes.toolbar}>
-          <Grid
-            container
-            direction='row'
-            justify='flex-start'
-            alignItems='flex-start'
-            spacing={4}
-          >
-            <Grid item>
-              <Grid
-                container
-                direction='column'
-                spacing={1}
-              >
-                <Grid item>
-                  <Typography variant='body1' noWrap>
+    <AppBar position='static'>
+      <Toolbar className={classes.toolbar}>
+        <Grid
+          container
+          direction='row'
+          justify='flex-start'
+          alignItems='flex-start'
+          spacing={4}
+        >
+          <Grid item>
+            <Grid
+              container
+              direction='column'
+              spacing={1}
+            >
+              <Grid item>
+                <Typography variant='body1' noWrap>
                     Приложение
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant='body2' noWrap>
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant='body2' noWrap>
                     О нас
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant='body2' noWrap>
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant='body2' noWrap>
                     Связаться с разработчиками
-                  </Typography>
-                </Grid>
+                </Typography>
               </Grid>
-            </Grid>
-            <Grid item>
-              <Grid
-                container
-                direction='column'
-                spacing={1}
-              >
-                <Grid item>
-                  <Typography variant='body1' noWrap>
-                    Помощь & поддержка
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant='body2' noWrap>
-                    FAQ
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Link href='/sponsorship' color='inherit'>
-                    <Typography variant='body2' noWrap>
-                      Спонсорство
-                    </Typography>
-                  </Link>
-                </Grid>
-              </Grid>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Typography className={classes.extraInfo} variant='body2'>
-                  © Gtfo-cdo. Сделано с ❤️ для списывания с удовольствием.
-              </Typography>
             </Grid>
           </Grid>
-        </Toolbar>
-      </AppBar>
-    </div>
+          <Grid item>
+            <Grid
+              container
+              direction='column'
+              spacing={1}
+            >
+              <Grid item>
+                <Typography variant='body1' noWrap>
+                    Помощь & поддержка
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant='body2' noWrap>
+                    FAQ
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Link href='/sponsorship' color='inherit'>
+                  <Typography variant='body2' noWrap>
+                      Спонсорство
+                  </Typography>
+                </Link>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography className={classes.extraInfo} variant='body2'>
+                  © Gtfo-cdo. Сделано с ❤️ для списывания с удовольствием.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Toolbar>
+    </AppBar>
   )
 }
 
