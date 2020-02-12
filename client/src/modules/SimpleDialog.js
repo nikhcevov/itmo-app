@@ -4,7 +4,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Dialog from '@material-ui/core/Dialog'
 
 export default function SimpleDialog (props) {
-  const { onClose, open } = props
+  const { onClose, open, data } = props
 
   const handleClose = () => {
     onClose()
@@ -12,8 +12,9 @@ export default function SimpleDialog (props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby='simple-dialog-title' open={open}>
-      <DialogTitle id='simple-dialog-title'>Some info about Надзиратель</DialogTitle>
-
+      <DialogTitle id='simple-dialog-title'>Смотрящий</DialogTitle>
+      <div>{data.name}</div>
+      <img src={data.img} />
     </Dialog>
   )
 }

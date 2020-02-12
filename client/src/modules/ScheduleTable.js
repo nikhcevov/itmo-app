@@ -33,7 +33,8 @@ function prepareData (data) {
       prepared.push({
         name: person.name,
         date: date.split('.'),
-        difficulty: 'Пока не ясно'
+        difficulty: 'Пока не ясно',
+        img: person.img
       })
     }
   }
@@ -49,18 +50,27 @@ export default function SimpleTable ({ data, className }) {
   const classes = useStyles()
   const rows = prepareData(data)
 
-  const [open, setOpen] = React.useState(false)
+  const [modal, setModal] = React.useState({
+    isOpen: false,
+    data: {}
+  })
 
-  const handleClickOpen = () => {
-    setOpen(true)
+  const handleClickOpen = (row) => {
+    setModal({
+      isOpen: true,
+      data: row
+    })
   }
 
   const handleClose = () => {
-    setOpen(false)
+    setModal({
+      isOpen: false,
+      data: {}
+    })
   }
 
   return (
-    <div>
+    <>
       <TableContainer component={Paper} className={className}>
         <Table className={classes.table} aria-label='simple table'>
           <TableHead>
@@ -72,7 +82,7 @@ export default function SimpleTable ({ data, className }) {
           </TableHead>
           <TableBody>
             {rows.map(row => (
-              <TableRow key={row.date} onClick={handleClickOpen} className={classes.row}>
+              <TableRow key={row.date} onClick={() => handleClickOpen(row)} className={classes.row}>
                 <TableCell component='th' scope='row'>
                   {row.date}
                 </TableCell>
@@ -83,8 +93,7 @@ export default function SimpleTable ({ data, className }) {
           </TableBody>
         </Table>
       </TableContainer>
-      <SimpleDialog open={open} onClose={handleClose} />
-    </div>
-
+      <SimpleDialog open={modal.isOpen} data={modal.data} onClose={handleClose} />
+    </>
   )
 }
