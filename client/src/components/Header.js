@@ -8,14 +8,13 @@ import Link from './Link'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    boxShadow: 'none'
   },
   schedule: {
     marginRight: theme.spacing(4),
     color: 'white'
   },
   answers: {
-    flexGrow: 1,
     color: 'white'
   }
 }))
@@ -24,22 +23,20 @@ function Header () {
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
-      <AppBar position='static'>
-        <Toolbar>
-          <Link href='/' className={classes.schedule}>
-            <Typography variant='h6'>
+    <AppBar position='static' className={classes.root}>
+      <Toolbar>
+        <Link href='/' className={classes.schedule}>
+          <Typography variant='h6'>
               Расписание
-            </Typography>
-          </Link>
-          <Link href='/answers' className={classes.answers}>
-            <Typography variant='h6'>
+          </Typography>
+        </Link>
+        <Link href='/answers' className={classes.answers}>
+          <Typography variant='h6'>
               Ответы
-            </Typography>
-          </Link>
-        </Toolbar>
-      </AppBar>
-    </div>
+          </Typography>
+        </Link>
+      </Toolbar>
+    </AppBar>
   )
 }
 
