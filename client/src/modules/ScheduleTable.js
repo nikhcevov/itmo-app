@@ -16,7 +16,8 @@ const useStyles = makeStyles({
   row: {
     '&:hover': {
       backgroundColor: '#FFC0C0',
-      transition: 'background-color 0.1s'
+      transition: 'background-color 0.1s',
+      cursor: 'pointer'
     }
   }
 })
