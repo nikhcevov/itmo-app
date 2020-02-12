@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 })
 
 function sortByDate (first, second) {
-  return (first[0] + first[0] * 100) - (second[0] + second[0] * 100)
+  return (first[0] + first[1] * 100) - (second[0] + second[1] * 100)
 }
 
 function prepareData (data) {
@@ -37,16 +37,16 @@ function prepareData (data) {
   }))
 }
 
-export default function SimpleTable ({ data }) {
+export default function SimpleTable ({ data, className }) {
   const classes = useStyles()
   const rows = prepareData(data)
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={className}>
       <Table className={classes.table} aria-label='simple table'>
         <TableHead>
           <TableRow>
             <TableCell>Дата</TableCell>
-            <TableCell align='left'>Надзиратель</TableCell>
+            <TableCell align='left'>Смотрящий</TableCell>
             <TableCell align='left'>Сложность</TableCell>
           </TableRow>
         </TableHead>

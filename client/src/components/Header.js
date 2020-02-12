@@ -8,7 +8,7 @@ import Link from './Link'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    boxShadow: 'none'
+    // boxShadow: 'none'
   },
   schedule: {
     marginRight: theme.spacing(4),
