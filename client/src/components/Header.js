@@ -12,10 +12,16 @@ const useStyles = makeStyles(theme => ({
   },
   schedule: {
     marginRight: theme.spacing(4),
-    color: 'white'
+    color: 'white',
+    '&:hover': {
+      textDecoration: 'none'
+    }
   },
   answers: {
-    color: 'white'
+    color: 'white',
+    '&:hover': {
+      textDecoration: 'none'
+    }
   }
 }))
 
