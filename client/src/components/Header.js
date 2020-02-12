@@ -14,13 +14,15 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(4),
     color: 'white',
     '&:hover': {
-      textDecoration: 'none'
+      textDecoration: 'none',
+      color: 'coral'
     }
   },
   answers: {
     color: 'white',
     '&:hover': {
-      textDecoration: 'none'
+      textDecoration: 'none',
+      color: 'coral'
     }
   }
 }))
