@@ -76,7 +76,7 @@ export default function SimpleTable ({ data, className }) {
           <TableHead>
             <TableRow>
               <TableCell>Дата</TableCell>
-              <TableCell align='left'>Надзиратель</TableCell>
+              <TableCell align='left'>Смотрящий</TableCell>
               <TableCell align='left'>Сложность</TableCell>
             </TableRow>
           </TableHead>
