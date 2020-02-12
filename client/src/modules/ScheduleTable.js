@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import SimpleDialog from './SimpleDialog'
+import WatcherModal from './WatcherModal'
 
 const useStyles = makeStyles({
   table: {
@@ -93,7 +93,7 @@ export default function SimpleTable ({ data, className }) {
           </TableBody>
         </Table>
       </TableContainer>
-      <SimpleDialog open={modal.isOpen} data={modal.data} onClose={handleClose} />
+      <WatcherModal open={modal.isOpen} data={modal.data} onClose={handleClose} />
     </>
   )
 }
