@@ -1,8 +1,6 @@
 {
-  "name": "gtfo-cdo",
+  "name": "gtfo-cdo-client",
   "version": "1.0.0",
-  "repository": "git@github.com:ovchingus/gtfo-cdo.git",
-  "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "next",
