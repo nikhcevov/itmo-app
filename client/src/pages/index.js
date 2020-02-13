@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     height: '80vh'
   },
   title: {
-    paddingTop: theme.spacing(1),
+    paddingTop: theme.spacing(4),
     textAlign: 'center'
   },
   curvyLines: {
@@ -33,8 +33,13 @@ function Schedule ({ watchersSchedule }) {
         alt='curvy lines'
       />
       <Container maxWidth='md' className={classes.container}>
-        <Typography variant='h5' className={classes.title}>
-          Добро пожаловать в сервис цдо инфо.
+        <Typography variant='h4' className={classes.title}>
+          Первая некласичесская шпаргалка
+        </Typography>
+        <Typography variant='h6' className={classes.title}>
+          Тут вы можете найти расписание смотрящих в ЦДО, 
+          а так же ответы проверенные годами для тестов.
+          Да прибудет с вами sb0101!
         </Typography>
       </Container>
     </div>
