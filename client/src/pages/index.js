@@ -8,16 +8,23 @@ const useStyles = makeStyles(theme => ({
     position: 'relative'
   },
   container: {
-    height: '80vh'
+    height: '80vh',
+    color: '#fff'
   },
   title: {
     paddingTop: theme.spacing(4),
     textAlign: 'center'
   },
-  curvyLines: {
+  text: {
+    paddingTop: theme.spacing(4),
+    textAlign: 'center'
+  },
+  image: {
+    pointerEvents: 'none',
+    objectFit: 'cover',
     height: '100%',
     width: '100%',
-    pointerEvents: 'none',
+    zIndex: -1,
     position: 'absolute'
   }
 }))
@@ -28,16 +35,15 @@ function Schedule ({ watchersSchedule }) {
   return (
     <div className={classes.root}>
       <img
-        src='https://material-ui.com/static/themes/onepirate/productCurvyLines.png'
-        className={classes.curvyLines}
-        alt='curvy lines'
+        className={classes.image}
+        src='https://i.ibb.co/gVyyhV8/Yu-Pzj-N9yh-M-1.jpg'
       />
       <Container maxWidth='md' className={classes.container}>
         <Typography variant='h4' className={classes.title}>
           Первая некласичесская шпаргалка
         </Typography>
-        <Typography variant='h6' className={classes.title}>
-          Тут вы можете найти расписание смотрящих в ЦДО, 
+        <Typography variant='body1' className={classes.text}>
+          Тут вы можете найти расписание смотрящих в ЦДО,
           а так же ответы проверенные годами для тестов.
           Да прибудет с вами sb0101!
         </Typography>

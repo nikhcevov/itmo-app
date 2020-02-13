@@ -45,7 +45,7 @@ function Header () {
       <Toolbar>
         <Link href='/' className={[classes.schedule, classes.answers]}>
           <Typography variant='h6'>
-            😎🤳
+            Главная
           </Typography>
         </Link>
         <Link href='/schedule' className={[classes.schedule, classes.answers]}>
