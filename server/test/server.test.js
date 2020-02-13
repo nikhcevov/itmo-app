@@ -1,20 +1,20 @@
 /* global describe, it, expect, afterAll, beforeAll */
-const request = require('supertest')
-const app = require('../src/index')
+import request from 'supertest'
+import server from '../src/index'
 
 let scheduleResponce = null
 
 beforeAll(async () => {
-  scheduleResponce = await request(app).get('/schedule')
+  scheduleResponce = await request(server).get('/schedule')
 })
 
 afterAll(() => {
-  app.close()
+  server.close()
 })
 
 describe('Server config', () => {
   it('should contain CORS headers', async () => {
-    const res = await request(app).get('/')
+    const res = await request(server).get('/')
 
     expect(res.header).toMatchObject({
       'access-control-allow-origin': expect.any(String)
