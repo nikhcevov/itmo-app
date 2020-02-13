@@ -4,13 +4,12 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
-import Link from './Link'
+import Link from '../components/Link'
 
 const useStyles = makeStyles(theme => ({
   root: {
     // boxShadow: 'none'
   },
-
   schedule: {
     marginRight: theme.spacing(4)
   },
@@ -45,6 +44,11 @@ function Header () {
     <AppBar position='static' className={classes.root}>
       <Toolbar>
         <Link href='/' className={[classes.schedule, classes.answers]}>
+          <Typography variant='h6'>
+            😎🤳
+          </Typography>
+        </Link>
+        <Link href='/schedule' className={[classes.schedule, classes.answers]}>
           <Typography variant='h6'>
               Расписание
           </Typography>
