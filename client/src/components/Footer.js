@@ -13,7 +13,13 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'flex-start',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    color: 'rgba(255,255,255,0.7)'
+    color: 'rgba(255,255,255,0.7)',
+
+    '& a:hover': {
+      color: '#EC0B43',
+      textDecoration: 'none',
+      transition: 'color 0.2s'
+    }
   },
   extraInfo: {
     textAlign: 'center'

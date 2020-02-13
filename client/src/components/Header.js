@@ -10,19 +10,30 @@ const useStyles = makeStyles(theme => ({
   root: {
     // boxShadow: 'none'
   },
+
   schedule: {
-    marginRight: theme.spacing(4),
-    color: 'white',
-    '&:hover': {
-      textDecoration: 'none',
-      color: 'coral'
-    }
+    marginRight: theme.spacing(4)
   },
+
   answers: {
     color: 'white',
     '&:hover': {
       textDecoration: 'none',
-      color: 'coral'
+      color: '#EC0B43',
+      transition: 'color 0.3s'
+    },
+    position: 'relative',
+    '&:before': {
+      content: '""',
+      backgroundColor: '#EC0B43',
+      position: 'absolute',
+      width: '0%',
+      height: 3,
+      bottom: 0
+    },
+    '&:hover:before': {
+      width: '100%',
+      transition: 'width 0.3s'
     }
   }
 }))
@@ -33,7 +44,7 @@ function Header () {
   return (
     <AppBar position='static' className={classes.root}>
       <Toolbar>
-        <Link href='/' className={classes.schedule}>
+        <Link href='/' className={[classes.schedule, classes.answers]}>
           <Typography variant='h6'>
               Расписание
           </Typography>
