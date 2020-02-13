@@ -6,7 +6,7 @@
   "scripts": {
     "start": "yarn build && node build/index.js",
     "build": "babel ./src -d build",
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
     "lint": "standard --fix",
     "test": "jest"
   },
