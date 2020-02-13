@@ -4,13 +4,13 @@ const fetch = require('node-fetch')
 const app = express()
 const port = 5000
 
-app.get('/', (req, res) => res.send('Hello world'))
-
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
 })
+
+app.get('/', (req, res) => res.send('Hello world'))
 
 app.get('/schedule', async (req, res) => {
   const data = await fetch('https://de.ifmo.ru/timesys/jsonp.xhtml')
@@ -30,7 +30,9 @@ app.get('/schedule', async (req, res) => {
   res.send(ans)
 })
 
-app.listen(port, () => console.log(`Watchers app listening on port ${port}!`))
+const server = app.listen(port, () => console.log(`Watchers app listening on port ${port}!`))
+
+module.exports = server
 
 const watchers = [
   {

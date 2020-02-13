@@ -1,19 +1,28 @@
 {
-    "name": "gtfo-cdo-server",
-    "version": "1.0.0",
-    "main": "src/index.js",
-    "license": "MIT",
-    "scripts": {
-      "start": "node src/index.js",
-      "dev": "nodemon src/index.js",
-      "lint": "standard --fix"
-    },
-    "dependencies": {
-      "express": "^4.17.1",
-      "node-fetch": "^2.6.0"
-    },
-    "devDependencies": {
-      "nodemon": "^2.0.2",
-      "standard": "^14.3.1"
-    }
+  "name": "gtfo-cdo-server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "lint": "standard --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "standard": "^14.3.1",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
+}
