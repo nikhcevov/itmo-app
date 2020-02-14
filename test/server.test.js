@@ -1,6 +1,6 @@
 /* global describe, it, expect, afterAll, beforeAll */
 import request from 'supertest'
-import server from '../src/index'
+import server from '../../deprecated_server/src/index'
 
 let scheduleResponce = null
 

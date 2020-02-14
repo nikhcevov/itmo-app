@@ -39,7 +39,7 @@ function Schedule ({ watchersSchedule }) {
 }
 
 Schedule.getInitialProps = async () => {
-  const res = await fetch('http://sb0101.ru:5000/schedule')
+  const res = await fetch('http://localhost:3000/api/schedule')
   const data = await res.json()
   return { watchersSchedule: data }
 }
