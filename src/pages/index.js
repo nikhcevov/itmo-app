@@ -2,15 +2,23 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import IconButton from '@material-ui/core/IconButton'
+import ScheduleIcon from '@material-ui/icons/Schedule'
+import DescriptionIcon from '@material-ui/icons/Description'
+import Link from '../components/Link'
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
+
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative'
   },
   container: {
-    height: '1300px',
     color: '#fff',
+    paddingBottom: theme.spacing(8),
     paddingTop: theme.spacing(8)
   },
   title: {
@@ -40,17 +48,14 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
     color: 'white',
-    borderRadius: '50%',
-    boxShadow: '0 0 0 3px rgba(255, 255, 255, 1)',
-    transition: 'transform 0.5s, color 0.5s, box-shadow 0.5s',
+    transition: 'transform 0.5s, color 0.5s',
     '&:hover': {
       color: theme.palette.primary.main,
-      transform: 'scale(1.3)',
-      boxShadow: '0 0 25px 3px rgba(255, 255, 255, 0)'
+      transform: 'scale(1.3)'
     },
     '&:active': {
       color: 'red',
-      transition: 'transform 0.1s, box-shadow 0.1s',
+      transition: 'transform 0.1s',
       transform: 'scale(1.5)'
     }
   },
@@ -65,7 +70,22 @@ const useStyles = makeStyles(theme => ({
   },
   heartCount: {
     textAlign: 'center'
+  },
+  linksContainer: {
+    paddingTop: theme.spacing(8)
+  },
+  linkIcon: {
+    color: 'white',
+    width: 100,
+    height: 100,
+    transform: 'scale(1)',
+    transition: 'transform 0.3s, color 0.3s',
+    '&:hover': {
+      color: theme.palette.primary.main,
+      transform: 'scale(1.3)'
+    }
   }
+
 }))
 
 function Schedule ({ watchersSchedule }) {
@@ -108,6 +128,43 @@ function Schedule ({ watchersSchedule }) {
           <Typography variant='h4' className={classes.text}>
               Сделано с любовью!
           </Typography>
+
+          <Container className={classes.linksContainer}>
+
+            <Grid
+              container
+              direction='row'
+              justify='space-evenly'
+              alignItems='center'
+              spacing={4}
+            >
+              <Grid item>
+                <Link href='/schedule'>
+                  <ScheduleIcon className={classes.linkIcon} />
+                </Link>
+              </Grid>
+
+              <Grid item>
+                <Link href='/answers'>
+                  <DescriptionIcon className={classes.linkIcon} />
+                </Link>
+              </Grid>
+
+              <Grid item>
+                <Link href='/sponsorship'>
+                  <MonetizationOnIcon className={classes.linkIcon} />
+                </Link>
+              </Grid>
+
+              <Grid item>
+                <Link href='/'>
+                  <HelpOutlineIcon className={classes.linkIcon} />
+                </Link>
+              </Grid>
+
+            </Grid>
+
+          </Container>
 
         </Container>
       </div>
