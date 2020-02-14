@@ -1,6 +1,24 @@
 import fetch from 'node-fetch'
+import cors from 'micro-cors'
 
-export default async (req, res) => {
+const withCors = cors({
+  allowMethods: [
+    'POST',
+    'GET',
+    'PUT'
+  ],
+  allowHeaders: [
+    'X-Requested-With',
+    'Access-Control-Allow-Origin',
+    'X-HTTP-Method-Override',
+    'Content-Type',
+    'Authorization',
+    'Accept'
+  ],
+  origin: '*'
+})
+
+const handler = async (req, res) => {
   const data = await fetch('https://de.ifmo.ru/timesys/jsonp.xhtml')
   const text = await data.text()
   const persons = JSON.parse(text.slice(15).slice(0, -2))
@@ -19,6 +37,8 @@ export default async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify(ans))
 }
+
+export default withCors(handler)
 
 const watchers = [
   {

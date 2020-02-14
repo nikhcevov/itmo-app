@@ -14,4 +14,4 @@ module.exports = (phase, { defaultConfig }) => {
       HOST_NAME: 'https://sb0101.ru'
     }
   }
-};
+}
