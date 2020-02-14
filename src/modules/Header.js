@@ -41,7 +41,7 @@ function Header () {
   const classes = useStyles()
 
   return (
-    <AppBar position='fixed' className={classes.root}>
+    <AppBar position='absolute' className={classes.root}>
       <Toolbar>
         <Link href='/' className={[classes.schedule, classes.answers]}>
           <Typography variant='h6'>
