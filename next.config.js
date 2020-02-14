@@ -11,7 +11,7 @@ module.exports = (phase, { defaultConfig }) => {
 
   return {
     env: {
-      HOST_NAME: 'http://sb0101.ru'
+      HOST_NAME: 'https://sb0101.ru'
     }
   }
 };
