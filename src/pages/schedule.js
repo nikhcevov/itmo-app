@@ -1,10 +1,10 @@
 import React from 'react'
-import fetch from 'isomorphic-unfetch'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
 import ScheduleTable from '../modules/ScheduleTable'
+import fetch from '../fetch'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +39,7 @@ function Schedule ({ watchersSchedule }) {
 }
 
 Schedule.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/schedule')
+  const res = await fetch('/api/schedule')
   const data = await res.json()
   return { watchersSchedule: data }
 }
