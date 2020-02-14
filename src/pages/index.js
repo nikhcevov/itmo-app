@@ -38,7 +38,7 @@ function Schedule ({ watchersSchedule }) {
         className={classes.image}
         src='https://i.ibb.co/gVyyhV8/Yu-Pzj-N9yh-M-1.jpg'
       />
-      <Container maxWidth='md' className={classes.container}>
+      <Container maxWidth='lg' className={classes.container}>
         <Typography variant='h4' className={classes.title}>
           Первая некласичесская шпаргалка
         </Typography>
