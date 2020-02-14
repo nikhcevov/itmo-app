@@ -1,7 +1,10 @@
 import fetch from 'node-fetch'
 import cors from 'micro-cors'
 
-const withCors = cors({ origin: '*' })
+const withCors = cors({
+  allowHeaders: ['Access-Control-Allow-Origin'],
+  origin: '*'
+})
 
 const handler = async (req, res) => {
   const data = await fetch('https://de.ifmo.ru/timesys/jsonp.xhtml')
