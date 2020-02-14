@@ -23,7 +23,7 @@ export default class MyApp extends App {
     return (
       <>
         <Head>
-          <title>Gtfo cdo</title>
+          <title>sb0101</title>
           <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
         </Head>
         <ThemeProvider theme={theme}>

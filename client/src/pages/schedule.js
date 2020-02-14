@@ -8,7 +8,7 @@ import ScheduleTable from '../modules/ScheduleTable'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(4)
   },
   title: {
