@@ -2,7 +2,19 @@ import fetch from 'node-fetch'
 import cors from 'micro-cors'
 
 const withCors = cors({
-  allowHeaders: ['Access-Control-Allow-Origin'],
+  allowMethods: [
+    'POST',
+    'GET',
+    'PUT'
+  ],
+  allowHeaders: [
+    'X-Requested-With',
+    'Access-Control-Allow-Origin',
+    'X-HTTP-Method-Override',
+    'Content-Type',
+    'Authorization',
+    'Accept'
+  ],
   origin: '*'
 })
 
