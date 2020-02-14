@@ -1,10 +1,14 @@
+import 'dotenv/config'
 import express from 'express'
 import fetch from 'node-fetch'
 
 import { watchers } from './constants'
 
 const app = express()
-const port = 5000
+
+// Read the host address and the port from the environment
+const hostname = process.env.HOST
+const port = process.env.PORT
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
@@ -32,6 +36,7 @@ app.get('/schedule', async (req, res) => {
   res.send(ans)
 })
 
-const server = app.listen(port, () => console.log(`Watchers app listening on port ${port}!`))
+const server = app.listen(port, hostname, () => console.log(
+  `Watchers app listening on port http://${hostname}:${port}/!`))
 
 export default server
