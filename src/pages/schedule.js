@@ -9,7 +9,7 @@ import fetch from '../fetch'
 
 const useStyles = makeStyles(theme => ({
   text: {
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(2)
   },
   table: {
