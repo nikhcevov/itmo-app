@@ -1,0 +1,21 @@
+name: Deploy master branch
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        uses: appleboy/ssh-action@v0.0.2
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_HOST_USERNAME }}
+          password: ${{ secrets.DEPLOY_HOST_PASSWORD }}
+          script_stop: true
+          script: |
+            cd apps/gtfo-cdo
+            git pull
+            yarn install
+            yarn build
+            pm2 restart gtfo-cdo
