@@ -7,14 +7,8 @@ import Typography from '@material-ui/core/Typography'
 import Link from '../components/Link'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    // boxShadow: 'none'
-  },
-  schedule: {
-    marginRight: theme.spacing(4)
-  },
-
-  answers: {
+  item: {
+    marginRight: theme.spacing(4),
     color: 'white',
     '&:hover': {
       textDecoration: 'none',
@@ -41,21 +35,21 @@ function Header () {
   const classes = useStyles()
 
   return (
-    <AppBar position='absolute' className={classes.root}>
+    <AppBar position='static'>
       <Toolbar>
-        <Link href='/' className={[classes.schedule, classes.answers]}>
+        <Link href='/' className={classes.item}>
           <Typography variant='h6'>
             Главная
           </Typography>
         </Link>
-        <Link href='/schedule' className={[classes.schedule, classes.answers]}>
+        <Link href='/schedule' className={classes.item}>
           <Typography variant='h6'>
-              Расписание
+            Расписание
           </Typography>
         </Link>
-        <Link href='/answers' className={classes.answers}>
+        <Link href='/answers' className={classes.item}>
           <Typography variant='h6'>
-              Ответы
+            Ответы
           </Typography>
         </Link>
       </Toolbar>
