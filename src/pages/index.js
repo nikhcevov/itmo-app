@@ -3,14 +3,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import IconButton from '@material-ui/core/IconButton'
 import ScheduleIcon from '@material-ui/icons/Schedule'
 import DescriptionIcon from '@material-ui/icons/Description'
-import Link from '../components/Link'
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
+
+import Link from '../components/Link'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,7 +35,8 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     zIndex: -1,
-    position: 'fixed'
+    position: 'fixed',
+    top: 0
   },
   grad: {
     width: '100%',
