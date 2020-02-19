@@ -1,27 +1,24 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
 import Link from '../components/Link'
 
 const useStyles = makeStyles(theme => ({
   item: {
-    marginRight: theme.spacing(4),
-    color: 'white',
     '&:hover': {
       textDecoration: 'none',
-      color: '#EC0B43',
+      color: theme.palette.secondary.main,
       transition: 'color 0.3s'
     },
-    position: 'relative',
     '&:before': {
       content: '""',
-      backgroundColor: '#EC0B43',
+      backgroundColor: theme.palette.secondary.main,
       position: 'absolute',
       width: '0%',
-      height: 3,
+      height: 2,
       bottom: 0
     },
     '&:hover:before': {
@@ -31,28 +28,47 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+function LinkTab (props) {
+  return (
+    <Tab
+      component={Link}
+      {...props}
+    />
+  )
+}
+
 function Header () {
   const classes = useStyles()
+  const [value, setValue] = React.useState(0)
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
 
   return (
     <AppBar position='static'>
-      <Toolbar>
-        <Link href='/' className={classes.item}>
-          <Typography variant='h6'>
-            Главная
-          </Typography>
-        </Link>
-        <Link href='/schedule' className={classes.item}>
-          <Typography variant='h6'>
-            Расписание
-          </Typography>
-        </Link>
-        <Link href='/answers' className={classes.item}>
-          <Typography variant='h6'>
-            Ответы
-          </Typography>
-        </Link>
-      </Toolbar>
+      <Tabs
+        variant='scrollable'
+        scrollButtons='auto'
+        value={value}
+        onChange={handleChange}
+      >
+        <LinkTab
+          label='Главная'
+          href='/'
+          className={classes.item}
+        />
+        <LinkTab
+          label='Расписание'
+          href='/schedule'
+          className={classes.item}
+        />
+        <LinkTab
+          label='Ответы'
+          href='/answers'
+          className={classes.item}
+        />
+      </Tabs>
     </AppBar>
   )
 }
