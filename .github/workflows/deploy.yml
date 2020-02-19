@@ -16,6 +16,7 @@ jobs:
             cd apps/gtfo-cdo
             uname -a
             git pull
-            yarn install
-            yarn build
+            /root/.yarn/bin/yarn install
+            /root/.yarn/bin/yarn build
             pm2 restart gtfo-cdo
+# Какая-то шляпа происходит, Yarn можно запустить только по абсолютному пути
