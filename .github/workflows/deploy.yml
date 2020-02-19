@@ -1,5 +1,8 @@
 name: Deploy master branch
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     name: Deploy
@@ -20,3 +23,4 @@ jobs:
             /root/.yarn/bin/yarn build
             /root/.nvm/versions/node/v12.16.0/bin/pm2 restart gtfo-cdo
 # Какая-то шляпа происходит, программы можно запустить только по абсолютному пути
+# Нужно будет обязательно переделать по нормальному
