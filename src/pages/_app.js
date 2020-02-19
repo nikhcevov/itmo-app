@@ -1,14 +1,29 @@
 import React from 'react'
-import App from 'next/app'
+import MuiApp from 'next/app'
 import Head from 'next/head'
-import { ThemeProvider } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import { withStyles, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import theme from '../theme'
 import Header from '../modules/Header'
 import Footer from '../modules/Footer'
 
-export default class MyApp extends App {
+const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh'
+  },
+  content: {
+    flex: '1 0 auto'
+  },
+  footer: {
+    flexShrink: 0
+  }
+}
+
+class App extends MuiApp {
   componentDidMount () {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
@@ -18,21 +33,31 @@ export default class MyApp extends App {
   }
 
   render () {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, classes } = this.props
 
     return (
       <>
         <Head>
-          <title>Gtfo cdo</title>
+          <title>SB0101</title>
           <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
         </Head>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
+          <div className={classes.root}>
+            <div className={classes.content}>
+              <Header />
+              <Component {...pageProps} />
+            </div>
+            <Footer className={classes.footer} />
+          </div>
         </ThemeProvider>
       </>
     )
   }
 }
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(App)
