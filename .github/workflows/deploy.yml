@@ -18,5 +18,5 @@ jobs:
             git pull
             /root/.yarn/bin/yarn install
             /root/.yarn/bin/yarn build
-            pm2 restart gtfo-cdo
-# Какая-то шляпа происходит, Yarn можно запустить только по абсолютному пути
+            /root/.nvm/versions/node/v12.16.0/bin/pm2 restart gtfo-cdo
+# Какая-то шляпа происходит, программы можно запустить только по абсолютному пути
