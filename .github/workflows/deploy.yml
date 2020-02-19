@@ -5,11 +5,11 @@ on:
       - master
 jobs:
   build:
-    name: Build
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: deploy
-        uses: appleboy/ssh-action@v0.0.2
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_HOST_USERNAME }}
@@ -17,7 +17,10 @@ jobs:
           script_stop: true
           script: |
             cd apps/gtfo-cdo
+            uname -a
             git pull
-            yarn install
-            yarn build
-            pm2 restart gtfo-cdo
+            /root/.yarn/bin/yarn install
+            /root/.yarn/bin/yarn build
+            /root/.nvm/versions/node/v12.16.0/bin/pm2 restart gtfo-cdo
+# Какая-то шляпа происходит, программы можно запустить только по абсолютному пути
+# Нужно будет обязательно переделать по нормальному
