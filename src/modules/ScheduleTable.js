@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 })
 
 function sortByDate (first, second) {
-  return (first[0] + first[1] * 100) - (second[0] + second[1] * 100)
+  return (+first[0] + first[1] * 100) - (+second[0] + second[1] * 100)
 }
 
 function prepareData (data) {
