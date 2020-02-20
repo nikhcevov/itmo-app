@@ -46,7 +46,8 @@ function prepareData (data) {
   }))
 }
 
-export default function ScheduleTable ({ data, className }) {
+// ---------------------------------------------className?
+export default function ScheduleTable ({ data }) {
   const classes = useStyles()
   const rows = prepareData(data)
 
@@ -65,7 +66,7 @@ export default function ScheduleTable ({ data, className }) {
 
   return (
     <>
-      <TableContainer component={Paper} className={className}>
+      <TableContainer component={Paper}>
         <Table className={classes.table} aria-label='simple table'>
           <TableHead>
             <TableRow>
