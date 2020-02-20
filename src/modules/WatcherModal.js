@@ -12,13 +12,19 @@ export default function SimpleDialog (props) {
   }
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby='simple-dialog-title' open={open}>
-      <WatcherCard data={data} />
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby='simple-dialog-title'
+      open={open}
+      scroll='body'
+    >
+      <WatcherCard data={data} onClose={onClose} />
     </Dialog>
   )
 }
 
 SimpleDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
+  data: PropTypes.object.isRequired
 }

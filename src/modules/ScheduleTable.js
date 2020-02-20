@@ -50,23 +50,16 @@ export default function SimpleTable ({ data, className }) {
   const classes = useStyles()
   const rows = prepareData(data)
 
-  const [modal, setModal] = React.useState({
-    isOpen: false,
-    data: {}
-  })
+  const [watcherInfo, setInfo] = React.useState({})
+  const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = (row) => {
-    setModal({
-      isOpen: true,
-      data: row
-    })
+    setInfo(row)
+    setOpen(true)
   }
 
   const handleClose = () => {
-    setModal({
-      isOpen: false,
-      data: {}
-    })
+    setOpen(false)
   }
 
   return (
@@ -93,7 +86,7 @@ export default function SimpleTable ({ data, className }) {
           </TableBody>
         </Table>
       </TableContainer>
-      <WatcherModal open={modal.isOpen} data={modal.data} onClose={handleClose} />
+      <WatcherModal open={open} data={watcherInfo} onClose={handleClose} />
     </>
   )
 }
