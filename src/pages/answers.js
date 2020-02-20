@@ -30,15 +30,15 @@ function Answers () {
         <Typography variant='body1' gutterBottom>
           Материал, который может быть полезен при посещении ЦДО:
         </Typography>
-        <Hidden xsDown>
-          <Container maxWidth='lg'>
-            <ExpantionAnswers data={subjectsAnswers} />
-          </Container>
-        </Hidden>
-        <Hidden smUp>
-          <ExpantionAnswers data={subjectsAnswers} />
-        </Hidden>
       </Container>
+      <Hidden xsDown>
+        <Container maxWidth='lg'>
+          <ExpantionAnswers data={subjectsAnswers} />
+        </Container>
+      </Hidden>
+      <Hidden smUp>
+        <ExpantionAnswers data={subjectsAnswers} />
+      </Hidden>
     </div>
   )
 }
