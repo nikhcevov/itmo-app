@@ -114,7 +114,9 @@ function Schedule ({ watchersSchedule }) {
           </Typography>
 
           <Typography variant='h5' className={classes.text}>
-            Ad exercitation pariatur enim fugiat.Laborum adipisicing uis eu id occaecat. Cupidatat irure labore tempor anim laborum irure in reprehenderit sint esse sint. Qui culpa reprehenderit magna elit consectetur laboris irure fugiat eu qui velit proident et. Veniam sint officia officia dolor elit cupidatat irure. Reprehenderit minim laborum aliquip voluptate id enim aliquip irure adipisicing proident officia nulla voluptate.
+            Здесь вы найдете все необходимое для учебы в университете ИТМО.
+            Расписание смотрящих в цдо, [выбирайте] наиболее легкий день и списывайте!
+            Так же, [здесь] собраны действующие ответы на цдо.
           </Typography>
 
           <Container className={classes.heartContainer}>
