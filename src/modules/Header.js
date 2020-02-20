@@ -1,4 +1,5 @@
-import React from 'react'
+/* global globalThis */
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
@@ -7,9 +8,6 @@ import Tab from '@material-ui/core/Tab'
 import Link from '../components/Link'
 
 const useStyles = makeStyles(theme => ({
-  tabs: {
-    color: 'white'
-  },
   item: {
     '&:hover': {
       textDecoration: 'none',
@@ -34,8 +32,8 @@ const useStyles = makeStyles(theme => ({
 function LinkTab (props) {
   return (
     <Tab
-
       component={Link}
+      color='inherit'
       {...props}
     />
   )
@@ -43,7 +41,19 @@ function LinkTab (props) {
 
 function Header () {
   const classes = useStyles()
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = useState(0)
+  useEffect(() => {
+    const currentPath = globalThis.location.pathname
+    if (currentPath === '/') {
+      setValue(0)
+    }
+    if (currentPath === '/schedule') {
+      setValue(1)
+    }
+    if (currentPath === '/answers') {
+      setValue(2)
+    }
+  }, [])
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
