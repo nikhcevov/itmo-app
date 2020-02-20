@@ -14,19 +14,18 @@ import Link from '../components/Link'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    position: 'relative'
+    position: 'relative',
+    background: 'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)',
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(10)
   },
   container: {
-    color: '#fff',
-    paddingBottom: theme.spacing(8),
-    paddingTop: theme.spacing(8)
+    color: '#fff'
   },
   title: {
-    paddingTop: theme.spacing(4),
     textAlign: 'center'
   },
   text: {
-    paddingTop: theme.spacing(4),
     textAlign: 'center'
   },
   image: {
@@ -37,10 +36,6 @@ const useStyles = makeStyles(theme => ({
     zIndex: -1,
     position: 'fixed',
     top: 0
-  },
-  grad: {
-    width: '100%',
-    background: 'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)'
   },
   important: {
     color: 'red'
@@ -89,7 +84,7 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-function Schedule ({ watchersSchedule }) {
+function Main () {
   const classes = useStyles()
   const [likesCount, setLikesCount] = React.useState({
     value: 42768
@@ -107,72 +102,70 @@ function Schedule ({ watchersSchedule }) {
         className={classes.image}
         src='https://i.ibb.co/gVyyhV8/Yu-Pzj-N9yh-M-1.jpg'
       />
-      <div className={classes.grad}>
-        <Container maxWidth='lg' className={classes.container}>
-          <Typography variant='h4' className={classes.title}>
+      <Container maxWidth='lg' className={classes.container}>
+        <Typography variant='h4' className={classes.title} gutterBottom>
             Первая некласcическая шпаргалка
+        </Typography>
+
+        <Typography variant='h5' className={classes.text} gutterBottom>
+          Здесь вы найдете все необходимое для учебы в университете ИТМО.
+          Расписание смотрящих в цдо, [выбирайте] наиболее легкий день и списывайте!
+          Так же, [здесь] собраны действующие ответы на цдо.
+        </Typography>
+
+        <Container className={classes.heartContainer}>
+          <IconButton className={classes.heartButton} onClick={() => handleClickLike()}>
+            <FavoriteIcon className={classes.heart} />
+          </IconButton>
+          <Typography variant='h4' className={classes.heartCount}>
+            {likesCount.value}
           </Typography>
+        </Container>
 
-          <Typography variant='h5' className={classes.text}>
-            Здесь вы найдете все необходимое для учебы в университете ИТМО.
-            Расписание смотрящих в цдо, [выбирайте] наиболее легкий день и списывайте!
-            Так же, [здесь] собраны действующие ответы на цдо.
-          </Typography>
-
-          <Container className={classes.heartContainer}>
-            <IconButton className={classes.heartButton} onClick={() => handleClickLike()}>
-              <FavoriteIcon className={classes.heart} />
-            </IconButton>
-            <Typography variant='h4' className={classes.heartCount}>
-              {likesCount.value}
-            </Typography>
-          </Container>
-
-          <Typography variant='h4' className={classes.text}>
+        <Typography variant='h4' className={classes.text}>
               Сделано с любовью!
-          </Typography>
+        </Typography>
 
-          <Container className={classes.linksContainer}>
+        <Container className={classes.linksContainer}>
 
-            <Grid
-              container
-              direction='row'
-              justify='space-evenly'
-              alignItems='center'
-              spacing={4}
-            >
-              <Grid item>
-                <Link href='/schedule'>
-                  <ScheduleIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-
-              <Grid item>
-                <Link href='/answers'>
-                  <DescriptionIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-
-              <Grid item>
-                <Link href='/sponsorship'>
-                  <MonetizationOnIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-
-              <Grid item>
-                <Link href='/'>
-                  <HelpOutlineIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-
+          <Grid
+            container
+            direction='row'
+            justify='space-evenly'
+            alignItems='center'
+            spacing={4}
+          >
+            <Grid item>
+              <Link href='/schedule'>
+                <ScheduleIcon className={classes.linkIcon} />
+              </Link>
             </Grid>
 
-          </Container>
+            <Grid item>
+              <Link href='/answers'>
+                <DescriptionIcon className={classes.linkIcon} />
+              </Link>
+            </Grid>
+
+            <Grid item>
+              <Link href='/sponsorship'>
+                <MonetizationOnIcon className={classes.linkIcon} />
+              </Link>
+            </Grid>
+
+            <Grid item>
+              <Link href='/'>
+                <HelpOutlineIcon className={classes.linkIcon} />
+              </Link>
+            </Grid>
+
+          </Grid>
 
         </Container>
-      </div>
+
+      </Container>
     </div>
   )
 }
 
-export default Schedule
+export default Main

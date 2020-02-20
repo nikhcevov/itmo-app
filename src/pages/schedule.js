@@ -8,12 +8,11 @@ import ScheduleTable from '../modules/ScheduleTable'
 import fetch from '../fetch'
 
 const useStyles = makeStyles(theme => ({
-  text: {
+  root: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2)
   },
-  table: {
-    paddingBottom: theme.spacing(4)
+  title: {
   }
 }))
 
@@ -21,16 +20,16 @@ function Schedule ({ watchersSchedule }) {
   const classes = useStyles()
 
   return (
-    <>
-      <Container maxWidth='lg' className={classes.text}>
-        <Typography variant='h5'>
+    <div className={classes.root}>
+      <Container maxWidth='lg'>
+        <Typography variant='h5' className={classes.title} gutterBottom>
           Расписание
         </Typography>
-        <Typography variant='body1'>
+        <Typography variant='body1' gutterBottom>
           Таблица с информацией о смотрящих в ЦДО на ближайшие 2 недели.
         </Typography>
       </Container>
-      <div className={classes.table}>
+      <div>
         <Hidden xsDown>
           <Container maxWidth='lg'>
             <ScheduleTable data={watchersSchedule} />
@@ -40,7 +39,7 @@ function Schedule ({ watchersSchedule }) {
           <ScheduleTable data={watchersSchedule} />
         </Hidden>
       </div>
-    </>
+    </div>
   )
 }
 
