@@ -7,6 +7,9 @@ import Tab from '@material-ui/core/Tab'
 import Link from '../components/Link'
 
 const useStyles = makeStyles(theme => ({
+  tabs: {
+    color: 'white'
+  },
   item: {
     '&:hover': {
       textDecoration: 'none',
@@ -31,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 function LinkTab (props) {
   return (
     <Tab
+
       component={Link}
       {...props}
     />
@@ -52,6 +56,7 @@ function Header () {
         scrollButtons='auto'
         value={value}
         onChange={handleChange}
+        className={classes.tabs}
       >
         <LinkTab
           label='Главная'
