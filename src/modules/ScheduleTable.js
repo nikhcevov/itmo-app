@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -46,20 +46,21 @@ function prepareData (data) {
   }))
 }
 
-export default function SimpleTable ({ data, className }) {
+export default function ScheduleTable ({ data, className }) {
   const classes = useStyles()
   const rows = prepareData(data)
 
-  const [watcherInfo, setInfo] = React.useState({})
-  const [open, setOpen] = React.useState(false)
+  const [modal, setModal] = useState({
+    isOpen: false,
+    data: {}
+  })
 
-  const handleClickOpen = (row) => {
-    setInfo(row)
-    setOpen(true)
+  const handleModalOpen = (row) => {
+    setModal({ data: row, isOpen: true })
   }
 
-  const handleClose = () => {
-    setOpen(false)
+  const handleModalClose = () => {
+    setModal({ ...modal, isOpen: false })
   }
 
   return (
@@ -75,7 +76,7 @@ export default function SimpleTable ({ data, className }) {
           </TableHead>
           <TableBody>
             {rows.map(row => (
-              <TableRow key={row.date} onClick={() => handleClickOpen(row)} className={classes.row}>
+              <TableRow key={row.date} onClick={() => handleModalOpen(row)} className={classes.row}>
                 <TableCell component='th' scope='row'>
                   {row.date}
                 </TableCell>
@@ -86,7 +87,7 @@ export default function SimpleTable ({ data, className }) {
           </TableBody>
         </Table>
       </TableContainer>
-      <WatcherModal open={open} data={watcherInfo} onClose={handleClose} />
+      <WatcherModal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />
     </>
   )
 }
