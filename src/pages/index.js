@@ -14,8 +14,8 @@ import Link from '../components/Link'
 
 const useStyles = makeStyles(theme => ({
   root: {
+    background: 'linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)',
     position: 'relative',
-    background: 'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%)',
     paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(10)
   },
@@ -81,7 +81,6 @@ const useStyles = makeStyles(theme => ({
       transform: 'scale(1.3)'
     }
   }
-
 }))
 
 function Main () {
