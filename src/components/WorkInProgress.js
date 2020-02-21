@@ -4,16 +4,14 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 
-import theme from '../theme'
-
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: theme.spacing(8),
     width: '100%',
     height: '90vh',
     marginTop: theme.spacing(4)
   }
-})
+}))
 
 function WorkInProgress ({ extraText }) {
   const classes = useStyles()
