@@ -1,15 +1,14 @@
-/* global localStorage */
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
-import PropTypes from 'prop-types'
-import { withStyles, ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import cookies from 'next-cookies'
 
 import getTheme from '../theme'
 import Header from '../modules/Header'
 import Footer from '../modules/Footer'
 
-const styles = {
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -21,10 +20,11 @@ const styles = {
   footer: {
     flexShrink: 0
   }
-}
+}))
 
-function App ({ Component, pageProps, classes }) {
-  const [themeColor, setThemeColor] = useState('light')
+function App ({ Component, pageProps, cookieThemeType }) {
+  const classes = useStyles()
+  const [themeType, setThemeType] = useState(cookieThemeType || 'light')
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -32,18 +32,14 @@ function App ({ Component, pageProps, classes }) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
-    const color = localStorage.getItem('themeColor')
-    if (color) {
-      setThemeColor(color)
-    }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('themeColor', themeColor)
-  }, [themeColor])
+    document.cookie = `themeType=${themeType}`
+  }, [themeType])
 
   function handleChangeThemeColor (color) {
-    setThemeColor(color)
+    setThemeType(color)
   }
 
   return (
@@ -52,7 +48,7 @@ function App ({ Component, pageProps, classes }) {
         <title>SB0101</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
       </Head>
-      <ThemeProvider theme={getTheme(themeColor)}>
+      <ThemeProvider theme={getTheme(themeType)}>
         <CssBaseline />
         <div className={classes.root}>
           <div className={classes.content}>
@@ -66,8 +62,8 @@ function App ({ Component, pageProps, classes }) {
   )
 }
 
-App.propTypes = {
-  classes: PropTypes.object.isRequired
-}
+App.getInitialProps = async appCtx => ({
+  cookieThemeType: cookies(appCtx.ctx).themeType
+})
 
-export default withStyles(styles)(App)
+export default App
