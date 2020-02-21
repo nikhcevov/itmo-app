@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: theme.typography.fontWeightRegular
   },
   answerLink: {
+    color: theme.palette.text.primary,
     textDecoration: 'none',
     transition: 'color 0.3s',
     '&:hover': {

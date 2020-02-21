@@ -9,18 +9,18 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import WatcherModal from './WatcherModal'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 320
   },
   row: {
     '&:hover': {
-      backgroundColor: 'rgb(240, 240, 240)',
+      backgroundColor: theme.palette.action.hover,
       transition: 'background-color 0.1s',
       cursor: 'pointer'
     }
   }
-})
+}))
 
 function sortByDate (first, second) {
   return (+first[0] + first[1] * 100) - (+second[0] + second[1] * 100)
@@ -46,7 +46,6 @@ function prepareData (data) {
   }))
 }
 
-// ---------------------------------------------className?
 export default function ScheduleTable ({ data }) {
   const classes = useStyles()
   const rows = prepareData(data)
