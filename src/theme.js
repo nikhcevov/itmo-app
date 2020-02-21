@@ -3,7 +3,7 @@ import blue from '@material-ui/core/colors/blue'
 import red from '@material-ui/core/colors/red'
 import grey from '@material-ui/core/colors/grey'
 
-function getTheme ({ paletteType = 'light' }) {
+export default function getTheme (paletteType = 'light') {
   const isLight = paletteType === 'light'
   return createMuiTheme({
     breakpoints: {
@@ -26,5 +26,3 @@ function getTheme ({ paletteType = 'light' }) {
     }
   })
 }
-
-export default getTheme({})

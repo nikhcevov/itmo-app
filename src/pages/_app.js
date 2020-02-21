@@ -1,11 +1,10 @@
-import React from 'react'
-import MuiApp from 'next/app'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
 import { withStyles, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-import theme from '../theme'
+import getTheme from '../theme'
 import Header from '../modules/Header'
 import Footer from '../modules/Footer'
 
@@ -23,37 +22,39 @@ const styles = {
   }
 }
 
-class App extends MuiApp {
-  componentDidMount () {
+function App ({ Component, pageProps, classes }) {
+  const [themeColor, setThemeColor] = useState('light')
+
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
+  }, [])
+
+  function handleChangeThemeColor (color) {
+    setThemeColor(color)
   }
 
-  render () {
-    const { Component, pageProps, classes } = this.props
-
-    return (
-      <>
-        <Head>
-          <title>SB0101</title>
-          <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
-        </Head>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <div className={classes.root}>
-            <div className={classes.content}>
-              <Header />
-              <Component {...pageProps} />
-            </div>
-            <Footer className={classes.footer} />
+  return (
+    <>
+      <Head>
+        <title>SB0101</title>
+        <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
+      </Head>
+      <ThemeProvider theme={getTheme(themeColor)}>
+        <CssBaseline />
+        <div className={classes.root}>
+          <div className={classes.content}>
+            <Header />
+            <Component {...pageProps} />
           </div>
-        </ThemeProvider>
-      </>
-    )
-  }
+          <Footer onChangeThemeColor={handleChangeThemeColor} className={classes.footer} />
+        </div>
+      </ThemeProvider>
+    </>
+  )
 }
 
 App.propTypes = {

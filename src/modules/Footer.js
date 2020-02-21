@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Grid from '@material-ui/core/Grid'
 
 import Link from '../components/Link'
@@ -23,10 +25,15 @@ const useStyles = makeStyles(theme => ({
   },
   extraInfo: {
     textAlign: 'center'
+  },
+  buttons: {
+    '& button': {
+      color: theme.palette.text.secondary
+    }
   }
 }))
 
-function Footer () {
+function Footer ({ onChangeThemeColor }) {
   const classes = useStyles()
 
   return (
@@ -87,7 +94,25 @@ function Footer () {
               </Grid>
             </Grid>
           </Grid>
-
+          <Grid item>
+            <Grid
+              container
+              direction='column'
+              spacing={1}
+            >
+              <Grid item>
+                <Typography variant='body1' noWrap>
+                  Выбрать тему
+                </Typography>
+              </Grid>
+              <Grid item>
+                <ButtonGroup size='small' className={classes.buttons}>
+                  <Button onClick={() => onChangeThemeColor('light')}>Светлая</Button>
+                  <Button onClick={() => onChangeThemeColor('dark')}>Темная</Button>
+                </ButtonGroup>
+              </Grid>
+            </Grid>
+          </Grid>
           <Grid item xs={12}>
             <Typography className={classes.extraInfo} variant='body2'>
               © Gtfo-cdo. Сделано с ❤️ для списывания с удовольствием.
