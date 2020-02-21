@@ -1,11 +1,12 @@
 import React from 'react'
+import useSWR from 'swr'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 
 import ScheduleTable from '../modules/ScheduleTable'
-import fetch from '../fetch'
+import fetcher from '../fetcher'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,9 +17,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function Schedule ({ watchersSchedule }) {
+function Schedule () {
   const classes = useStyles()
-
+  const { data } = useSWR('/api/schedule', fetcher)
+  const content = data || []
   return (
     <div className={classes.root}>
       <Container maxWidth='lg'>
@@ -29,24 +31,16 @@ function Schedule ({ watchersSchedule }) {
           Таблица с информацией о смотрящих в ЦДО на ближайшие 2 недели.
         </Typography>
       </Container>
-      <div>
-        <Hidden xsDown>
-          <Container maxWidth='lg'>
-            <ScheduleTable data={watchersSchedule} />
-          </Container>
-        </Hidden>
-        <Hidden smUp>
-          <ScheduleTable data={watchersSchedule} />
-        </Hidden>
-      </div>
+      <Hidden xsDown>
+        <Container maxWidth='lg'>
+          <ScheduleTable data={content} />
+        </Container>
+      </Hidden>
+      <Hidden smUp>
+        <ScheduleTable data={content} />
+      </Hidden>
     </div>
   )
-}
-
-Schedule.getInitialProps = async () => {
-  const res = await fetch('/api/schedule')
-  const data = await res.json()
-  return { watchersSchedule: data }
 }
 
 export default Schedule
