@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     color: 'rgba(255,255,255,0.7)',
 
     '& a:hover': {
-      color: '#EC0B43',
+      color: theme.palette.secondary.main,
       textDecoration: 'none',
       transition: 'color 0.2s'
     }
@@ -47,17 +47,17 @@ function Footer () {
             >
               <Grid item>
                 <Typography variant='body1' noWrap>
-                    Приложение
+                  Приложение
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant='body2' noWrap>
-                    О нас
+                  О нас
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant='body2' noWrap>
-                    Связаться с разработчиками
+                  Связаться с разработчиками
                 </Typography>
               </Grid>
             </Grid>
@@ -70,18 +70,18 @@ function Footer () {
             >
               <Grid item>
                 <Typography variant='body1' noWrap>
-                    Помощь & поддержка
+                  Помощь & поддержка
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant='body2' noWrap>
-                    FAQ
+                  FAQ
                 </Typography>
               </Grid>
               <Grid item>
                 <Link href='/sponsorship' color='inherit'>
                   <Typography variant='body2' noWrap>
-                      Спонсорство
+                    Спонсорство
                   </Typography>
                 </Link>
               </Grid>
@@ -90,7 +90,7 @@ function Footer () {
 
           <Grid item xs={12}>
             <Typography className={classes.extraInfo} variant='body2'>
-                  © Gtfo-cdo. Сделано с ❤️ для списывания с удовольствием.
+              © Gtfo-cdo. Сделано с ❤️ для списывания с удовольствием.
             </Typography>
           </Grid>
         </Grid>
