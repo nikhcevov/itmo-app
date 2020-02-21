@@ -1,3 +1,4 @@
+/* global localStorage */
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
@@ -31,7 +32,15 @@ function App ({ Component, pageProps, classes }) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
+    const color = localStorage.getItem('themeColor')
+    if (color) {
+      setThemeColor(color)
+    }
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem('themeColor', themeColor)
+  }, [themeColor])
 
   function handleChangeThemeColor (color) {
     setThemeColor(color)
