@@ -101,12 +101,12 @@ function Main () {
     <div className={classes.root}>
       <img
         className={classes.image}
-        src='https://i.ibb.co/gVyyhV8/Yu-Pzj-N9yh-M-1.jpg'
+        src='/index-background.png'
       />
       {likesCount >= 10 &&
         <img
           className={classes.image}
-          src='https://i.gifer.com/LlTm.gif'
+          src='/index-background-creeper.gif'
         />}
       <Container maxWidth='lg' className={classes.container}>
         <Typography variant='h4' className={classes.title} gutterBottom>
@@ -119,8 +119,14 @@ function Main () {
         </Typography>
         <Container className={classes.heartContainer}>
 
-          <IconButton aria-label='like' className={classes.heartBtn} disableRipple disableFocusRipple>
-            <FavoriteIcon className={classes.heart} onClick={() => handleClickLike()} />
+          <IconButton
+            aria-label='like'
+            className={classes.heartBtn}
+            disableRipple
+            disableFocusRipple
+            onClick={() => handleClickLike()}
+          >
+            <FavoriteIcon className={classes.heart} />
           </IconButton>
         </Container>
         <Container className={classes.linksContainer}>
