@@ -5,8 +5,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import cookies from 'next-cookies'
 
 import getTheme from '../theme'
-import Header from '../modules/Header'
-import Footer from '../modules/Footer'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,9 +22,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function App ({ Component, pageProps, cookieThemeType }) {
+function App ({ Component, pageProps, cookie }) {
   const classes = useStyles()
-  const [themeType, setThemeType] = useState(cookieThemeType || 'light')
+  const [themeType, setThemeType] = useState(cookie.cookieThemeType || 'light')
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -52,7 +52,7 @@ function App ({ Component, pageProps, cookieThemeType }) {
         <CssBaseline />
         <div className={classes.root}>
           <div className={classes.content}>
-            <Header />
+            <Header initialTab={cookie.headerCurrentTab} />
             <Component {...pageProps} />
           </div>
           <Footer onChangeThemeColor={handleChangeThemeColor} className={classes.footer} />
@@ -63,7 +63,10 @@ function App ({ Component, pageProps, cookieThemeType }) {
 }
 
 App.getInitialProps = async appCtx => ({
-  cookieThemeType: cookies(appCtx.ctx).themeType
+  cookie: {
+    cookieThemeType: cookies(appCtx.ctx).themeType,
+    headerCurrentTab: appCtx.router && appCtx.router.pathname
+  }
 })
 
 export default App

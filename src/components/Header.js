@@ -1,11 +1,10 @@
-/* global globalThis */
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
-import Link from '../components/Link'
+import Link from './Link'
 
 const useStyles = makeStyles(theme => ({
   item: {
@@ -39,21 +38,21 @@ function LinkTab (props) {
   )
 }
 
-function Header () {
+function chooseTab (tab) {
+  if (tab === '/') {
+    return 0
+  }
+  if (tab === '/schedule') {
+    return 1
+  }
+  if (tab === '/answers') {
+    return 2
+  }
+}
+
+function Header ({ initialTab }) {
   const classes = useStyles()
-  const [value, setValue] = useState(0)
-  useEffect(() => {
-    const currentPath = globalThis.location.pathname
-    if (currentPath === '/') {
-      setValue(0)
-    }
-    if (currentPath === '/schedule') {
-      setValue(1)
-    }
-    if (currentPath === '/answers') {
-      setValue(2)
-    }
-  }, [])
+  const [value, setValue] = useState(chooseTab(initialTab))
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
