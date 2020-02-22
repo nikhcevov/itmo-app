@@ -8,6 +8,7 @@ import ScheduleIcon from '@material-ui/icons/Schedule'
 import DescriptionIcon from '@material-ui/icons/Description'
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
+import IconButton from '@material-ui/core/IconButton'
 
 import Link from '../components/Link'
 
@@ -40,8 +41,8 @@ const useStyles = makeStyles(theme => ({
     color: 'red'
   },
   heart: {
-    width: '100%',
-    height: '100%',
+    width: 100,
+    height: 100,
     color: 'white',
     transition: 'transform 0.2s, color 0.2s',
     cursor: 'pointer',
@@ -52,6 +53,10 @@ const useStyles = makeStyles(theme => ({
     '&:active': {
       transform: 'scale(1.4)'
     }
+  },
+  heartBtn: {
+    width: 100,
+    height: 100
   },
   heartContainer: {
     width: 100,
@@ -113,7 +118,10 @@ function Main () {
           Так же, [здесь] собраны действующие ответы на цдо.
         </Typography>
         <Container className={classes.heartContainer}>
-          <FavoriteIcon className={classes.heart} onClick={() => handleClickLike()} />
+
+          <IconButton aria-label='like' className={classes.heartBtn} disableRipple disableFocusRipple>
+            <FavoriteIcon className={classes.heart} onClick={() => handleClickLike()} />
+          </IconButton>
         </Container>
         <Container className={classes.linksContainer}>
           <Grid
