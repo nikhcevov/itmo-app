@@ -1,9 +1,6 @@
 const withOffline = require('next-offline')
 
 const nextConfig = {
-  env: {
-    HOST_NAME: 'http://localhost:3000'
-  },
   target: 'serverless',
   transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
