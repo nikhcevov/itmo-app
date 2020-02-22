@@ -6,18 +6,25 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+  dialog: {
+  },
   root: {
-    maxWidth: 400
   },
   media: {
-    height: 400
+    height: 300,
+    minWidth: 200
   },
+  content: {
+  },
+
   difficultyText: {
     color: 'red'
   }
-})
+
+}))
 
 export default function WatcherModal ({ onClose, open, data }) {
   const classes = useStyles()
@@ -28,28 +35,44 @@ export default function WatcherModal ({ onClose, open, data }) {
 
   return (
     <Dialog
+      maxWidth={false}
+      className={classes.dialog}
       onClose={handleClose}
       open={open}
       scroll='body'
     >
       <Card className={classes.root} onClick={handleClose}>
         <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={data.img}
-            title={data.name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='h2'>
-              {data.name}
-            </Typography>
-            <Typography gutterBottom variant='subtitle2' className={classes.difficultyText}>
-              Сложность: {data.difficulty}
-            </Typography>
-            <Typography variant='body2' color='textSecondary' component='p'>
-              Здесь будет всякого рода информация о смотрящем.
-            </Typography>
-          </CardContent>
+          <Grid
+            container
+            direction='row'
+            justify='space-evenly'
+            alignItems='stretch'
+            spacing={0}
+          >
+            <Grid item xs>
+              <CardMedia
+                className={classes.media}
+                image={data.img}
+                title={data.name}
+              />
+            </Grid>
+
+            <Grid item xs>
+              <CardContent className={classes.content}>
+                <Typography gutterBottom variant='h5' component='h2'>
+                  {data.name}
+                </Typography>
+                <Typography gutterBottom variant='subtitle2' className={classes.difficultyText}>
+                  Сложность: {data.difficulty}
+                </Typography>
+                <Typography variant='body2' color='textSecondary' component='p'>
+                  Здесь будет всякого рода информация о смотрящем.
+                </Typography>
+              </CardContent>
+            </Grid>
+
+          </Grid>
         </CardActionArea>
       </Card>
     </Dialog>
