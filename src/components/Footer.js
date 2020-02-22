@@ -16,11 +16,12 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     color: 'rgba(255,255,255,0.7)',
-
+    '& a': {
+      transition: 'color 0.2s'
+    },
     '& a:hover': {
       color: theme.palette.secondary.main,
-      textDecoration: 'none',
-      transition: 'color 0.2s'
+      textDecoration: 'none'
     }
   },
   extraInfo: {
