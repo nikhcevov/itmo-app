@@ -3,17 +3,17 @@
   "short_name": "SB0101",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/icons/icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/icons/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "background_color": "#FFFFFF",
+  "background_color": "#fff",
   "description": "Первый неклассический ИТМО app",
   "display": "fullscreen",
   "start_url": "/",
