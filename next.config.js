@@ -41,11 +41,28 @@ const nextConfig = {
         }
       },
       {
-      // Cache the Google Fonts stylesheets with a stale while revalidate strategy.
+        // Cache the Google Fonts stylesheets with a stale while revalidate strategy.
         urlPattern: /^https:\/\/fonts\.googleapis\.com/,
         handler: 'StaleWhileRevalidate',
         options: {
           cacheName: 'google-fonts-stylesheets'
+        }
+      },
+      {
+        // Cache JavaScript and CSS
+        urlPattern: /\.(?:js|css)$/,
+        handler: 'StaleWhileRevalidate'
+      },
+      {
+        // Cache Images
+        urlPattern: /\.(?:png|gif|jpg|jpeg|svg)$/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'images',
+          expiration: {
+            maxEntries: 150,
+            maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
+          }
         }
       }
     ]
