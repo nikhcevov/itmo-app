@@ -1,35 +1,12 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core/styles'
-import getTheme from '../theme'
-
-// Make sure that the same names in public/manifest.json
-const APP_NAME = 'SB0101'
-const APP_DESCRIPTION = 'Первый неклассический ИТМО app'
 
 export default class MyDocument extends Document {
   render () {
-    const theme = getTheme()
     return (
       <html lang='en'>
-        <Head>
-          <meta name='application-name' content={APP_NAME} />
-          <meta name='apple-mobile-web-app-capable' content='yes' />
-          <meta name='apple-mobile-web-app-status-bar-style' content='default' />
-          <meta name='apple-mobile-web-app-title' content={APP_NAME} />
-          <meta name='description' content={APP_DESCRIPTION} />
-          <meta name='format-detection' content='telephone=no' />
-          <meta name='mobile-web-app-capable' content='yes' />
-          <meta name='theme-color' content={theme.palette.primary.main} />
-
-          <link rel='apple-touch-icon' sizes='192x192' href='/icons/apple-touch-icon.png' />
-          <link rel='manifest' href='/manifest.json' />
-          <link rel='shortcut icon' href='/icons/favicon.ico' />
-          <link
-            rel='stylesheet'
-            href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
-          />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
