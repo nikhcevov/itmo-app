@@ -27,7 +27,7 @@ const nextConfig = {
       //   }
       // },
       {
-        urlPattern: /^https:\/\/gtfo-cdo/,
+        urlPattern: /^https:\/\/gtfo-cdo.*\.now\.sh\/(?!api)/,
         handler: 'StaleWhileRevalidate'
       },
       {
