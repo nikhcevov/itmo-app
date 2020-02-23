@@ -11,6 +11,7 @@ const nextConfig = {
     swDest: 'static/service-worker.js',
     runtimeCaching: [
       // {
+      //   // Cache pages
       //   urlPattern: /^https?.*/,
       //   handler: 'NetworkFirst',
       //   options: {
@@ -25,6 +26,10 @@ const nextConfig = {
       //     }
       //   }
       // },
+      {
+        urlPattern: /^https:\/\/gtfo-cdo-2a1afz6dj.now.sh\/$/,
+        handler: 'StaleWhileRevalidate'
+      },
       {
         // Cache the Google Fonts webfont files with a cache first strategy for 1 year.
         urlPattern: /^https:\/\/fonts\.gstatic\.com/,
