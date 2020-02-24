@@ -16,9 +16,9 @@ const useStyles = makeStyles(theme => ({
     minWidth: 320
   },
   row: {
+    transition: 'background-color 0.3s',
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
-      transition: 'background-color 0.1s',
       cursor: 'pointer'
     }
   }
