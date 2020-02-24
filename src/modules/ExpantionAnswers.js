@@ -25,9 +25,8 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-export default function ExpansionAnswers (props) {
+export default function ExpansionAnswers ({ data }) {
   const classes = useStyles()
-  const { data } = props
 
   return (
     <div className={classes.root}>

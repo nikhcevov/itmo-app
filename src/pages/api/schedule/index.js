@@ -1,6 +1,8 @@
 import fetch from 'node-fetch'
 import cors from 'micro-cors'
 
+import watchers from './schedule.json'
+
 const withCors = cors({
   allowMethods: [
     'POST',
@@ -39,26 +41,3 @@ const handler = async (req, res) => {
 }
 
 export default withCors(handler)
-
-const watchers = [
-  {
-    name: 'Кутейникова Марина Михайловна',
-    id: 730,
-    img: 'https://de.ifmo.ru/uploads/images/c685880c78738409.JPG'
-  },
-  {
-    name: 'Богданова Галина Николаевна',
-    id: 735,
-    img: 'https://de.ifmo.ru/uploads/images/7485880c76ed6c96.JPG'
-  },
-  {
-    name: 'Горбунова Татьяна Анатольевна',
-    id: 744,
-    img: 'https://de.ifmo.ru/uploads/images/5765880c7760d887.jpg'
-  },
-  {
-    name: 'Игнатьева Елена Юрьевна',
-    id: 729,
-    img: 'https://de.ifmo.ru/uploads/images/5275880c77c1974b.JPG'
-  }
-]
