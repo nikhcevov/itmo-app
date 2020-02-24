@@ -37,7 +37,13 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle'
   },
   progressCircular: {
-    color: theme.palette.secondary.main,
+
+    color: props =>
+      (props.value > 91) ? 'lime'
+        : (props.value > 74) ? 'yellow'
+          : (props.value > 60) ? 'orange'
+            : 'red',
+
     position: 'absolute',
     left: 0,
     top: 0
@@ -52,7 +58,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function SubjectPointsCard ({ onOpen }) {
+function MyCircularProgress (props) {
+  const classes = useStyles(props)
+  return <CircularProgress variant='static' className={classes.progressCircular} {...props} />
+}
+
+export default function SubjectPointsCard ({ onOpen, data }) {
   const classes = useStyles()
 
   const handleOnOpen = () => {
@@ -72,40 +83,33 @@ export default function SubjectPointsCard ({ onOpen }) {
           >
             <Grid item xs zeroMinWidth className={classes.infoContainer}>
               <div className={classes.infoWrap}>
-
                 <Hidden smUp>
                   <Typography variant='body2' className={classes.text}>
-                    Методы оптимизации и обеспечение жизнедеятельности человека
+                    {data.name}
                   </Typography>
                   <Typography variant='body2' className={classes.text}>
-                    Зачёт
+                    {data.type}
                   </Typography>
                 </Hidden>
-
                 <Hidden xsDown>
                   <Typography variant='body1' className={classes.text}>
-                    Методы оптимизации и обеспечение жизнедеятельности человека
+                    {data.name}
                   </Typography>
                   <Typography variant='body1' className={classes.text}>
-                    Зачёт
+                    {data.type}
                   </Typography>
                 </Hidden>
-
               </div>
             </Grid>
             <Grid item className={classes.progressContainer}>
               <div className={classes.progressWrap}>
-
-                <span className={classes.progressPoints}>75</span>
-
+                <span className={classes.progressPoints}>{data.pointsCount}</span>
                 <Hidden smUp>
-                  <CircularProgress variant='static' value={75} size={40} className={classes.progressCircular} />
+                  <MyCircularProgress value={data.pointsCount} size={40} />
                 </Hidden>
-
                 <Hidden xsDown>
-                  <CircularProgress variant='static' value={75} size={50} className={classes.progressCircular} />
+                  <MyCircularProgress value={data.pointsCount} size={50} />
                 </Hidden>
-
               </div>
             </Grid>
           </Grid>

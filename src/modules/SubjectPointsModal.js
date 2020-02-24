@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-export default function SubjectPointsModal ({ open, onClose }) {
+// TODO
+export default function SubjectPointsModal ({ open, data, onClose }) {
   const classes = useStyles()
 
   const handleClose = () => {
@@ -39,30 +40,14 @@ export default function SubjectPointsModal ({ open, onClose }) {
   const summorizeValue = (mod) => {
     return mod.reduce((prev, cur) => {
       return prev + cur.value
-    }, mod[0].value)
+    }, 0)
   }
 
   const summorizeOf = (mod) => {
     return mod.reduce((prev, cur) => {
       return prev + cur.of
-    }, mod[0].of)
+    }, 0)
   }
-
-  const module1 = [
-    { name: 'Рубежка 1', value: 3, of: 10 },
-    { name: 'Выполнение контрольных работ', value: 10, of: 10 },
-    { name: 'Посещение занятий', value: 8, of: 8 },
-    { name: 'Работа на практических занятиях', value: 5, of: 9 },
-    { name: 'Личностные качества', value: 5, of: 5 }
-  ]
-
-  const module2 = [
-    { name: 'Рубежка 2', value: 8, of: 10 },
-    { name: 'Выполнение контрольных работ', value: 10, of: 10 },
-    { name: 'Посещение занятий', value: 10, of: 10 },
-    { name: 'Работа на практике', value: 8, of: 10 },
-    { name: 'Личностные качества', value: 3, of: 5 }
-  ]
 
   return (
     <Dialog
@@ -71,20 +56,22 @@ export default function SubjectPointsModal ({ open, onClose }) {
       onClose={handleClose}
       open={open}
       scroll='body'
+      onClick={handleClose}
     >
       <Container className={classes.container}>
 
         <Hidden smUp>
           <Typography className={classes.text} variant='h6' gutterBottom>
-            Методы оптимизации и основы жизнедеятельности человека
+            {data.name}
           </Typography>
         </Hidden>
 
         <Hidden xsDown>
           <Typography className={classes.text} variant='h5' gutterBottom>
-            Методы оптимизации и основы жизнедеятельности человека
+            {data.name}
           </Typography>
         </Hidden>
+
         <Grid
           container
           direction='row'
@@ -97,11 +84,11 @@ export default function SubjectPointsModal ({ open, onClose }) {
                 <TableHead>
                   <TableRow>
                     <TableCell>Модуль 1</TableCell>
-                    <TableCell align='right'>{summorizeValue(module1)}/{summorizeOf(module1)}</TableCell>
+                    <TableCell align='right'>{summorizeValue(data.first)}/{summorizeOf(data.first)}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {module1.map((row) => (
+                  {data.first.map(row => (
                     <TableRow key={row.name}>
                       <TableCell component='th' scope='row'>{row.name}</TableCell>
                       <TableCell align='right'>{row.value}/{row.of}</TableCell>
@@ -111,18 +98,17 @@ export default function SubjectPointsModal ({ open, onClose }) {
               </Table>
             </TableContainer>
           </Grid>
-
           <Grid item xs className={classes.module}>
             <TableContainer>
               <Table className={classes.table} aria-label='simple table'>
                 <TableHead>
                   <TableRow>
                     <TableCell>Модуль 2</TableCell>
-                    <TableCell align='right'>{summorizeValue(module2)}/{summorizeOf(module2)}</TableCell>
+                    <TableCell align='right'>{summorizeValue(data.second)}/{summorizeOf(data.second)}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {module2.map((row) => (
+                  {data.second.map((row) => (
                     <TableRow key={row.name}>
                       <TableCell component='th' scope='row'>{row.name}</TableCell>
                       <TableCell align='right'>{row.value}/{row.of}</TableCell>
@@ -132,8 +118,18 @@ export default function SubjectPointsModal ({ open, onClose }) {
               </Table>
             </TableContainer>
           </Grid>
-
         </Grid>
+
+        <TableContainer>
+          <Table className={classes.table} aria-label='simple table'>
+            <TableHead>
+              <TableRow>
+                <TableCell>{data.type}</TableCell>
+                <TableCell align='right'>{data.exam.value}/{data.exam.of}</TableCell>
+              </TableRow>
+            </TableHead>
+          </Table>
+        </TableContainer>
 
       </Container>
     </Dialog>
