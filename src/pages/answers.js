@@ -1,12 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import useSWR from 'swr'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
 
-import subjectsAnswers from '../public/answers/answers.json'
 import ExpantionAnswers from '../modules/ExpantionAnswers'
+import fetcher from '../fetcher'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
 
 function Answers () {
   const classes = useStyles()
-
+  const { data } = useSWR('/api/answers', fetcher)
+  const content = data || []
   return (
     <div className={classes.root}>
       <Container>
@@ -33,18 +34,14 @@ function Answers () {
       </Container>
       <Hidden xsDown>
         <Container maxWidth='lg'>
-          <ExpantionAnswers data={subjectsAnswers} />
+          <ExpantionAnswers data={content} />
         </Container>
       </Hidden>
       <Hidden smUp>
-        <ExpantionAnswers data={subjectsAnswers} />
+        <ExpantionAnswers data={content} />
       </Hidden>
     </div>
   )
-}
-
-Answers.propTypes = {
-  extraText: PropTypes.string
 }
 
 export default Answers

@@ -31,6 +31,7 @@
     "babel-jest": "^25.1.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "jest-extended": "^0.11.5",
     "lint-staged": "^10.0.7",
     "node-mocks-http": "^1.8.1",
     "standard": "^14.3.1"
@@ -47,5 +48,10 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ]
   }
 }
