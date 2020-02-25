@@ -88,7 +88,7 @@ function Main () {
 
   const handleClickLike = () => {
     setLikesCount(likesCount + 1)
-    if (likesCount === 9) easterEgg()
+    if (likesCount === 10) easterEgg()
   }
 
   const easterEgg = () => {
