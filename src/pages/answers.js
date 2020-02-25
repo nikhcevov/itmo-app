@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import ExpantionAnswers from '../modules/ExpantionAnswers'
 import fetcher from '../fetcher'
@@ -14,7 +15,9 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2)
   },
-  title: {
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 }))
 
@@ -32,14 +35,22 @@ function Answers () {
           Материал, который может быть полезен при посещении ЦДО:
         </Typography>
       </Container>
-      <Hidden xsDown>
-        <Container maxWidth='lg'>
-          <ExpantionAnswers data={content} />
-        </Container>
-      </Hidden>
-      <Hidden smUp>
-        <ExpantionAnswers data={content} />
-      </Hidden>
+      {content.length > 0 ? (
+        <>
+          <Hidden xsDown>
+            <Container maxWidth='lg'>
+              <ExpantionAnswers data={content} />
+            </Container>
+          </Hidden>
+          <Hidden smUp>
+            <ExpantionAnswers data={content} />
+          </Hidden>
+        </>
+      ) : (
+        <div className={classes.spinner}>
+          <CircularProgress />
+        </div>
+      )}
     </div>
   )
 }

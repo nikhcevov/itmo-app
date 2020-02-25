@@ -28,7 +28,18 @@ const nextConfig = {
       // },
       {
         urlPattern: /^https:\/\/gtfo-cdo.*\.now\.sh\/(?!api)/,
-        handler: 'StaleWhileRevalidate'
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'http-calls',
+          networkTimeoutSeconds: 5,
+          expiration: {
+            maxEntries: 100,
+            maxAgeSeconds: 60 * 60 * 24 * 1 // 1 days
+          },
+          cacheableResponse: {
+            statuses: [0, 200]
+          }
+        }
       },
       {
         // Cache the Google Fonts webfont files with a cache first strategy for 1 year.
