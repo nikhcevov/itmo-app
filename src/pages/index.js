@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     zIndex: -1,
-    position: 'fixed',
+    position: 'absolute',
     top: 0
   },
   important: {
@@ -110,12 +110,13 @@ function Main () {
         />}
       <Container maxWidth='lg' className={classes.container}>
         <Typography variant='h4' className={classes.title} gutterBottom>
-          Первая некласcическая шпаргалка
+          Первый некласcический ITMO app
         </Typography>
         <Typography variant='h5' className={classes.text} gutterBottom>
-          Здесь вы найдете все необходимое для учебы в университете ИТМО.
-          Расписание смотрящих в цдо, [выбирайте] наиболее легкий день и списывайте!
-          Так же, [здесь] собраны действующие ответы на цдо.
+          Добро пожаловать на сайт, созданный студентами, для студентов.
+          Здесь можно найти все необходимые ресурсы для повседневной учебы.
+          Расписание смотрящих в цдо, выбирайте наиболее легкий день и списывайте!
+          А еще, у нас собраны действующие ответы на цдо.
         </Typography>
         <Container className={classes.heartContainer}>
 
