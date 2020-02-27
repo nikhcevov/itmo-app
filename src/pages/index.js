@@ -11,13 +11,22 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 import IconButton from '@material-ui/core/IconButton'
 
 import Link from '../components/Link'
+import Footer from '../components/Footer'
 
 const useStyles = makeStyles(theme => ({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
     background: 'linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)',
     position: 'relative',
-    paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(10)
+    paddingTop: theme.spacing(10)
+  },
+  content: {
+    flex: '1 0 auto'
+  },
+  footer: {
+    flexShrink: 0
   },
   container: {
     color: '#fff'
@@ -99,68 +108,71 @@ function Main () {
 
   return (
     <div className={classes.root}>
-      <img
-        className={classes.image}
-        src='/index-background.png'
-      />
-      {likesCount >= 10 &&
+      <div className={classes.content}>
         <img
           className={classes.image}
-          src='/index-background-creeper.gif'
-        />}
-      <Container maxWidth='lg' className={classes.container}>
-        <Typography variant='h4' className={classes.title} gutterBottom>
+          src='/index-background.png'
+        />
+        {likesCount >= 10 &&
+          <img
+            className={classes.image}
+            src='/index-background-creeper.gif'
+          />}
+        <Container maxWidth='lg' className={classes.container}>
+          <Typography variant='h4' className={classes.title} gutterBottom>
           Первый некласcический ITMO app
-        </Typography>
-        <Typography variant='h5' className={classes.text} gutterBottom>
+          </Typography>
+          <Typography variant='h5' className={classes.text} gutterBottom>
           Добро пожаловать на сайт, созданный студентами, для студентов.
           Здесь можно найти все необходимые ресурсы для повседневной учебы.
           Расписание смотрящих в цдо, выбирайте наиболее легкий день и списывайте!
           А еще, у нас собраны действующие ответы на цдо.
-        </Typography>
-        <Container className={classes.heartContainer}>
+          </Typography>
+          <Container className={classes.heartContainer}>
 
-          <IconButton
-            aria-label='like'
-            className={classes.heartBtn}
-            disableRipple
-            disableFocusRipple
-            onClick={() => handleClickLike()}
-          >
-            <FavoriteIcon className={classes.heart} />
-          </IconButton>
+            <IconButton
+              aria-label='like'
+              className={classes.heartBtn}
+              disableRipple
+              disableFocusRipple
+              onClick={() => handleClickLike()}
+            >
+              <FavoriteIcon className={classes.heart} />
+            </IconButton>
+          </Container>
+          <Container className={classes.linksContainer}>
+            <Grid
+              container
+              direction='row'
+              justify='space-evenly'
+              alignItems='center'
+              spacing={4}
+            >
+              <Grid item>
+                <Link href='/schedule'>
+                  <ScheduleIcon className={classes.linkIcon} />
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href='/answers'>
+                  <DescriptionIcon className={classes.linkIcon} />
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href='/sponsorship'>
+                  <MonetizationOnIcon className={classes.linkIcon} />
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href='/'>
+                  <HelpOutlineIcon className={classes.linkIcon} />
+                </Link>
+              </Grid>
+            </Grid>
+          </Container>
         </Container>
-        <Container className={classes.linksContainer}>
-          <Grid
-            container
-            direction='row'
-            justify='space-evenly'
-            alignItems='center'
-            spacing={4}
-          >
-            <Grid item>
-              <Link href='/schedule'>
-                <ScheduleIcon className={classes.linkIcon} />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='/answers'>
-                <DescriptionIcon className={classes.linkIcon} />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='/sponsorship'>
-                <MonetizationOnIcon className={classes.linkIcon} />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href='/'>
-                <HelpOutlineIcon className={classes.linkIcon} />
-              </Link>
-            </Grid>
-          </Grid>
-        </Container>
-      </Container>
+      </div>
+      <Footer className={classes.footer} />
     </div>
   )
 }
