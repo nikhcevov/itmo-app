@@ -48,6 +48,9 @@ function chooseTab (tab) {
   if (tab === '/answers') {
     return 2
   }
+  if (tab === '/scores') {
+    return 3
+  }
 }
 
 function Header ({ initialTab }) {
@@ -80,6 +83,11 @@ function Header ({ initialTab }) {
         <LinkTab
           label='Ответы'
           href='/answers'
+          className={classes.item}
+        />
+        <LinkTab
+          label='Баллы'
+          href='/scores'
           className={classes.item}
         />
       </Tabs>

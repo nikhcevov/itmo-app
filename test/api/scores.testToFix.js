@@ -1,0 +1,22 @@
+/* global describe, it, expect, beforeAll */
+import { createMocks } from 'node-mocks-http'
+
+import getData from '../../src/pages/api/scores'
+
+let req, res
+
+beforeAll(async () => {
+  const mock = createMocks()
+  req = mock.req
+  res = mock.res
+  await getData(req, res)
+})
+
+describe('Route /scores', () => {
+  it('should response with 200', () => {
+    expect(res.statusCode).toEqual(200)
+  })
+  it('should return scores json from cdo api', () => {
+    console.log(res)
+  })
+})

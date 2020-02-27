@@ -22,6 +22,7 @@
     "next": "^9.2.1",
     "next-cookies": "^2.0.3",
     "next-offline": "^5.0.0",
+    "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -47,10 +48,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "jest-extended"
-    ]
   }
 }
