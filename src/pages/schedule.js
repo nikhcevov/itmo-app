@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 
 import ScheduleTable from '../modules/ScheduleTable'
-import fetcher from '../fetcher'
+import fetcher from '../utils/fetcher'
 
 const useStyles = makeStyles(theme => ({
   root: {

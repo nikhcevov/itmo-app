@@ -7,7 +7,7 @@ import Hidden from '@material-ui/core/Hidden'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import ExpantionAnswers from '../modules/ExpantionAnswers'
-import fetcher from '../fetcher'
+import fetcher from '../utils/fetcher'
 
 const useStyles = makeStyles(theme => ({
   root: {

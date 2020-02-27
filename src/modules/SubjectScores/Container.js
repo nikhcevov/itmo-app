@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-import SubjectPointsCard from './SubjectPointsCard'
-import SubjectPointsModal from '../modules/SubjectPointsModal'
-import subjects from '../public/points/points'
+import Card from './Card'
+import Modal from './Modal'
+import subjects from './points.json'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function SubjectPointsContainer () {
+export default function Container () {
   const classes = useStyles()
 
   const [modal, setModal] = useState({
@@ -61,13 +61,13 @@ export default function SubjectPointsContainer () {
   return (
     <div className={classes.container}>
       {subjects.map(card => (
-        <SubjectPointsCard
+        <Card
           key={card.name}
           onOpen={() => handleModalOpen(card)}
           data={{ name: card.name, type: card.type, pointsCount: calcModulePoints(card.first) + calcModulePoints(card.second) + card.exam.value }}
         />
       ))}
-      <SubjectPointsModal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />
+      <Modal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />
     </div>
   )
 }

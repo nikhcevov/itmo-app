@@ -1,12 +1,22 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
+import MuiCard from '@material-ui/core/Card'
+import MuiCardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import { CardActionArea } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import MuiCircularProgress from '@material-ui/core/CircularProgress'
 import Hidden from '@material-ui/core/Hidden'
+
+function chooseColor (value) {
+  if (value > 91) {
+    return 'lime'
+  } else if (value > 74) {
+    return 'yellow'
+  } else if (value > 60) {
+    return 'orange'
+  } else return 'red'
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,13 +47,7 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle'
   },
   progressCircular: {
-
-    color: props =>
-      (props.value > 91) ? 'lime'
-        : (props.value > 74) ? 'yellow'
-          : (props.value > 60) ? 'orange'
-            : 'red',
-
+    color: props => chooseColor(props.value),
     position: 'absolute',
     left: 0,
     top: 0
@@ -58,12 +62,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function MyCircularProgress (props) {
+function CircularProgress (props) {
   const classes = useStyles(props)
-  return <CircularProgress variant='static' className={classes.progressCircular} {...props} />
+  return <MuiCircularProgress variant='static' className={classes.progressCircular} {...props} />
 }
 
-export default function SubjectPointsCard ({ onOpen, data }) {
+export default function Card ({ onOpen, data }) {
   const classes = useStyles()
 
   const handleOnOpen = () => {
@@ -71,9 +75,9 @@ export default function SubjectPointsCard ({ onOpen, data }) {
   }
 
   return (
-    <Card className={classes.root} onClick={handleOnOpen}>
+    <MuiCard className={classes.root} onClick={handleOnOpen}>
       <CardActionArea>
-        <CardContent>
+        <MuiCardContent>
           <Grid
             container
             direction='row'
@@ -105,16 +109,16 @@ export default function SubjectPointsCard ({ onOpen, data }) {
               <div className={classes.progressWrap}>
                 <span className={classes.progressPoints}>{data.pointsCount}</span>
                 <Hidden smUp>
-                  <MyCircularProgress value={data.pointsCount} size={40} />
+                  <CircularProgress value={data.pointsCount} size={40} />
                 </Hidden>
                 <Hidden xsDown>
-                  <MyCircularProgress value={data.pointsCount} size={50} />
+                  <CircularProgress value={data.pointsCount} size={50} />
                 </Hidden>
               </div>
             </Grid>
           </Grid>
-        </CardContent>
+        </MuiCardContent>
       </CardActionArea>
-    </Card>
+    </MuiCard>
   )
 }

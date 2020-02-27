@@ -29,8 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-// TODO
-export default function SubjectPointsModal ({ open, data, onClose }) {
+export default function Modal ({ open, data, onClose }) {
   const classes = useStyles()
 
   const handleClose = () => {

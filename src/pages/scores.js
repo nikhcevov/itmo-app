@@ -1,9 +1,11 @@
 import React from 'react'
+// import useSWR from 'swr'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
-import SubjectPointsContainer from '../modules/SubjectPointsContainer'
+import SubjectScores from '../modules/SubjectScores'
+// import fetcher from '../utils/fetcher'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,21 +15,21 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function Points () {
+function Scores () {
   const classes = useStyles()
+  // const { data } = useSWR('/api/scores', fetcher)
+  // const content = data || []
 
   return (
     <div className={classes.root}>
       <Container maxWidth='lg' className={classes.container}>
-
         <Typography className={classes.title} variant='h5' gutterBottom>
           Баллы
         </Typography>
-
-        <SubjectPointsContainer />
+        <SubjectScores />
       </Container>
     </div>
   )
 }
 
-export default Points
+export default Scores
