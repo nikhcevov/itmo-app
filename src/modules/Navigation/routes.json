@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Главная",
+    "name": "index",
+    "href": "/"
+  },
+  {
+    "label": "Расписание",
+    "name": "schedule",
+    "href": "/schedule"
+  },
+  {
+    "label": "Ответы",
+    "name": "answers",
+    "href": "/answers"
+  },
+  {
+    "label": "Баллы",
+    "name": "scores",
+    "href": "/scores"
+  }
+]

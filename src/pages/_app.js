@@ -5,31 +5,28 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import cookies from 'next-cookies'
 
 import getTheme from '../theme'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../modules/Header'
+import Navigation from '../modules/Navigation'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh'
+    display: 'flex'
   },
   content: {
-    flex: '1 0 auto'
+    flexGrow: 1
   },
-  footer: {
-    flexShrink: 0
-  }
+  toolbar: theme.mixins.toolbar
 }))
 
 // Make sure that the same names in public/manifest.json
 const APP_NAME = 'SB0101'
 const APP_DESCRIPTION = 'Первый неклассический ИТМО app'
 
-function App ({ Component, pageProps, cookie }) {
+function App ({ Component, pageProps, cookieTheme, currentPath }) {
   const classes = useStyles()
-  const [themeType, setThemeType] = useState(cookie.cookieThemeType || 'light')
+  const [themeType, setThemeType] = useState(cookieTheme || 'light')
   const theme = getTheme()
+
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
@@ -44,6 +41,12 @@ function App ({ Component, pageProps, cookie }) {
 
   function handleChangeThemeColor (color) {
     setThemeType(color)
+  }
+
+  const [isMenuShow, setIsMenuShow] = useState(false)
+
+  function handleMenuShow (action) {
+    setIsMenuShow(action)
   }
 
   return (
@@ -74,11 +77,20 @@ function App ({ Component, pageProps, cookie }) {
       <ThemeProvider theme={getTheme(themeType)}>
         <CssBaseline />
         <div className={classes.root}>
+          <Navigation
+            handleShow={handleMenuShow}
+            isShow={isMenuShow}
+            className={classes.navbar}
+          />
           <div className={classes.content}>
-            <Header initialTab={cookie.headerCurrentTab} />
+            <Header
+              handleThemeChange={handleChangeThemeColor}
+              handleMenuShow={handleMenuShow}
+              currentPath={currentPath}
+            />
+            <div className={classes.toolbar} />
             <Component {...pageProps} />
           </div>
-          <Footer onChangeThemeColor={handleChangeThemeColor} className={classes.footer} />
         </div>
       </ThemeProvider>
     </>
@@ -86,10 +98,8 @@ function App ({ Component, pageProps, cookie }) {
 }
 
 App.getInitialProps = async appCtx => ({
-  cookie: {
-    cookieThemeType: cookies(appCtx.ctx).themeType,
-    headerCurrentTab: appCtx.router && appCtx.router.pathname
-  }
+  themeType: cookies(appCtx.ctx).themeType,
+  currentPath: appCtx.router && appCtx.router.pathname
 })
 
 export default App
