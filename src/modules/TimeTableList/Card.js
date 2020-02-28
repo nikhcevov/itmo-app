@@ -65,7 +65,7 @@ export default function Card ({ data }) {
           {data.weekday} ({data.date})
         </Typography>
         <TableContainer>
-          <Table size='medium' className={classes.table} aria-label='simple table'>
+          <Table className={classes.table} aria-label='simple table'>
 
             <TableBody>
               {data.subjects.map(row => (
