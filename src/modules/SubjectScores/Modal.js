@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     minHeight: 400,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    background: 'linear-gradient(180deg, rgba(249,232,135,1) 0%, rgba(247,224,106,1) 100%)'
+    background: `linear-gradient(180deg, 
+      ${theme.palette.primary.light} 0%, ${theme.palette.primary.dark} 100%)`
   },
   table: {
     padding: 0,

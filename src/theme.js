@@ -3,19 +3,24 @@ import { createMuiTheme } from '@material-ui/core/styles'
 const lightTheme = {
   palette: {
     primary: {
-      light: '#F9E988',
-      main: '#000000',
-      dark: '#F5CD57'
+      light: '#FBE975',
+      main: '#F8D247',
+      dark: '#FBD039'
     },
     secondary: {
-      light: '#E18B55',
-      main: '#EE6C5C',
-      dark: '#ED575E'
+      light: '#FF914D',
+      main: '#EC6B4C',
+      dark: '#FF4859'
     },
     background: {
-      default: '#F3D261'
+      default: '#F8D247'
     }
-  }
+  },
+  shape: {
+    borderRadius: 18
+  },
+  // hack to disable shadows
+  shadows: [].fill('null', 0, 25)
 }
 
 const darkTheme = {
