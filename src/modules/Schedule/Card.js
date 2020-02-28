@@ -17,6 +17,11 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.secondary.main
   },
   table: {
+    [theme.breakpoints.down('xs')]: {
+      '& th,td': {
+        padding: '8px'
+      }
+    }
   },
   leftCell: {
     width: '15%'
@@ -30,6 +35,9 @@ const useStyles = makeStyles(theme => ({
         borderBottom: 'none'
       }
     }
+  },
+  teacher: {
+    color: theme.palette.secondary.main
   }
 }))
 
@@ -48,7 +56,7 @@ export default function Card ({ data }) {
           {data.weekday} ({data.date})
         </Typography>
         <TableContainer>
-          <Table className={classes.table} aria-label='simple table'>
+          <Table className={classes.table} aria-label='schedule table'>
             <TableBody>
               {data.subjects.map(row => (
                 <TableRow className={classes.row} key={row.timestart}>
@@ -79,18 +87,18 @@ export default function Card ({ data }) {
                       alignItems='flex-start'
                     >
                       <Grid item>
-                        <MuiTypography subjecttype={row.type} variant='caption'>
+                        <MuiTypography subjecttype={row.type} variant='body2'>
                           {row.type}
                         </MuiTypography>
                       </Grid>
                       <Grid item>
-                        <Typography variant='h6'>
+                        <Typography variant='body1'>
                           {row.name}
                         </Typography>
                       </Grid>
                       {(row.teacher !== '') &&
                         <Grid item>
-                          <Typography variant='subtitle1'>
+                          <Typography variant='body2' className={classes.teacher}>
                             {row.teacher}
                           </Typography>
                         </Grid>}

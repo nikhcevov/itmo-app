@@ -13,7 +13,13 @@ import WatcherModal from './WatcherModal'
 
 const useStyles = makeStyles(theme => ({
   table: {
-    minWidth: 320
+    minWidth: 320,
+    [theme.breakpoints.down('xs')]: {
+      '& th,td': {
+        paddingLeft: '8px',
+        paddingRight: '8px'
+      }
+    }
   },
   row: {
     transition: 'background-color 0.3s',

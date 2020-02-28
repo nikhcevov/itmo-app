@@ -15,12 +15,7 @@ const lightTheme = {
     background: {
       default: '#F8D247'
     }
-  },
-  shape: {
-    borderRadius: 18
-  },
-  // hack to disable shadows
-  shadows: [].fill('null', 0, 25)
+  }
 }
 
 const darkTheme = {
@@ -41,7 +36,12 @@ const defaultTheme = {
       lg: 960,
       xl: 1280
     }
-  }
+  },
+  shape: {
+    borderRadius: 18
+  },
+  // hack to disable shadows
+  shadows: [].fill('null', 0, 25)
 }
 
 export default function getTheme (paletteType = 'light') {
