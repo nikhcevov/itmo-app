@@ -9,17 +9,12 @@ import IconButton from '@material-ui/core/IconButton'
 import BrightnessDark from '@material-ui/icons/Brightness4'
 import BrightnessLight from '@material-ui/icons/Brightness7'
 
-const drawerWidth = 240
-
 const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
   title: {
     flexGrow: 1
-  },
-  appBar: {
-    paddingLeft: drawerWidth
   }
 }))
 

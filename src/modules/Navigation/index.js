@@ -25,66 +25,46 @@ const useStyles = makeStyles(theme => ({
 export default function Navigation ({ isShow, handleShow, currentPath }) {
   const classes = useStyles()
 
-  const drawer = (
-    <>
-      <List className={classes.toolbar}>
-        <ListItem>
-          <div>
-            <span>SB0101 </span>
-            <span> v0.7.0</span>
-          </div>
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        {navRoutes.map((route, index) => (
-          <ListItem
-            button
-            component={Link}
-            key={route.name}
-            href={route.href}
-            onClick={() => handleShow(false)}
-          >
-            {route.label}
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-    </>
-  )
-
   return (
     <nav aria-label='navigation items'>
       {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-      <Hidden xlUp>
-        <Drawer
-          className={classes.drawer}
-          variant='temporary'
-          anchor='left'
-          open={isShow}
-          onClose={() => handleShow(false)}
-          classes={{
-            paper: classes.drawerPaper
-          }}
-          ModalProps={{
-            keepMounted: true // Better open performance on mobile.
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </Hidden>
-      <Hidden lgDown>
-        <Drawer
-          className={classes.drawer}
-          classes={{
-            paper: classes.drawerPaper
-          }}
-          variant='permanent'
-          open
-        >
-          {drawer}
-        </Drawer>
-      </Hidden>
+      <Drawer
+        className={classes.drawer}
+        variant='temporary'
+        anchor='left'
+        open={isShow}
+        onClose={() => handleShow(false)}
+        classes={{
+          paper: classes.drawerPaper
+        }}
+        ModalProps={{
+          keepMounted: true // Better open performance on mobile.
+        }}
+      >
+        <List className={classes.toolbar}>
+          <ListItem>
+            <div>
+              <span>SB0101 </span>
+              <span> v0.7.0</span>
+            </div>
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          {navRoutes.map((route, index) => (
+            <ListItem
+              button
+              component={Link}
+              key={route.name}
+              href={route.href}
+              onClick={() => handleShow(false)}
+            >
+              {route.label}
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+      </Drawer>
     </nav>
   )
 }

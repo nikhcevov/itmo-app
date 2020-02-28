@@ -8,16 +8,6 @@ import Grid from '@material-ui/core/Grid'
 import MuiCircularProgress from '@material-ui/core/CircularProgress'
 import Hidden from '@material-ui/core/Hidden'
 
-function chooseColor (value) {
-  if (value > 91) {
-    return 'lime'
-  } else if (value > 74) {
-    return 'yellow'
-  } else if (value > 60) {
-    return 'orange'
-  } else return 'red'
-}
-
 const useStyles = makeStyles(theme => ({
   root: {
   },
@@ -47,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle'
   },
   progressCircular: {
-    color: props => chooseColor(props.value),
+    color: theme.palette.secondary.main,
     position: 'absolute',
     left: 0,
     top: 0

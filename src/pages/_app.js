@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 const APP_NAME = 'SB0101'
 const APP_DESCRIPTION = 'Первый неклассический ИТМО app'
 
-function App ({ Component, pageProps, cookieTheme, currentPath }) {
+function App ({ Component, pageProps, cookieTheme }) {
   const classes = useStyles()
   const [themeType, setThemeType] = useState(cookieTheme || 'light')
   const theme = getTheme()
@@ -86,7 +86,6 @@ function App ({ Component, pageProps, cookieTheme, currentPath }) {
             <Header
               handleThemeChange={handleChangeThemeColor}
               handleMenuShow={handleMenuShow}
-              currentPath={currentPath}
             />
             <div className={classes.toolbar} />
             <Component {...pageProps} />
@@ -97,9 +96,8 @@ function App ({ Component, pageProps, cookieTheme, currentPath }) {
   )
 }
 
-App.getInitialProps = async appCtx => ({
-  themeType: cookies(appCtx.ctx).themeType,
-  currentPath: appCtx.router && appCtx.router.pathname
-})
+// App.getInitialProps = async appCtx => ({
+//   themeType: cookies(appCtx.ctx).themeType
+// })
 
 export default App

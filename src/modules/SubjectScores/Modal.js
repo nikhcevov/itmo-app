@@ -16,17 +16,23 @@ const useStyles = makeStyles(theme => ({
   container: {
     minHeight: 400,
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
+    background: 'linear-gradient(180deg, rgba(249,232,135,1) 0%, rgba(247,224,106,1) 100%)'
   },
   table: {
-    padding: 0
+    padding: 0,
+    '& th,td': {
+      borderBottom: `0px solid ${theme.palette.secondary.main}`
+    }
   },
   text: {
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden'
-  }
+  },
+  tableRow: {
 
+  }
 }))
 
 export default function Modal ({ open, data, onClose }) {
@@ -81,7 +87,7 @@ export default function Modal ({ open, data, onClose }) {
             <TableContainer>
               <Table className={classes.table} aria-label='simple table'>
                 <TableHead>
-                  <TableRow>
+                  <TableRow className={classes.tableRow}>
                     <TableCell>Модуль 1</TableCell>
                     <TableCell align='right'>{summorizeValue(data.first)}/{summorizeOf(data.first)}</TableCell>
                   </TableRow>
@@ -122,8 +128,8 @@ export default function Modal ({ open, data, onClose }) {
         <TableContainer>
           <Table className={classes.table} aria-label='simple table'>
             <TableHead>
-              <TableRow>
-                <TableCell>{data.type}</TableCell>
+              <TableRow className={classes.tableRow}>
+                <TableCell className={classes.tableRow}>{data.type}</TableCell>
                 <TableCell align='right'>{data.exam.value}/{data.exam.of}</TableCell>
               </TableRow>
             </TableHead>

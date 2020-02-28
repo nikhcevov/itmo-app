@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-    background: 'linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)',
     position: 'relative',
     paddingTop: theme.spacing(10)
   },
@@ -86,7 +85,7 @@ const useStyles = makeStyles(theme => ({
     transition: 'transform 0.3s, color 0.3s',
     '&:hover': {
       color: theme.palette.secondary.main,
-      transform: 'scale(1.3)'
+      transform: 'scale(1.05)'
     }
   }
 }))
@@ -109,10 +108,6 @@ function Main () {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <img
-          className={classes.image}
-          src='/index-background.png'
-        />
         {likesCount >= 10 &&
           <img
             className={classes.image}

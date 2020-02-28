@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
   spinner: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingTop: theme.spacing(4)
   }
 }))
 
