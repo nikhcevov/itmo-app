@@ -51,6 +51,9 @@ function chooseTab (tab) {
   if (tab === '/scores') {
     return 3
   }
+  if (tab === '/timetable') {
+    return 4
+  }
 }
 
 function Header ({ initialTab }) {
@@ -88,6 +91,11 @@ function Header ({ initialTab }) {
         <LinkTab
           label='Баллы'
           href='/scores'
+          className={classes.item}
+        />
+        <LinkTab
+          label='Таймтейбл'
+          href='/timetable'
           className={classes.item}
         />
       </Tabs>

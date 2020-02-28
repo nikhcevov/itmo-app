@@ -18,10 +18,12 @@ export default function getTheme (paletteType = 'light') {
     palette: {
       type: paletteType,
       primary: {
-        main: isLight ? blue[900] : grey[900]
+        main: isLight ? blue[900] : grey[900],
+        contrastText: isLight ? grey[50] : grey[900]
       },
       secondary: {
-        main: red[600]
+        main: red[600],
+        contrastText: isLight ? grey[0] : grey[1000]
       }
     }
   })
