@@ -10,8 +10,8 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 import IconButton from '@material-ui/core/IconButton'
 
-import Link from '../components/Link'
-import Footer from '../components/Footer'
+import Link from '../modules/Link'
+import Footer from '../modules/Footer'
 
 const useStyles = makeStyles(theme => ({
   root: {

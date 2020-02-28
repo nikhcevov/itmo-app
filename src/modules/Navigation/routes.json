@@ -5,9 +5,14 @@
     "href": "/"
   },
   {
-    "label": "Расписание",
+    "label": "Расписание занятий",
     "name": "schedule",
     "href": "/schedule"
+  },
+  {
+    "label": "Баллы",
+    "name": "scores",
+    "href": "/scores"
   },
   {
     "label": "Ответы",
@@ -15,8 +20,8 @@
     "href": "/answers"
   },
   {
-    "label": "Баллы",
-    "name": "scores",
-    "href": "/scores"
+    "label": "Расписание смотрящих цдо",
+    "name": "watchers",
+    "href": "/watchers"
   }
 ]

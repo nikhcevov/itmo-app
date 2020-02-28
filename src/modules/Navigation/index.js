@@ -1,12 +1,11 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Hidden from '@material-ui/core/Hidden'
 import Drawer from '@material-ui/core/Drawer'
 import Divider from '@material-ui/core/Divider'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 
-import Link from '../../components/Link'
+import Link from '../Link'
 import navRoutes from './routes.json'
 
 const drawerWidth = 240

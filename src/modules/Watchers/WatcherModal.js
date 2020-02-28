@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   difficultyText: {
-    color: 'red'
+    color: theme.palette.secondary.main
   }
 
 }))

@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Grid from '@material-ui/core/Grid'
 
 import Link from './Link'
@@ -15,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'flex-start',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    color: 'rgba(255,255,255,0.7)',
     '& a': {
       transition: 'color 0.2s'
     },
@@ -34,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function Footer ({ onChangeThemeColor }) {
+function Footer () {
   const classes = useStyles()
 
   return (
@@ -43,7 +40,7 @@ function Footer ({ onChangeThemeColor }) {
         <Grid
           container
           direction='row'
-          justify='flex-start'
+          justify='center'
           alignItems='flex-start'
           spacing={4}
         >
@@ -103,14 +100,22 @@ function Footer ({ onChangeThemeColor }) {
             >
               <Grid item>
                 <Typography variant='body1' noWrap>
-                  Выбрать тему
+                  Мобильное приложение
                 </Typography>
               </Grid>
               <Grid item>
-                <ButtonGroup size='small' className={classes.buttons}>
-                  <Button onClick={() => onChangeThemeColor('light')}>Светлая</Button>
-                  <Button onClick={() => onChangeThemeColor('dark')}>Темная</Button>
-                </ButtonGroup>
+                <Link href='/wip' color='inherit'>
+                  <Typography variant='body2' noWrap>
+                    IOS
+                  </Typography>
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href='/wip' color='inherit'>
+                  <Typography variant='body2' noWrap>
+                    Androed
+                  </Typography>
+                </Link>
               </Grid>
             </Grid>
           </Grid>
