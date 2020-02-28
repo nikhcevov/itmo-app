@@ -87,22 +87,12 @@ export default function Card ({ onOpen, data }) {
           >
             <Grid item xs zeroMinWidth className={classes.infoContainer}>
               <div className={classes.infoWrap}>
-                <Hidden smUp>
-                  <Typography variant='body2' className={classes.text}>
-                    {data.name}
-                  </Typography>
-                  <Typography variant='body2' className={classes.text}>
-                    {data.type}
-                  </Typography>
-                </Hidden>
-                <Hidden xsDown>
-                  <Typography variant='body1' className={classes.text}>
-                    {data.name}
-                  </Typography>
-                  <Typography variant='body1' className={classes.text}>
-                    {data.type}
-                  </Typography>
-                </Hidden>
+                <Typography variant='body1' className={classes.text}>
+                  {data.name}
+                </Typography>
+                <Typography variant='body1' className={classes.text}>
+                  {data.type}
+                </Typography>
               </div>
             </Grid>
             <Grid item className={classes.progressContainer}>

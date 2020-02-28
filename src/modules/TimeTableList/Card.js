@@ -32,10 +32,11 @@ const useStyles = makeStyles(theme => ({
   },
 
   leftCell: {
-    width: '20%'
+    width: '25%'
   },
+
   rigthCell: {
-    width: '80%'
+    width: '75%'
   },
 
   row: {
@@ -64,7 +65,7 @@ export default function Card ({ data }) {
           {data.weekday} ({data.date})
         </Typography>
         <TableContainer>
-          <Table className={classes.table} aria-label='simple table'>
+          <Table size='medium' className={classes.table} aria-label='simple table'>
 
             <TableBody>
               {data.subjects.map(row => (
