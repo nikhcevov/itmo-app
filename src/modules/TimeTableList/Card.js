@@ -32,11 +32,11 @@ const useStyles = makeStyles(theme => ({
   },
 
   leftCell: {
-    width: '25%'
+    width: '15%'
   },
 
   rigthCell: {
-    width: '75%'
+    width: '85%'
   },
 
   row: {
@@ -79,18 +79,13 @@ export default function Card ({ data }) {
 
                     >
                       <Grid item>
-                        <Typography variant='h5'>
+                        <Typography variant='h5' noWrap>
                           {row.timestart}
                         </Typography>
                       </Grid>
                       <Grid item>
-                        <Typography variant='subtitle1'>
+                        <Typography variant='subtitle1' noWrap>
                           {row.timeend}
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography variant='body1'>
-                            Ауд. {row.room}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -113,16 +108,27 @@ export default function Card ({ data }) {
                           {row.name}
                         </Typography>
                       </Grid>
-                      <Grid item>
-                        <Typography variant='subtitle1'>
-                          {row.teacher}
-                        </Typography>
-                      </Grid>
+
+                      {(row.teacher !== '') &&
+                        <Grid item>
+                          <Typography variant='subtitle1'>
+                            {row.teacher}
+                          </Typography>
+                        </Grid>}
+
                       <Grid item>
                         <Typography variant='caption'>
                           {row.adress}
                         </Typography>
                       </Grid>
+
+                      {(row.room !== '') &&
+                        <Grid item>
+                          <Typography variant='caption'>
+                          Ауд. {row.room}
+                          </Typography>
+                        </Grid>}
+
                     </Grid>
                   </TableCell>
                 </TableRow>
