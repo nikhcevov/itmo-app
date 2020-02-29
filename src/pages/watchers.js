@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 
-import ScrollUpButton from '../modules/scrollUpButton'
+import ScrollUpButton from '../modules/ScrollUpButton'
 import ScheduleTable from '../modules/Watchers'
 import fetcher from '../utils/fetcher'
 

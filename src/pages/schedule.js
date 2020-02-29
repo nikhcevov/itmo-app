@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
 import TimeTableList from '../modules/Schedule'
-import ScrollUpButton from '../modules/scrollUpButton'
+import ScrollUpButton from '../modules/ScrollUpButton'
 
 const useStyles = makeStyles(theme => ({
   root: {

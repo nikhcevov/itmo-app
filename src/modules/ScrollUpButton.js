@@ -23,7 +23,7 @@ export default function ScrollUpButton () {
   const [isVisible, setVisibleButton] = React.useState(false)
 
   const showButton = () => {
-    if (document.pageYOffset > 0) {
+    if (global.pageYOffset > 0) {
       setVisibleButton(true)
     } else {
       setVisibleButton(false)

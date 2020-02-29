@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import IconButton from '@material-ui/core/IconButton'
 
-import ScrollUpButton from '../modules/scrollUpButton'
+import ScrollUpButton from '../modules/ScrollUpButton'
 import LinkIconContainer from '../modules/LinkIconContainer'
 import Footer from '../modules/Footer'
 
