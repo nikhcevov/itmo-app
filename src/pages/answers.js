@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
+import ScrollUpButton from '../modules/ScrollUpButton'
 import ExpantionAnswers from '../modules/ExpantionAnswers'
 import fetcher from '../utils/fetcher'
 
@@ -47,6 +48,7 @@ function Answers () {
           <CircularProgress />
         </div>
       )}
+      <ScrollUpButton />
     </div>
   )
 }
