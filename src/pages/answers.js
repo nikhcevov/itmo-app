@@ -3,9 +3,9 @@ import useSWR from 'swr'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
-import Hidden from '@material-ui/core/Hidden'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
+import ScrollUpButton from '../modules/ScrollUpButton'
 import ExpantionAnswers from '../modules/ExpantionAnswers'
 import fetcher from '../utils/fetcher'
 
@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
   spinner: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingTop: theme.spacing(4)
   }
 }))
 
@@ -25,6 +26,7 @@ function Answers () {
   const classes = useStyles()
   const { data } = useSWR('/api/answers', fetcher)
   const content = data || []
+
   return (
     <div className={classes.root}>
       <Container>
@@ -37,20 +39,16 @@ function Answers () {
       </Container>
       {content.length > 0 ? (
         <>
-          <Hidden xsDown>
-            <Container maxWidth='lg'>
-              <ExpantionAnswers data={content} />
-            </Container>
-          </Hidden>
-          <Hidden smUp>
+          <Container maxWidth='lg'>
             <ExpantionAnswers data={content} />
-          </Hidden>
+          </Container>
         </>
       ) : (
         <div className={classes.spinner}>
           <CircularProgress />
         </div>
       )}
+      <ScrollUpButton />
     </div>
   )
 }

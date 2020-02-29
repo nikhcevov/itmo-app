@@ -2,25 +2,20 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import ScheduleIcon from '@material-ui/icons/Schedule'
-import DescriptionIcon from '@material-ui/icons/Description'
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 import IconButton from '@material-ui/core/IconButton'
 
-import Link from '../components/Link'
-import Footer from '../components/Footer'
+import ScrollUpButton from '../modules/ScrollUpButton'
+import LinkIconContainer from '../modules/LinkIconContainer'
+import Footer from '../modules/Footer'
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-    background: 'linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)',
     position: 'relative',
-    paddingTop: theme.spacing(10)
+    paddingTop: theme.spacing(2)
   },
   content: {
     flex: '1 0 auto'
@@ -29,7 +24,6 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   container: {
-    color: '#fff'
   },
   title: {
     textAlign: 'center'
@@ -52,12 +46,12 @@ const useStyles = makeStyles(theme => ({
   heart: {
     width: 100,
     height: 100,
-    color: 'white',
+    color: theme.palette.secondary.main,
     transition: 'transform 0.2s, color 0.2s',
     cursor: 'pointer',
     '&:hover': {
       transform: 'scale(1.2)',
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.dark
     },
     '&:active': {
       transform: 'scale(1.4)'
@@ -70,24 +64,11 @@ const useStyles = makeStyles(theme => ({
   heartContainer: {
     width: 100,
     padding: 0,
-    paddingTop: theme.spacing(4)
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5)
   },
   heartCount: {
     textAlign: 'center'
-  },
-  linksContainer: {
-    paddingTop: theme.spacing(8)
-  },
-  linkIcon: {
-    color: 'white',
-    width: 100,
-    height: 100,
-    transform: 'scale(1)',
-    transition: 'transform 0.3s, color 0.3s',
-    '&:hover': {
-      color: theme.palette.secondary.main,
-      transform: 'scale(1.3)'
-    }
   }
 }))
 
@@ -109,24 +90,20 @@ function Main () {
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        <img
-          className={classes.image}
-          src='/index-background.png'
-        />
         {likesCount >= 10 &&
           <img
             className={classes.image}
             src='/index-background-creeper.gif'
           />}
         <Container maxWidth='lg' className={classes.container}>
-          <Typography variant='h4' className={classes.title} gutterBottom>
-          Первый некласcический ITMO app
+          <Typography variant='h5' className={classes.title} gutterBottom>
+            Первый некласcический ITMO app
           </Typography>
-          <Typography variant='h5' className={classes.text} gutterBottom>
-          Добро пожаловать на сайт, созданный студентами, для студентов.
-          Здесь можно найти все необходимые ресурсы для повседневной учебы.
-          Расписание смотрящих в цдо, выбирайте наиболее легкий день и списывайте!
-          А еще, у нас собраны действующие ответы на цдо.
+          <Typography variant='body1' className={classes.text} gutterBottom>
+            Добро пожаловать на сайт, созданный студентами, для студентов.
+            Здесь можно найти все необходимые ресурсы для повседневной учебы.
+            Расписание смотрящих в цдо, выбирайте наиболее легкий день и списывайте!
+            А еще, у нас собраны действующие ответы на цдо.
           </Typography>
           <Container className={classes.heartContainer}>
 
@@ -140,36 +117,8 @@ function Main () {
               <FavoriteIcon className={classes.heart} />
             </IconButton>
           </Container>
-          <Container className={classes.linksContainer}>
-            <Grid
-              container
-              direction='row'
-              justify='space-evenly'
-              alignItems='center'
-              spacing={4}
-            >
-              <Grid item>
-                <Link href='/schedule'>
-                  <ScheduleIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href='/answers'>
-                  <DescriptionIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href='/sponsorship'>
-                  <MonetizationOnIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href='/'>
-                  <HelpOutlineIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-            </Grid>
-          </Container>
+          <LinkIconContainer />
+          <ScrollUpButton />
         </Container>
       </div>
       <Footer className={classes.footer} />

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
+import ScrollUpButton from '../modules/ScrollUpButton'
 import SubjectScores from '../modules/SubjectScores'
 // import fetcher from '../utils/fetcher'
 
@@ -22,11 +23,12 @@ function Scores () {
 
   return (
     <div className={classes.root}>
-      <Container maxWidth='lg' className={classes.container}>
-        <Typography className={classes.title} variant='h5' gutterBottom>
+      <Container maxWidth='lg'>
+        <Typography variant='h5' gutterBottom>
           Баллы
         </Typography>
         <SubjectScores />
+        <ScrollUpButton />
       </Container>
     </div>
   )

@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
   container: {
     '& > :not(:last-child)': {
       marginBottom: theme.spacing(1)
-    }
+    },
+    display: 'grid'
   }
 }))
 
@@ -62,9 +63,15 @@ export default function Container () {
     <div className={classes.container}>
       {subjects.map(card => (
         <Card
-          key={card.name}
+          key={card.name + card.type}
           onOpen={() => handleModalOpen(card)}
-          data={{ name: card.name, type: card.type, pointsCount: calcModulePoints(card.first) + calcModulePoints(card.second) + card.exam.value }}
+          data={{
+            name: card.name,
+            type: card.type,
+            pointsCount: calcModulePoints(card.first) +
+              calcModulePoints(card.second) +
+              card.exam.value
+          }}
         />
       ))}
       <Modal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />

@@ -9,21 +9,15 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
-  dialog: {
-  },
-  root: {
-  },
   media: {
     height: 300,
     minWidth: 200
   },
-  content: {
+  teacherName: {
   },
-
   difficultyText: {
-    color: 'red'
+    color: theme.palette.secondary.main
   }
-
 }))
 
 export default function WatcherModal ({ onClose, open, data }) {
@@ -36,12 +30,11 @@ export default function WatcherModal ({ onClose, open, data }) {
   return (
     <Dialog
       maxWidth={false}
-      className={classes.dialog}
       onClose={handleClose}
       open={open}
       scroll='body'
     >
-      <Card className={classes.root} onClick={handleClose}>
+      <Card onClick={handleClose}>
         <CardActionArea>
           <Grid
             container
@@ -59,14 +52,14 @@ export default function WatcherModal ({ onClose, open, data }) {
             </Grid>
 
             <Grid item xs>
-              <CardContent className={classes.content}>
-                <Typography gutterBottom variant='h5' component='h2'>
+              <CardContent>
+                <Typography gutterBottom variant='h5' className={classes.teacherName}>
                   {data.name}
                 </Typography>
-                <Typography gutterBottom variant='subtitle2' className={classes.difficultyText}>
+                <Typography gutterBottom variant='body1' className={classes.difficultyText}>
                   Сложность: {data.difficulty}
                 </Typography>
-                <Typography variant='body2' color='textSecondary' component='p'>
+                <Typography variant='body2' color='textSecondary'>
                   Здесь будет всякого рода информация о смотрящем.
                 </Typography>
               </CardContent>

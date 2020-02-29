@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import cookies from 'next-cookies'
 
 import getTheme from '../theme'
 import Header from '../modules/Header'
@@ -22,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 const APP_NAME = 'SB0101'
 const APP_DESCRIPTION = 'Первый неклассический ИТМО app'
 
-function App ({ Component, pageProps, cookieTheme, currentPath }) {
+function App ({ Component, pageProps, cookieTheme }) {
   const classes = useStyles()
   const [themeType, setThemeType] = useState(cookieTheme || 'light')
   const theme = getTheme()
@@ -45,8 +44,8 @@ function App ({ Component, pageProps, cookieTheme, currentPath }) {
 
   const [isMenuShow, setIsMenuShow] = useState(false)
 
-  function handleMenuShow (action) {
-    setIsMenuShow(action)
+  function handleMenuShow () {
+    setIsMenuShow(!isMenuShow)
   }
 
   return (
@@ -69,16 +68,13 @@ function App ({ Component, pageProps, cookieTheme, currentPath }) {
         <link rel='apple-touch-icon' sizes='192x192' href='/icons/apple-touch-icon.png' />
         <link rel='manifest' href='/manifest.json' />
         <link rel='shortcut icon' href='/icons/favicon.ico' />
-        <link
-          rel='stylesheet'
-          href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
-        />
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700i|Open+Sans:400,600&display=swap' rel='stylesheet' />
       </Head>
       <ThemeProvider theme={getTheme(themeType)}>
         <CssBaseline />
         <div className={classes.root}>
           <Navigation
-            handleShow={handleMenuShow}
+            setIsMenuShow={setIsMenuShow}
             isShow={isMenuShow}
             className={classes.navbar}
           />
@@ -86,7 +82,6 @@ function App ({ Component, pageProps, cookieTheme, currentPath }) {
             <Header
               handleThemeChange={handleChangeThemeColor}
               handleMenuShow={handleMenuShow}
-              currentPath={currentPath}
             />
             <div className={classes.toolbar} />
             <Component {...pageProps} />
@@ -97,9 +92,8 @@ function App ({ Component, pageProps, cookieTheme, currentPath }) {
   )
 }
 
-App.getInitialProps = async appCtx => ({
-  themeType: cookies(appCtx.ctx).themeType,
-  currentPath: appCtx.router && appCtx.router.pathname
-})
+// App.getInitialProps = async appCtx => ({
+//   themeType: cookies(appCtx.ctx).themeType
+// })
 
 export default App

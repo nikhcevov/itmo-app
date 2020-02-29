@@ -13,7 +13,12 @@ import WatcherModal from './WatcherModal'
 
 const useStyles = makeStyles(theme => ({
   table: {
-    minWidth: 320
+    [theme.breakpoints.down('xs')]: {
+      '& th,td': {
+        paddingLeft: '8px',
+        paddingRight: '8px'
+      }
+    }
   },
   row: {
     transition: 'background-color 0.3s',
@@ -68,17 +73,17 @@ export default function ScheduleTable ({ data }) {
   return (
     <>
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label='simple table'>
+        <Table className={classes.table}>
           <TableHead>
             <TableRow>
               <TableCell>Дата</TableCell>
-              <TableCell align='left'>Смотрящий</TableCell>
-              <TableCell align='left'>Сложность</TableCell>
+              <TableCell>Смотрящий</TableCell>
+              <TableCell>Сложность</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.length === 0 &&
-              [1, 2, 3, 4, 5].map(row => (
+              [1, 2, 3, 4, 5, 6, 7, 8].map(row => (
                 <TableRow key={`row_${row}`}>
                   {[1, 2, 3].map(cell => (
                     <TableCell key={`row_${row}_cell_${cell}`}>
@@ -89,11 +94,9 @@ export default function ScheduleTable ({ data }) {
               ))}
             {rows.map(row => (
               <TableRow key={row.date} onClick={() => handleModalOpen(row)} className={classes.row}>
-                <TableCell component='th' scope='row'>
-                  {row.date}
-                </TableCell>
-                <TableCell align='left'>{row.name}</TableCell>
-                <TableCell align='left'>{row.difficulty}</TableCell>
+                <TableCell>{row.date}</TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.difficulty}</TableCell>
               </TableRow>
             ))}
           </TableBody>
