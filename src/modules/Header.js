@@ -13,16 +13,16 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
-  title: {
-    flexGrow: 1
+  toolbar: {
+    justifyContent: 'space-between'
   }
 }))
 
 export default function Header ({ handleMenuShow, currentPath, handleThemeChange }) {
   const classes = useStyles()
   return (
-    <AppBar position='fixed' className={classes.appBar}>
-      <Toolbar>
+    <AppBar position='fixed'>
+      <Toolbar className={classes.toolbar}>
         <IconButton
           color='inherit'
           aria-label='open navigation'
@@ -32,22 +32,21 @@ export default function Header ({ handleMenuShow, currentPath, handleThemeChange
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant='h6' className={classes.title}>
-          {'TODO'}
-        </Typography>
-        <IconButton
-          aria-label='change theme'
-          onClick={() => handleThemeChange('dark')}
-        >
-          <BrightnessDark />
-        </IconButton>
-        <IconButton
-          aria-label='change theme'
-          onClick={() => handleThemeChange('light')}
-        >
-          <BrightnessLight />
-        </IconButton>
-        <Button color='inherit'>Login</Button>
+        <div>
+          <IconButton
+            aria-label='change theme'
+            onClick={() => handleThemeChange('dark')}
+          >
+            <BrightnessDark />
+          </IconButton>
+          <IconButton
+            aria-label='change theme'
+            onClick={() => handleThemeChange('light')}
+          >
+            <BrightnessLight />
+          </IconButton>
+          <Button color='inherit'>Login</Button>
+        </div>
       </Toolbar>
     </AppBar>
   )

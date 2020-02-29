@@ -28,7 +28,6 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   container: {
-    color: '#fff'
   },
   title: {
     textAlign: 'center'
@@ -51,12 +50,12 @@ const useStyles = makeStyles(theme => ({
   heart: {
     width: 100,
     height: 100,
-    color: 'white',
+    color: theme.palette.secondary.main,
     transition: 'transform 0.2s, color 0.2s',
     cursor: 'pointer',
     '&:hover': {
       transform: 'scale(1.2)',
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.dark
     },
     '&:active': {
       transform: 'scale(1.4)'

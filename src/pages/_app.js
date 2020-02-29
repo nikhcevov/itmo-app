@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import cookies from 'next-cookies'
 
 import getTheme from '../theme'
 import Header from '../modules/Header'
