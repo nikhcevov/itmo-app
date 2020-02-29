@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Navigation ({ isShow, handleShow, currentPath }) {
+export default function Navigation ({ isShow, setIsMenuShow, currentPath }) {
   const classes = useStyles()
 
   return (
@@ -32,7 +32,7 @@ export default function Navigation ({ isShow, handleShow, currentPath }) {
         variant='temporary'
         anchor='left'
         open={isShow}
-        onClose={() => handleShow(false)}
+        onClose={() => setIsMenuShow(false)}
         classes={{
           paper: classes.drawerPaper
         }}
@@ -56,7 +56,7 @@ export default function Navigation ({ isShow, handleShow, currentPath }) {
               component={Link}
               key={route.name}
               href={route.href}
-              onClick={() => handleShow(false)}
+              onClick={() => setIsMenuShow(false)}
             >
               {route.label}
             </ListItem>

@@ -10,10 +10,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%'
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
-  },
   answerLink: {
     color: theme.palette.text.primary,
     textDecoration: 'none',
@@ -22,7 +18,6 @@ const useStyles = makeStyles(theme => ({
       color: 'red'
     }
   }
-
 }))
 
 export default function ExpansionAnswers ({ data }) {
@@ -34,13 +29,11 @@ export default function ExpansionAnswers ({ data }) {
         <ExpansionPanel key={`sub${subIndex}`}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls={`panel${subIndex}a-content`}
-            id={`panel${subIndex}a-header`}
           >
-            <Typography className={classes.heading}>{subject.name}</Typography>
+            <Typography>{subject.name}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <ul className={classes.subList}>
+            <ul>
               {subject.answers.map((answer, ansIndex) => (
                 <li key={`sub${subIndex}-ans${ansIndex}`}>
                   <Typography>

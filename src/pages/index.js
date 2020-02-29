@@ -96,10 +96,10 @@ function Main () {
             src='/index-background-creeper.gif'
           />}
         <Container maxWidth='lg' className={classes.container}>
-          <Typography variant='h4' className={classes.title} gutterBottom>
+          <Typography variant='h5' className={classes.title} gutterBottom>
             Первый некласcический ITMO app
           </Typography>
-          <Typography variant='h5' className={classes.text} gutterBottom>
+          <Typography variant='body1' className={classes.text} gutterBottom>
             Добро пожаловать на сайт, созданный студентами, для студентов.
             Здесь можно найти все необходимые ресурсы для повседневной учебы.
             Расписание смотрящих в цдо, выбирайте наиболее легкий день и списывайте!
