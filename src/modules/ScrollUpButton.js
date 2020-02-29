@@ -30,16 +30,16 @@ export default function ScrollUpButton () {
     }
   }
 
-  const handleScrollTop = () => {
-    global.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   useEffect(() => {
     document.addEventListener('scroll', showButton)
   })
 
+  const handleScrollTop = () => {
+    global.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <Zoom in={isVisible} style={{ transitionDelay: '0ms' }} unmountOnExit>
+    <Zoom in={isVisible} style={{ transitionDelay: '0ms' }}>
       <Fab color='secondary' aria-label='scroll-top' className={classes.scrollBtn} onClick={handleScrollTop}>
         <UpIcon />
       </Fab>
