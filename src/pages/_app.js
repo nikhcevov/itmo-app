@@ -44,8 +44,8 @@ function App ({ Component, pageProps, cookieTheme }) {
 
   const [isMenuShow, setIsMenuShow] = useState(false)
 
-  function handleMenuShow (action) {
-    setIsMenuShow(action)
+  function handleMenuShow () {
+    setIsMenuShow(!isMenuShow)
   }
 
   return (
@@ -68,16 +68,13 @@ function App ({ Component, pageProps, cookieTheme }) {
         <link rel='apple-touch-icon' sizes='192x192' href='/icons/apple-touch-icon.png' />
         <link rel='manifest' href='/manifest.json' />
         <link rel='shortcut icon' href='/icons/favicon.ico' />
-        <link
-          rel='stylesheet'
-          href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
-        />
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700i|Open+Sans:400,600&display=swap' rel='stylesheet' />
       </Head>
       <ThemeProvider theme={getTheme(themeType)}>
         <CssBaseline />
         <div className={classes.root}>
           <Navigation
-            handleShow={handleMenuShow}
+            setIsMenuShow={setIsMenuShow}
             isShow={isMenuShow}
             className={classes.navbar}
           />

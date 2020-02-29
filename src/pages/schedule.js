@@ -18,8 +18,8 @@ export default function TimeTable () {
 
   return (
     <div className={classes.root}>
-      <Container maxWidth='lg' className={classes.container}>
-        <Typography className={classes.title} variant='h5' gutterBottom>
+      <Container maxWidth='lg'>
+        <Typography variant='h5' gutterBottom>
           Расписание
         </Typography>
         <TimeTableList />

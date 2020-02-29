@@ -63,7 +63,7 @@ export default function Container () {
     <div className={classes.container}>
       {subjects.map(card => (
         <Card
-          key={card.name}
+          key={card.name + card.type}
           onOpen={() => handleModalOpen(card)}
           data={{
             name: card.name,
