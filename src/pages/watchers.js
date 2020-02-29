@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 
+import ScrollUpButton from '../modules/scrollUpButton'
 import ScheduleTable from '../modules/Watchers'
 import fetcher from '../utils/fetcher'
 
@@ -39,6 +40,7 @@ function Schedule () {
       <Hidden smUp>
         <ScheduleTable data={content} />
       </Hidden>
+      <ScrollUpButton />
     </div>
   )
 }

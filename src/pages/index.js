@@ -2,15 +2,11 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import ScheduleIcon from '@material-ui/icons/Schedule'
-import DescriptionIcon from '@material-ui/icons/Description'
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 import IconButton from '@material-ui/core/IconButton'
 
-import Link from '../modules/Link'
+import ScrollUpButton from '../modules/scrollUpButton'
+import LinkIconContainer from '../modules/LinkIconContainer'
 import Footer from '../modules/Footer'
 
 const useStyles = makeStyles(theme => ({
@@ -19,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     minHeight: '100vh',
     position: 'relative',
-    paddingTop: theme.spacing(10)
+    paddingTop: theme.spacing(2)
   },
   content: {
     flex: '1 0 auto'
@@ -68,24 +64,11 @@ const useStyles = makeStyles(theme => ({
   heartContainer: {
     width: 100,
     padding: 0,
-    paddingTop: theme.spacing(4)
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5)
   },
   heartCount: {
     textAlign: 'center'
-  },
-  linksContainer: {
-    paddingTop: theme.spacing(8)
-  },
-  linkIcon: {
-    color: 'white',
-    width: 100,
-    height: 100,
-    transform: 'scale(1)',
-    transition: 'transform 0.3s, color 0.3s',
-    '&:hover': {
-      color: theme.palette.secondary.main,
-      transform: 'scale(1.05)'
-    }
   }
 }))
 
@@ -114,13 +97,13 @@ function Main () {
           />}
         <Container maxWidth='lg' className={classes.container}>
           <Typography variant='h4' className={classes.title} gutterBottom>
-          Первый некласcический ITMO app
+            Первый некласcический ITMO app
           </Typography>
           <Typography variant='h5' className={classes.text} gutterBottom>
-          Добро пожаловать на сайт, созданный студентами, для студентов.
-          Здесь можно найти все необходимые ресурсы для повседневной учебы.
-          Расписание смотрящих в цдо, выбирайте наиболее легкий день и списывайте!
-          А еще, у нас собраны действующие ответы на цдо.
+            Добро пожаловать на сайт, созданный студентами, для студентов.
+            Здесь можно найти все необходимые ресурсы для повседневной учебы.
+            Расписание смотрящих в цдо, выбирайте наиболее легкий день и списывайте!
+            А еще, у нас собраны действующие ответы на цдо.
           </Typography>
           <Container className={classes.heartContainer}>
 
@@ -134,36 +117,8 @@ function Main () {
               <FavoriteIcon className={classes.heart} />
             </IconButton>
           </Container>
-          <Container className={classes.linksContainer}>
-            <Grid
-              container
-              direction='row'
-              justify='space-evenly'
-              alignItems='center'
-              spacing={4}
-            >
-              <Grid item>
-                <Link href='/schedule'>
-                  <ScheduleIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href='/answers'>
-                  <DescriptionIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href='/sponsorship'>
-                  <MonetizationOnIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href='/'>
-                  <HelpOutlineIcon className={classes.linkIcon} />
-                </Link>
-              </Grid>
-            </Grid>
-          </Container>
+          <LinkIconContainer />
+          <ScrollUpButton />
         </Container>
       </div>
       <Footer className={classes.footer} />

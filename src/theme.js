@@ -41,7 +41,7 @@ const defaultTheme = {
     borderRadius: 18
   },
   // hack to disable shadows
-  shadows: [].fill('null', 0, 25)
+  shadows: Array(25).fill('none')
 }
 
 export default function getTheme (paletteType = 'light') {
