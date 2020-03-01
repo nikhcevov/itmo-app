@@ -5,7 +5,7 @@
     "href": "/"
   },
   {
-    "label": "Расписание занятий",
+    "label": "Расписание",
     "name": "schedule",
     "href": "/schedule"
   },
@@ -20,7 +20,7 @@
     "href": "/answers"
   },
   {
-    "label": "Расписание смотрящих цдо",
+    "label": "Расписание/цдо",
     "name": "watchers",
     "href": "/watchers"
   }

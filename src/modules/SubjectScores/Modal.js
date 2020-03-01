@@ -16,9 +16,7 @@ const useStyles = makeStyles(theme => ({
   container: {
     minHeight: 400,
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-    background: `linear-gradient(180deg, 
-      ${theme.palette.primary.light} 0%, ${theme.palette.primary.dark} 100%)`
+    paddingBottom: theme.spacing(2)
   },
   table: {
     padding: 0,

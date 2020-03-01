@@ -21,15 +21,15 @@ function Schedule () {
   const { data } = useSWR('/api/schedule', fetcher)
   const content = data || []
   return (
-    <Container maxWidth='lg' className={classes.root}>
-      <Typography variant='h5' gutterBottom>
-        Расписание
-      </Typography>
-      <Typography variant='body1' gutterBottom>
+    <>
+      <Container maxWidth='lg' className={classes.root}>
+        <Typography variant='body1' gutterBottom>
         Таблица с информацией о смотрящих в ЦДО на ближайшие 2 недели.
-      </Typography>
-      <ScheduleTable data={content} />
-    </Container>
+        </Typography>
+        <ScheduleTable data={content} />
+      </Container>
+      <ScrollUpButton />
+    </>
   )
 }
 

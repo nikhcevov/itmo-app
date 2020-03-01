@@ -2,7 +2,6 @@ import React from 'react'
 // import useSWR from 'swr'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
 
 import ScrollUpButton from '../modules/ScrollUpButton'
 import SubjectScores from '../modules/SubjectScores'
@@ -22,15 +21,10 @@ function Scores () {
   // const content = data || []
 
   return (
-    <div className={classes.root}>
-      <Container maxWidth='lg'>
-        <Typography variant='h5' gutterBottom>
-          Баллы
-        </Typography>
-        <SubjectScores />
-        <ScrollUpButton />
-      </Container>
-    </div>
+    <Container maxWidth='lg' className={classes.root}>
+      <SubjectScores />
+      <ScrollUpButton />
+    </Container>
   )
 }
 

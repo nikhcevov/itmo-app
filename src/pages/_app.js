@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 import getTheme from '../theme'
 import Header from '../modules/Header'
-import Navigation from '../modules/Navigation'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,16 +37,6 @@ function App ({ Component, pageProps, cookieTheme }) {
     document.cookie = `themeType=${themeType}`
   }, [themeType])
 
-  function handleChangeThemeColor (color) {
-    setThemeType(color)
-  }
-
-  const [isMenuShow, setIsMenuShow] = useState(false)
-
-  function handleMenuShow () {
-    setIsMenuShow(!isMenuShow)
-  }
-
   return (
     <>
       <Head>
@@ -72,21 +61,9 @@ function App ({ Component, pageProps, cookieTheme }) {
       </Head>
       <ThemeProvider theme={getTheme(themeType)}>
         <CssBaseline />
-        <div className={classes.root}>
-          <Navigation
-            setIsMenuShow={setIsMenuShow}
-            isShow={isMenuShow}
-            className={classes.navbar}
-          />
-          <div className={classes.content}>
-            <Header
-              handleThemeChange={handleChangeThemeColor}
-              handleMenuShow={handleMenuShow}
-            />
-            <div className={classes.toolbar} />
-            <Component {...pageProps} />
-          </div>
-        </div>
+        <Header setTheme={setThemeType} />
+        <div className={classes.toolbar} />
+        <Component {...pageProps} />
       </ThemeProvider>
     </>
   )
