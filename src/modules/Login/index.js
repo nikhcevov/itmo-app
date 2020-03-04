@@ -17,7 +17,7 @@ function Copyright () {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
+      <Link color='inherit'>
         gtfo-cdo
       </Link>{' '}
       {new Date().getFullYear()}
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function SignIn () {
+export default function Login ({ credentials, handleChange, handleSubmit, isSent }) {
   const classes = useStyles()
 
   return (
@@ -57,7 +57,7 @@ export default function SignIn () {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Sign in
+          Вход в систему
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -65,10 +65,13 @@ export default function SignIn () {
             margin='normal'
             required
             fullWidth
-            id='email'
+            disabled={isSent}
+            value={credentials.login}
+            onChange={handleChange}
+            id='login'
             label='Логин цдо'
-            name='email'
-            autoComplete='email'
+            name='login'
+            autoComplete='login'
             autoFocus
             color='secondary'
           />
@@ -77,6 +80,9 @@ export default function SignIn () {
             margin='normal'
             required
             fullWidth
+            disabled={isSent}
+            value={credentials.password}
+            onChange={handleChange}
             name='password'
             label='Пароль'
             type='password'
@@ -89,13 +95,13 @@ export default function SignIn () {
             label='Remember me'
           />
           <Button
-            type='submit'
             fullWidth
             variant='contained'
             color='secondary'
             className={classes.submit}
+            onClick={handleSubmit}
           >
-            Sign In
+            {isSent ? 'Подождите…' : 'Войти'}
           </Button>
           <Grid container>
             <Grid item xs>
