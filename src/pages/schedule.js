@@ -1,7 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
 
 import TimeTableList from '../modules/Schedule'
 import ScrollUpButton from '../modules/ScrollUpButton'
@@ -18,14 +17,11 @@ export default function TimeTable () {
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
-      <Container maxWidth='lg'>
-        <Typography variant='h5' gutterBottom>
-          Расписание
-        </Typography>
+    <>
+      <Container maxWidth='lg' className={classes.root}>
         <TimeTableList />
       </Container>
       <ScrollUpButton />
-    </div>
+    </>
   )
 }

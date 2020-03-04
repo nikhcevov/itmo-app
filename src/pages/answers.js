@@ -28,11 +28,8 @@ function Answers () {
   const content = data || []
 
   return (
-    <div className={classes.root}>
-      <Container>
-        <Typography className={classes.title} variant='h5' gutterBottom>
-          Ответы
-        </Typography>
+    <>
+      <Container className={classes.root}>
         <Typography variant='body1' gutterBottom>
           Материал, который может быть полезен при посещении ЦДО:
         </Typography>
@@ -49,7 +46,7 @@ function Answers () {
         </div>
       )}
       <ScrollUpButton />
-    </div>
+    </>
   )
 }
 
