@@ -1,21 +1,29 @@
-/* global describe, it, expect, beforeAll */
-import { createMocks } from 'node-mocks-http'
+/* global describe, it, expect, beforeAll, afterAll */
+import request from 'supertest'
+import server from '../src/index'
 
-import getData from '../../src/pages/api/login'
-import getSessionFromCookie from '../../src/utils/getSessionFromCookie'
+import getSessionFromCookie from '../src/util/getSessionFromCookie'
 
-let req, res
+let scheduleResponce = null
 
 beforeAll(async () => {
-  const mock = createMocks()
-  req = mock.req
-  res = mock.res
-  req.body = {
-    login: '244567',
-    password: 'Vova1610'
-  }
-  await getData(req, res)
+  scheduleResponce = await request(server).get('/login')
 })
+
+afterAll(() => {
+  server.close()
+})
+
+// beforeAll(async () => {
+//   const mock = createMocks()
+//   req = mock.req
+//   res = mock.res
+//   req.body = {
+//     login: '244567',
+//     password: 'Vova1610'
+//   }
+//   await getData(req, res)
+// })
 
 describe('Route /login', () => {
   it('should response with 200', () => {

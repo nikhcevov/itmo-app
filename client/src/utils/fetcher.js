@@ -5,7 +5,7 @@
  * Client-side helper function for swr
  */
 export default async function fetcher (path) {
-  const res = await fetch(path)
+  const res = await fetch(process.env.HOST_API + path)
   const json = await res.json()
   return json
 }
