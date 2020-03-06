@@ -95,7 +95,7 @@ const envConf = phase => {
 
   if (isProd) {
     return {
-      HOST_API: 'https://sb0101.online'
+      HOST_API: 'https://api.sb0101.online'
     }
   }
 }
