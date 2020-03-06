@@ -1,7 +1,6 @@
 {
-  "name": "gtfo-cdo-server",
+  "name": "itmo-app-server",
   "version": "1.0.0",
-  "main": "src/index.js",
   "license": "MIT",
   "scripts": {
     "start": "yarn build && node build/index.js",

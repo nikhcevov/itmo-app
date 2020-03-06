@@ -1,11 +1,45 @@
 {
   "name": "itmo-app",
+  "version": "1.0.0",
   "private": true,
+  "license": "MIT",
+  "repository": "git@github.com:ovchingus/itmo-app.git",
+  "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  },
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.7"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "dev": "lerna run dev"
+    "client:start": "cd packages/itmo-app-client/ && yarn start",
+    "client:dev": "cd packages/itmo-app-client/ && yarn dev",
+    "client:build": "cd packages/itmo-app-client/ && yarn build",
+    "server:start": "cd packages/itmo-app-server/ && yarn start",
+    "server:dev": "cd packages/itmo-app-server/ && yarn dev",
+    "server:build": "cd packages/itmo-app-server/ && yarn build",
+    "start": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
+    "build": "concurrently --kill-others-on-fail \"yarn server:build\" \"yarn client:build\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn client:dev\"",
+    "test": "cd packages/itmo-app-client/ && yarn test",
+    "lint:client": "cd packages/itmo-app-client/ && yarn lint",
+    "lint:server": "cd packages/itmo-app-server/ && yarn lint"
+  },
+  "lint-staged": {
+    "packages/itmo-app-client/src/**/*.{js,jsx}": [
+      "yarn lint:client"
+    ],
+    "packages/itmo-app-server/src/**/*.{js}": [
+      "yarn lint:server"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
