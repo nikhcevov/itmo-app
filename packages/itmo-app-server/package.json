@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && node build/index.js",
-    "build": "babel ./src -d build",
+    "start": "node build/index.js",
+    "build": "babel ./src -d build --copy-files",
     "dev": "nodemon --exec babel-node src/index.js",
     "lint": "standard --fix",
     "test": "jest"
