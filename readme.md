@@ -1,8 +1,5 @@
-# itmo-app
+# how to deploy
 
-### How to start work
 ```
-yarn
-yarn bootstrap
-yarn dev
+git clone git@github.com:ovchingus/itmo-app.git
 ```

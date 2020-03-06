@@ -101,5 +101,9 @@ const envConf = phase => {
 }
 
 module.exports = phase => {
-  return withOffline({ ...pwaConf, ...envConf(phase) })
+  return withOffline(
+    {
+      ...pwaConf,
+      env: { ...envConf(phase) }
+    })
 }
