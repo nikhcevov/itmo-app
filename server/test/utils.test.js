@@ -1,6 +1,6 @@
 /* global describe, it, expect */
 
-import getSessionFromCookie from '../../src/utils/getSessionFromCookie'
+import getSessionFromCookie from '../src/util/getSessionFromCookie'
 
 describe('Test util getSessionFromCookie', () => {
   it('should work correct', () => {

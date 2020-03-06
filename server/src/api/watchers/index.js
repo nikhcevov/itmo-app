@@ -1,24 +1,6 @@
 import fetch from 'node-fetch'
-import cors from 'micro-cors'
 
 import watchers from './schedule.json'
-
-const withCors = cors({
-  allowMethods: [
-    'POST',
-    'GET',
-    'PUT'
-  ],
-  allowHeaders: [
-    'X-Requested-With',
-    'Access-Control-Allow-Origin',
-    'X-HTTP-Method-Override',
-    'Content-Type',
-    'Authorization',
-    'Accept'
-  ],
-  origin: '*'
-})
 
 const handler = async (req, res) => {
   const data = await fetch('https://de.ifmo.ru/timesys/jsonp.xhtml')
@@ -35,9 +17,7 @@ const handler = async (req, res) => {
       })
     }
   }
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify(ans))
+  res.send(ans)
 }
 
-export default withCors(handler)
+export default handler

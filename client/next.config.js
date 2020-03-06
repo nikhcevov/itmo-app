@@ -1,7 +1,7 @@
 const withOffline = require('next-offline')
+const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants')
 
-const nextConfig = {
-  target: 'serverless',
+const pwaConf = {
   transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
   // turn on the SW in dev mode so that we can actually test it
@@ -10,22 +10,6 @@ const nextConfig = {
   workboxOpts: {
     swDest: 'static/service-worker.js',
     runtimeCaching: [
-      // {
-      //   // Cache pages
-      //   urlPattern: /^https?.*/,
-      //   handler: 'NetworkFirst',
-      //   options: {
-      //     cacheName: 'https-calls',
-      //     networkTimeoutSeconds: 15,
-      //     expiration: {
-      //       maxEntries: 150,
-      //       maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
-      //     },
-      //     cacheableResponse: {
-      //       statuses: [0, 200]
-      //     }
-      //   }
-      // },
       {
         urlPattern: /^https:\/\/gtfo-cdo.*\.now\.sh\/(?!api)/,
         handler: 'NetworkFirst',
@@ -82,7 +66,40 @@ const nextConfig = {
         }
       }
     ]
+  },
+  experimental: {
+    async rewrites () {
+      return [
+        {
+          source: '/service-worker.js',
+          destination: '/_next/static/service-worker.js'
+        }
+      ]
+    }
   }
 }
 
-module.exports = withOffline(nextConfig)
+const envConf = phase => {
+  // when started in development mode `next dev` or `npm run dev`
+  const isDev = phase === PHASE_DEVELOPMENT_SERVER
+  // when `next build` or `npm run build` is used
+  const isProd = phase === PHASE_PRODUCTION_BUILD
+
+  console.log(`isDev:${isDev}  isProd:${isProd}`)
+
+  if (isDev) {
+    return {
+      HOST_API: 'http://localhost:5000'
+    }
+  }
+
+  if (isProd) {
+    return {
+      HOST_API: 'https://sb0101.online'
+    }
+  }
+}
+
+module.exports = phase => {
+  return withOffline({ ...pwaConf, ...envConf(phase) })
+}

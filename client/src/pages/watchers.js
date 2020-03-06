@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 
 function Schedule () {
   const classes = useStyles()
-  const { data } = useSWR('/api/schedule', fetcher)
+  const { data } = useSWR('/api/watchers', fetcher)
   const content = data || []
   return (
     <>

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 
-import getSessionFromCookie from '../../../utils/getSessionFromCookie'
+import getSessionFromCookie from '../../util/getSessionFromCookie'
 
 const handler = async (req, res) => {
   const { login, password } = req.body

@@ -1,24 +1,25 @@
-/* global describe, it, expect, beforeAll */
-import { createMocks } from 'node-mocks-http'
+/* global describe, it, expect, beforeAll, afterAll */
+import request from 'supertest'
 
-import getData from '../../src/pages/api/answers'
+import server from '../src/index'
 
-let req, res
+let scheduleResponce = null
 
 beforeAll(async () => {
-  const mock = createMocks()
-  req = mock.req
-  res = mock.res
-  await getData(req, res)
+  scheduleResponce = await request(server).get('/answers')
+})
+
+afterAll(() => {
+  server.close()
 })
 
 describe('Route /answers', () => {
   it('should fetch a answers array from json file', () => {
-    expect(res.statusCode).toEqual(200)
-    expect(res._getJSONData()).toBeInstanceOf(Array)
+    expect(scheduleResponce.statusCode).toEqual(200)
+    expect(scheduleResponce.body).toBeInstanceOf(Array)
   })
   it('should return correct data structure', () => {
-    res._getJSONData().forEach((subject) => {
+    scheduleResponce.body.forEach((subject) => {
       expect(subject).toEqual({
         name: expect.any(String),
         answers: expect.any(Array)
