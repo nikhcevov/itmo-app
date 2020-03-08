@@ -7,6 +7,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import AppBar from '@material-ui/core/AppBar'
 import MenuIcon from '@material-ui/icons/Menu'
+import CloseIcon from '@material-ui/icons/Close'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 
@@ -15,8 +16,8 @@ import navRoutes from './routes.json'
 import { Typography } from '@material-ui/core'
 
 const useHeaderStyles = makeStyles(theme => ({
-  menuButton: {
-    marginRight: theme.spacing(2)
+  title: {
+    flexGrow: 1
   },
   toolbar: {
     display: 'flex',
@@ -40,23 +41,22 @@ function Header ({ handleMenuShow }) {
   return (
     <AppBar position='fixed'>
       <Toolbar className={classes.toolbar}>
+        <Typography variant='h5' className={classes.title}>
+          {getCurrentPageName(pathname)}
+        </Typography>
         <IconButton
           color='inherit'
           edge='start'
           onClick={handleMenuShow}
-          className={classes.menuButton}
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant='h5'>
-          {getCurrentPageName(pathname)}
-        </Typography>
       </Toolbar>
     </AppBar>
   )
 }
 
-const drawerWidth = 240
+const drawerWidth = '100%'
 
 const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
@@ -65,7 +65,11 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    background: theme.palette.secondary.light
+  },
+  version: {
+    flexGrow: 1
   }
 }))
 
@@ -98,10 +102,16 @@ function Navigation () {
         >
           <List className={classes.toolbar}>
             <ListItem>
-              <div>
-                <span>SB0101 </span>
-                <span> v0.7.0</span>
-              </div>
+              <Typography variant='h5' className={classes.version}>
+                {'SB0101 v.beta_1'}
+              </Typography>
+              <IconButton
+                color='inherit'
+                edge='start'
+                onClick={() => setIsMenuShow(false)}
+              >
+                <CloseIcon />
+              </IconButton>
             </ListItem>
           </List>
           <Divider />
@@ -112,9 +122,12 @@ function Navigation () {
                 component={Link}
                 key={route.name}
                 href={route.href}
+                color='inherit'
                 onClick={() => setIsMenuShow(false)}
               >
-                {route.label}
+                <Typography variant='h6' noWrap>
+                  {route.label}
+                </Typography>
               </ListItem>
             ))}
           </List>
