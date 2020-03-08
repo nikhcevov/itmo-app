@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 function Answers () {
   const classes = useStyles()
-  const { data } = useSWR('/api/answers', fetcher)
+  const { data } = useSWR('/answers', fetcher)
   const content = data || []
 
   return (

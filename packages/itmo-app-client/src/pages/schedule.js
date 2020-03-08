@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
-import TimeTableList from '../modules/Schedule'
+import Schedule from '../modules/Schedule'
 import ScrollUpButton from '../modules/ScrollUpButton'
 
 const useStyles = makeStyles(theme => ({
@@ -19,7 +19,7 @@ export default function TimeTable () {
   return (
     <>
       <Container maxWidth='lg' className={classes.root}>
-        <TimeTableList />
+        <Schedule />
       </Container>
       <ScrollUpButton />
     </>
