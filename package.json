@@ -19,22 +19,22 @@
     "client:start": "cd packages/itmo-app-client/ && yarn start",
     "client:dev": "cd packages/itmo-app-client/ && yarn dev",
     "client:build": "cd packages/itmo-app-client/ && yarn build",
-    "api:start": "cd packages/itmo-app-api/ && yarn start",
-    "api:dev": "cd packages/itmo-app-api/ && yarn dev",
-    "api:build": "cd packages/itmo-app-api/ && yarn build",
-    "start": "concurrently --kill-others-on-fail \"yarn api:start\" \"yarn client:start\"",
-    "build": "concurrently --kill-others-on-fail \"yarn api:build\" \"yarn client:build\"",
-    "dev": "concurrently --kill-others-on-fail \"yarn api:dev\" \"yarn client:dev\"",
-    "test": "cd packages/itmo-app-api/ && yarn test",
+    "server:start": "cd packages/itmo-app-server/ && yarn start",
+    "server:dev": "cd packages/itmo-app-server/ && yarn dev",
+    "server:build": "cd packages/itmo-app-server/ && yarn build",
+    "start": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
+    "build": "concurrently --kill-others-on-fail \"yarn server:build\" \"yarn client:build\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn client:dev\"",
+    "test": "cd packages/itmo-app-server/ && yarn test",
     "lint:client": "cd packages/itmo-app-client/ && yarn lint",
-    "lint:api": "cd packages/itmo-app-api/ && yarn lint"
+    "lint:server": "cd packages/itmo-app-server/ && yarn lint"
   },
   "lint-staged": {
     "packages/itmo-app-client/src/**/*.{js,jsx}": [
       "yarn lint:client"
     ],
-    "packages/itmo-app-api/src/**/*.{js}": [
-      "yarn lint:api"
+    "packages/itmo-app-server/src/**/*.{js}": [
+      "yarn lint:server"
     ]
   },
   "husky": {

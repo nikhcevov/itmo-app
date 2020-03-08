@@ -1,4 +1,4 @@
-/* global describe, it, expect, beforeAll, afterAll */
+/* global describe, it, expect, beforeAll */
 import request from 'supertest'
 
 import server from '../src/index'

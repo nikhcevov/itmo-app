@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 
-import watchers from './schedule.json'
+import watchers from './schedule.json.js.js'
 
 const handler = async (req, res) => {
   const data = await fetch('https://de.ifmo.ru/timesys/jsonp.xhtml')
