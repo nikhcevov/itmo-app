@@ -16,11 +16,10 @@ jobs:
           password: ${{ secrets.DEPLOY_HOST_PASSWORD }}
           script_stop: true
           script: |
-            cd apps/gtfo-cdo
+            cd apps/itmo-app
             uname -a
             git pull
-            /root/.yarn/bin/yarn install
-            /root/.yarn/bin/yarn build
-            /root/.nvm/versions/node/v12.16.0/bin/pm2 restart gtfo-cdo
-# Какая-то шляпа происходит, программы можно запустить только по абсолютному пути
-# Нужно будет обязательно переделать по нормальному
+            pm2 stop itmo-app
+            yarn install
+            yarn build
+            pm2 start itmo-app
