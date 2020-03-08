@@ -9,10 +9,6 @@ beforeAll(async () => {
   scheduleResponce = await request(server).get('/watchers')
 })
 
-afterAll(() => {
-  server.close()
-})
-
 describe('Server config', () => {
   it('should contain CORS headers', async () => {
     const res = await request(server).get('/')

@@ -9,10 +9,6 @@ beforeAll(async () => {
   scheduleResponce = await request(server).get('/answers')
 })
 
-afterAll(() => {
-  server.close()
-})
-
 describe('Route /answers', () => {
   it('should fetch a answers array from json file', () => {
     expect(scheduleResponce.statusCode).toEqual(200)
