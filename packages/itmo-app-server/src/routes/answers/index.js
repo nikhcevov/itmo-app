@@ -1,4 +1,4 @@
-import data from './answers.json.js.js'
+import data from './answers.json'
 
 const handler = async (req, res) => {
   res.send(data)

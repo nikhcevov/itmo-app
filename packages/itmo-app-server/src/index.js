@@ -7,8 +7,10 @@ import getAnswers from './routes/answers'
 
 dotenv.config()
 
+const isDev = process.env.NODE_ENV === 'dev'
+
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: isDev ? '*' : process.env.CLIENT_URL,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
