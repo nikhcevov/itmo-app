@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 
 import getWatchers from './routes/watchers'
 import getAnswers from './routes/answers'
+import getScores from './routes/scores'
 
 dotenv.config()
 
@@ -23,6 +24,8 @@ app.get('/', (req, res) => res.send('Hello world'))
 app.get('/watchers', getWatchers)
 
 app.get('/answers', getAnswers)
+
+app.get('/scores', getScores)
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => console.log(`Watchers app listening on port ${port}!`))

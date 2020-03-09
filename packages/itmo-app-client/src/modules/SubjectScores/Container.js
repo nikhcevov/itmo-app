@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Card from './Card'
 import Modal from './Modal'
-import subjects from './points.json'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -14,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Container () {
+export default function Container ({ data }) {
   const classes = useStyles()
 
   const [modal, setModal] = useState({
@@ -61,7 +60,7 @@ export default function Container () {
 
   return (
     <div className={classes.container}>
-      {subjects.map(card => (
+      {data.map(card => (
         <Card
           key={card.name + card.type}
           onOpen={() => handleModalOpen(card)}
