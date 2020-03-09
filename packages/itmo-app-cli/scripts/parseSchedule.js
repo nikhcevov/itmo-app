@@ -3,7 +3,7 @@ export default function (dom) {
     odd: [],
     even: []
   }
-  Array.from(dom.window.document.querySelectorAll('.rasp_tabl_day > table.rasp_tabl')).map((dayTable, index) => {
+  Array.from(dom.window.document.querySelectorAll('.rasp_tabl_day > table.rasp_tabl')).map(dayTable => {
     const day = {
       weekDay: dayTable.rows.item(0).cells.item(0).childNodes.length && dayTable.rows.item(0).cells.item(0).lastChild.textContent,
       lessons: []
