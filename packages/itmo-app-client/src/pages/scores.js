@@ -1,11 +1,11 @@
 import React from 'react'
-// import useSWR from 'swr'
+import useSWR from 'swr'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
 import ScrollUpButton from '../modules/ScrollUpButton'
 import SubjectScores from '../modules/SubjectScores'
-// import fetcher from '../utils/fetcher'
+import fetcher from '../utils/fetcher'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,12 +17,12 @@ const useStyles = makeStyles(theme => ({
 
 function Scores () {
   const classes = useStyles()
-  // const { data } = useSWR('/api/scores', fetcher)
-  // const content = data || []
+  const { data } = useSWR('/scores', fetcher)
+  const content = data || []
 
   return (
     <Container maxWidth='lg' className={classes.root}>
-      <SubjectScores />
+      <SubjectScores data={content} />
       <ScrollUpButton />
     </Container>
   )

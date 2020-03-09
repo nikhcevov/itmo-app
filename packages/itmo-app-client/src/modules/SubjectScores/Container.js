@@ -36,7 +36,7 @@ function getScoresByGroupAndSem (scores, group, sem) {
 
 console.log(getScoresByGroupAndSem(scoresJSON, 'M3306', 5))
 
-export default function Container () {
+export default function Container ({ data }) {
   const classes = useStyles()
 
   const [modal, setModal] = useState({
