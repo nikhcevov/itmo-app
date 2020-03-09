@@ -56,16 +56,14 @@ function Header ({ handleMenuShow }) {
   )
 }
 
-const drawerWidth = '100%'
-
 const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
   drawer: {
-    width: drawerWidth,
+    width: '100%',
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: '100%',
     background: theme.palette.secondary.light
   },
   version: {
@@ -90,7 +88,7 @@ function Navigation () {
         <Drawer
           className={classes.drawer}
           variant='temporary'
-          anchor='left'
+          anchor='right'
           open={isMenuShow}
           onClose={() => setIsMenuShow(false)}
           classes={{
