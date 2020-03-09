@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Card from './Card'
 import Modal from './Modal'
+import scoresJSON from './scores.json'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -12,6 +13,28 @@ const useStyles = makeStyles(theme => ({
     display: 'grid'
   }
 }))
+
+function getScoresByGroupAndSem (scores, group, sem) {
+  const years = scores.years.filter(year => year.studyyear.length === 9)
+  const result = []
+  for (const year of years) {
+    for (const subj of year.subjects) {
+      if (subj.semester === String(sem) && year.group === group) {
+        // сохранять только экзамен или зачет
+        const preparedSubj = {
+          ...subj,
+          type: subj.marks.find(
+            i => i.worktype === 'Зачет' || i.worktype === 'Экзамен'
+          ).worktype
+        }
+        result.push(preparedSubj)
+      }
+    }
+  }
+  return result
+}
+
+console.log(getScoresByGroupAndSem(scoresJSON, 'M3306', 5))
 
 export default function Container ({ data }) {
   const classes = useStyles()
@@ -52,24 +75,18 @@ export default function Container ({ data }) {
     })
   }
 
-  const calcModulePoints = (mod) => {
-    return mod.reduce((prev, cur) => {
-      return prev + cur.value
-    }, 0)
-  }
+  const scores = getScoresByGroupAndSem(scoresJSON, 'M3106', 1)
 
   return (
     <div className={classes.container}>
-      {data.map(card => (
+      {scores.map(card => (
         <Card
           key={card.name + card.type}
           onOpen={() => handleModalOpen(card)}
           data={{
             name: card.name,
             type: card.type,
-            pointsCount: calcModulePoints(card.first) +
-              calcModulePoints(card.second) +
-              card.exam.value
+            pointsCount: 10
           }}
         />
       ))}
