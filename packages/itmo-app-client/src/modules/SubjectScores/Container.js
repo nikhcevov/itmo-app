@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 
 import Card from './Card'
 import Modal from './Modal'
-import scoresJSON from './scores.json'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -14,28 +17,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function getScoresByGroupAndSem (scores, group, sem) {
-  const years = scores.years.filter(year => year.studyyear.length === 9)
-  const result = []
-  for (const year of years) {
-    for (const subj of year.subjects) {
-      if (subj.semester === String(sem) && year.group === group) {
-        // сохранять только экзамен или зачет
-        const preparedSubj = {
-          ...subj,
-          type: subj.marks.find(
-            i => i.worktype === 'Зачет' || i.worktype === 'Экзамен'
-          ).worktype
-        }
-        result.push(preparedSubj)
-      }
-    }
-  }
-  return result
-}
-
-console.log(getScoresByGroupAndSem(scoresJSON, 'M3306', 5))
-
 export default function Container ({ data }) {
   const classes = useStyles()
 
@@ -44,20 +25,7 @@ export default function Container ({ data }) {
     data: {
       name: '',
       type: '',
-      first: [{
-        name: '',
-        value: 0,
-        of: 0
-      }],
-      second: [{
-        name: '',
-        value: 0,
-        of: 0
-      }],
-      exam: {
-        value: 0,
-        of: 0
-      }
+      scores: []
     }
   })
 
@@ -75,22 +43,43 @@ export default function Container ({ data }) {
     })
   }
 
-  const scores = getScoresByGroupAndSem(scoresJSON, 'M3106', 1)
+  const [select, setSelect] = useState('')
+  const handleChange = event => {
+    setSelect(event.target.value)
+  }
 
   return (
     <div className={classes.container}>
-      {scores.map(card => (
+      {data && (
+        <FormControl className={classes.margin}>
+          <InputLabel id='demo-customized-select-label'>Age</InputLabel>
+          <Select
+            id='variant-select'
+            value={select}
+            onChange={handleChange}
+          >
+            <MenuItem value=''>
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+      )}
+
+      {data && data.map(card => (
         <Card
           key={card.name + card.type}
           onOpen={() => handleModalOpen(card)}
           data={{
             name: card.name,
             type: card.type,
-            pointsCount: 10
+            totalScore: card.totalScore
           }}
         />
       ))}
-      <Modal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />
+      {data && <Modal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />}
     </div>
   )
 }

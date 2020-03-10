@@ -28,9 +28,6 @@ const useStyles = makeStyles(theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden'
-  },
-  tableRow: {
-
   }
 }))
 
@@ -41,17 +38,8 @@ export default function Modal ({ open, data, onClose }) {
     onClose()
   }
 
-  const summorizeValue = (mod) => {
-    return mod.reduce((prev, cur) => {
-      return prev + cur.value
-    }, 0)
-  }
-
-  const summorizeOf = (mod) => {
-    return mod.reduce((prev, cur) => {
-      return prev + cur.of
-    }, 0)
-  }
+  const firstHalfOfData = data.scores.slice(0, data.length / 2)
+  const secondHalfOfData = data.scores.slice(data.length / 2)
 
   return (
     <Dialog
@@ -84,18 +72,12 @@ export default function Modal ({ open, data, onClose }) {
         >
           <Grid item xs className={classes.module}>
             <TableContainer>
-              <Table className={classes.table} aria-label='simple table'>
-                <TableHead>
-                  <TableRow className={classes.tableRow}>
-                    <TableCell>Модуль 1</TableCell>
-                    <TableCell align='right'>{summorizeValue(data.first)}/{summorizeOf(data.first)}</TableCell>
-                  </TableRow>
-                </TableHead>
+              <Table className={classes.table}>
                 <TableBody>
-                  {data.first.map(row => (
-                    <TableRow key={row.name}>
-                      <TableCell component='th' scope='row'>{row.name}</TableCell>
-                      <TableCell align='right'>{row.value}/{row.of}</TableCell>
+                  {firstHalfOfData.map(row => (
+                    <TableRow key={row.variable}>
+                      <TableCell component='th' scope='row'>{row.variable}</TableCell>
+                      <TableCell align='right'>{row.value}/{row.max}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -104,18 +86,12 @@ export default function Modal ({ open, data, onClose }) {
           </Grid>
           <Grid item xs className={classes.module}>
             <TableContainer>
-              <Table className={classes.table} aria-label='simple table'>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Модуль 2</TableCell>
-                    <TableCell align='right'>{summorizeValue(data.second)}/{summorizeOf(data.second)}</TableCell>
-                  </TableRow>
-                </TableHead>
+              <Table className={classes.table}>
                 <TableBody>
-                  {data.second.map((row) => (
-                    <TableRow key={row.name}>
-                      <TableCell component='th' scope='row'>{row.name}</TableCell>
-                      <TableCell align='right'>{row.value}/{row.of}</TableCell>
+                  {secondHalfOfData.map(row => (
+                    <TableRow key={row.variable}>
+                      <TableCell component='th' scope='row'>{row.variable}</TableCell>
+                      <TableCell align='right'>{row.value}/{row.max}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -125,11 +101,11 @@ export default function Modal ({ open, data, onClose }) {
         </Grid>
 
         <TableContainer>
-          <Table className={classes.table} aria-label='simple table'>
+          <Table className={classes.table}>
             <TableHead>
               <TableRow className={classes.tableRow}>
                 <TableCell className={classes.tableRow}>{data.type}</TableCell>
-                <TableCell align='right'>{data.exam.value}/{data.exam.of}</TableCell>
+                <TableCell align='right'>{data.name}/{data.type}</TableCell>
               </TableRow>
             </TableHead>
           </Table>

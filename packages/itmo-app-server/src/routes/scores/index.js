@@ -1,21 +1,35 @@
-// import fetch from 'node-fetch'
-
-import scores from './scores.json'
+import scoresJSON from './scores.json'
+import parseScores from './scoresParser'
+import parseVariants from './variantsParser'
 
 const handler = async (req, res) => {
-  // const cookies = req.headers.cookie
+  const variants = parseVariants(scoresJSON)
 
-  // const data = await fetch('https://de.ifmo.ru/api/private/eregister', {
-  //   headers: {
-  //     cookie: cookies
-  //   }
-  // })
-  // const json = await data.json()
-  // console.log(json)
-  // res.statusCode = 200
-  // res.setHeader('Content-Type', 'application/json')
-  // res.end(JSON.stringify(json))
-  res.send(scores)
+  if (variants.length === 0) {
+    res.send({
+      variants: [],
+      preparedScores: {}
+    })
+    return
+  }
+
+  const group = req && req.query && req.query.group
+  const semester = req && req.query && req.query.semester
+
+  if (group && semester) {
+    const preparedScores = parseScores(scoresJSON, group, semester)
+    res.send({
+      variants,
+      preparedScores
+    })
+  } else {
+    const { group, semester } = variants[variants.length - 1]
+    const preparedScores = parseScores(scoresJSON, group, semester)
+    res.send({
+      variants,
+      preparedScores
+    })
+  }
 }
 
 export default handler

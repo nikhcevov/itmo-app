@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useSWR from 'swr'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
-import ScrollUpButton from '../modules/ScrollUpButton'
 import SubjectScores from '../modules/SubjectScores'
 import fetcher from '../utils/fetcher'
 
@@ -17,13 +16,19 @@ const useStyles = makeStyles(theme => ({
 
 function Scores () {
   const classes = useStyles()
-  const { data } = useSWR('/scores', fetcher)
-  const content = data || []
+  const [variants, setVariants] = useState([])
+
+  const { data } = useSWR(
+    variant.group && variant.semester ? '/scores' : '/scores',
+    fetcher)
 
   return (
     <Container maxWidth='lg' className={classes.root}>
-      <SubjectScores data={content} />
-      <ScrollUpButton />
+      <SubjectScores
+        variants={variants}
+        setVariants={setVariants}
+        data={data && data.preparedScores}
+      />
     </Container>
   )
 }
