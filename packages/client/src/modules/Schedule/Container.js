@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Card from './Card'
 
-import timetable from './timetable.json'
-
 const useStyles = makeStyles(theme => ({
   container: {
     '& > :not(:last-child)': {
@@ -14,12 +12,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Container () {
+export default function Container ({ data }) {
   const classes = useStyles()
+  console.log(data)
   return (
     <div className={classes.container}>
-      {timetable.map((card) => (
-        <Card key={card.date} data={card} />
+      {(data.odd) &&
+      data.odd.map((card) => (
+        <Card key={card.weekDay} data={card} />
       ))}
     </div>
   )

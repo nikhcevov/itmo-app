@@ -13,9 +13,6 @@ import Grid from '@material-ui/core/Grid'
 const useStyles = makeStyles(theme => ({
   root: {
   },
-  type: {
-    color: theme.palette.secondary.main
-  },
   table: {
     [theme.breakpoints.down('xs')]: {
       '& th,td': {
@@ -41,11 +38,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function MuiTypography (props) {
-  const classes = useStyles(props)
-  return <Typography variant='static' className={classes.type} {...props} />
-}
-
 export default function Card ({ data }) {
   const classes = useStyles()
 
@@ -53,13 +45,13 @@ export default function Card ({ data }) {
     <MuiCard className={classes.root}>
       <CardContent>
         <Typography variant='h6' gutterBottom>
-          {data.weekday} ({data.date})
+          {data.weekDay}
         </Typography>
         <TableContainer>
           <Table className={classes.table} aria-label='schedule table'>
             <TableBody>
-              {data.subjects.map(row => (
-                <TableRow className={classes.row} key={row.timestart}>
+              {data.lessons.map(row => (
+                <TableRow className={classes.row} key={row.timeStart}>
                   <TableCell className={classes.leftCell} component='th' scope='row'>
                     <Grid
                       container
@@ -69,12 +61,12 @@ export default function Card ({ data }) {
                     >
                       <Grid item>
                         <Typography variant='h5' noWrap>
-                          {row.timestart}
+                          {row.timeStart}
                         </Typography>
                       </Grid>
                       <Grid item>
                         <Typography variant='subtitle1' noWrap>
-                          {row.timeend}
+                          {row.timeEnd}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -87,13 +79,8 @@ export default function Card ({ data }) {
                       alignItems='flex-start'
                     >
                       <Grid item>
-                        <MuiTypography subjecttype={row.type} variant='body2'>
-                          {row.type}
-                        </MuiTypography>
-                      </Grid>
-                      <Grid item>
                         <Typography variant='body1'>
-                          {row.name}
+                          {row.lesson}
                         </Typography>
                       </Grid>
                       {(row.teacher !== '') &&
@@ -102,15 +89,17 @@ export default function Card ({ data }) {
                             {row.teacher}
                           </Typography>
                         </Grid>}
-                      <Grid item>
-                        <Typography variant='caption'>
-                          {row.adress}
-                        </Typography>
-                      </Grid>
+
                       {(row.room !== '') &&
                         <Grid item>
                           <Typography variant='caption'>
-                          Ауд. {row.room}
+                            {row.adress}
+                          </Typography>
+                        </Grid>}
+                      {(row.room !== '') &&
+                        <Grid item>
+                          <Typography variant='caption'>
+                            {row.room}
                           </Typography>
                         </Grid>}
                     </Grid>
