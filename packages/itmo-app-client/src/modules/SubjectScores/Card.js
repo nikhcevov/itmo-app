@@ -9,14 +9,6 @@ import MuiCircularProgress from '@material-ui/core/CircularProgress'
 import Hidden from '@material-ui/core/Hidden'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-
-  },
-  progressContainer: {
-  },
-  infoContainer: {
-  },
-
   text: {
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
@@ -96,17 +88,18 @@ export default function Card ({ onOpen, data }) {
                 </Hidden>
               </div>
             </Grid>
-            <Grid item className={classes.progressContainer}>
-              <div className={classes.progressWrap}>
-                <span className={classes.progressPoints}>{data.pointsCount}</span>
-                <Hidden smUp>
-                  <CircularProgress value={data.pointsCount} size={40} />
-                </Hidden>
-                <Hidden xsDown>
-                  <CircularProgress value={data.pointsCount} size={50} />
-                </Hidden>
-              </div>
-            </Grid>
+            {data.totalScore &&
+              <Grid item className={classes.progressContainer}>
+                <div className={classes.progressWrap}>
+                  <span className={classes.progressPoints}>{data.totalScore}</span>
+                  <Hidden smUp>
+                    <CircularProgress value={data.totalScore} size={40} />
+                  </Hidden>
+                  <Hidden xsDown>
+                    <CircularProgress value={data.totalScore} size={50} />
+                  </Hidden>
+                </div>
+              </Grid>}
           </Grid>
         </MuiCardContent>
       </CardActionArea>

@@ -17,7 +17,7 @@ const corsOptions = {
 
 const app = express()
 app.use(cors(corsOptions))
-const port = process.env.PORT || 5000
+const port = process.env.port || 5000
 
 app.get('/', (req, res) => res.send('Hello world'))
 

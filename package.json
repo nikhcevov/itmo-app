@@ -25,7 +25,8 @@
     "start": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
     "build": "concurrently --kill-others-on-fail \"yarn server:build\" \"yarn client:build\"",
     "dev": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn client:dev\"",
-    "test": "cd packages/itmo-app-server/ && yarn test",
+    "test:server": "cd packages/itmo-app-server/ && yarn test",
+    "test:cli": "cd packages/itmo-app-cli/ && yarn test",
     "lint:client": "cd packages/itmo-app-client/ && yarn lint",
     "lint:server": "cd packages/itmo-app-server/ && yarn lint"
   },
