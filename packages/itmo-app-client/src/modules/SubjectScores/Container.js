@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Container ({ data }) {
+export default function Container ({ variant, setVariant, data, variants }) {
   const classes = useStyles()
 
   const [modal, setModal] = useState({
@@ -43,32 +43,34 @@ export default function Container ({ data }) {
     })
   }
 
-  const [select, setSelect] = useState('')
   const handleChange = event => {
-    setSelect(event.target.value)
+    const newVariant = variants.find(v => v.codename === event.target.value)
+    setVariant({
+      ...newVariant,
+      codename: event.target.value
+    })
   }
 
   return (
     <div className={classes.container}>
-      {data && (
-        <FormControl className={classes.margin}>
-          <InputLabel id='demo-customized-select-label'>Age</InputLabel>
-          <Select
-            id='variant-select'
-            value={select}
-            onChange={handleChange}
-          >
-            <MenuItem value=''>
-              <em>None</em>
+      <FormControl>
+        <InputLabel>Группа/Семестр</InputLabel>
+        <Select
+          onChange={handleChange}
+          value={variant.codename}
+        >
+          {variants.map(v => (
+            <MenuItem
+              key={v.codename}
+              value={v.codename}
+            >
+              {v.codename}
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-      )}
+          ))}
+        </Select>
+      </FormControl>
 
-      {data && data.map(card => (
+      {data.map(card => (
         <Card
           key={card.name + card.type}
           onOpen={() => handleModalOpen(card)}
@@ -79,7 +81,11 @@ export default function Container ({ data }) {
           }}
         />
       ))}
-      {data && <Modal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />}
+      <Modal
+        open={modal.isOpen}
+        data={modal.data}
+        onClose={handleModalClose}
+      />
     </div>
   )
 }

@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
 function Answers () {
   const classes = useStyles()
   const { data } = useSWR('/answers', fetcher)
-  const content = data || []
 
   return (
     <>
@@ -34,12 +33,10 @@ function Answers () {
           Материал, который может быть полезен при посещении ЦДО:
         </Typography>
       </Container>
-      {content.length > 0 ? (
-        <>
-          <Container maxWidth='lg'>
-            <ExpantionAnswers data={content} />
-          </Container>
-        </>
+      {data ? (
+        <Container maxWidth='lg'>
+          <ExpantionAnswers data={data} />
+        </Container>
       ) : (
         <div className={classes.spinner}>
           <CircularProgress />
