@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import useSWR from 'swr'
 
-import postFetcher from '../utils/postFetcher'
-import Schedule from '../modules/Schedule'
+import fetcher from '../utils/fetcher'
+import ScheduleContainer from '../modules/Schedule'
 import ScrollUpButton from '../modules/ScrollUpButton'
 
 const useStyles = makeStyles(theme => ({
@@ -14,16 +15,17 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function TimeTable () {
+export default function Schedule () {
   const classes = useStyles()
-  const data = postFetcher('/schedule', { group: 'M3306' })
+  const [group, setGroup] = useState('')
+  const { data } = useSWR((group.length > 4 && group.length < 8) ? `/schedule?group=${group}` : '/schedule', fetcher)
 
   const content = data || { odd: [], even: [] }
 
   return (
     <>
       <Container maxWidth='lg' className={classes.root}>
-        <Schedule data={content} />
+        <ScheduleContainer group={group} setGroup={setGroup} data={content} />
       </Container>
       <ScrollUpButton />
     </>
