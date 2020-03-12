@@ -73,7 +73,7 @@ export default function Container ({ variant, setVariant, data, variants }) {
       {data.map(card => (
         <Card
           key={card.name + card.type}
-          onOpen={() => handleModalOpen(card)}
+          onOpen={(card.totalScore) ? () => handleModalOpen(card) : () => {}}
           data={{
             name: card.name,
             type: card.type,

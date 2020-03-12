@@ -8,7 +8,6 @@ import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Hidden from '@material-ui/core/Hidden'
 
@@ -26,7 +25,6 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
     overflow: 'hidden'
   }
 }))
@@ -38,8 +36,9 @@ export default function Modal ({ open, data, onClose }) {
     onClose()
   }
 
-  const firstHalfOfData = data.scores.slice(0, data.length / 2)
-  const secondHalfOfData = data.scores.slice(data.length / 2)
+  const firstHalfOfData = data.scores.slice(1, data.scores.length / 2)
+  const secondHalfOfData = data.scores.slice(data.scores.length / 2, -1)
+  const exam = data.scores[data.scores.length - 1] || null
 
   return (
     <Dialog
@@ -56,11 +55,17 @@ export default function Modal ({ open, data, onClose }) {
           <Typography className={classes.text} variant='h6' gutterBottom>
             {data.name}
           </Typography>
+          <Typography className={classes.text} variant='h6' gutterBottom>
+            Итого: {data.totalScore || '0'} / 100
+          </Typography>
         </Hidden>
 
         <Hidden xsDown>
           <Typography className={classes.text} variant='h5' gutterBottom>
             {data.name}
+          </Typography>
+          <Typography className={classes.text} variant='h6' gutterBottom>
+            Итого: {data.totalScore || '0'} / 100
           </Typography>
         </Hidden>
 
@@ -99,18 +104,17 @@ export default function Modal ({ open, data, onClose }) {
             </TableContainer>
           </Grid>
         </Grid>
-
         <TableContainer>
           <Table className={classes.table}>
-            <TableHead>
-              <TableRow className={classes.tableRow}>
-                <TableCell className={classes.tableRow}>{data.type}</TableCell>
-                <TableCell align='right'>{data.name}/{data.type}</TableCell>
-              </TableRow>
-            </TableHead>
+            <TableBody>
+              {exam &&
+                <TableRow className={classes.tableRow}>
+                  <TableCell className={classes.tableRow}>{exam.variable}</TableCell>
+                  <TableCell align='right'>{exam.value}/{exam.max}</TableCell>
+                </TableRow>}
+            </TableBody>
           </Table>
         </TableContainer>
-
       </Container>
     </Dialog>
   )
