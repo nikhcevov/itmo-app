@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
-import postSchedule from './routes/schedule'
+import getSchedule from './routes/schedule'
 import getWatchers from './routes/watchers'
 import getAnswers from './routes/answers'
 import getScores from './routes/scores'
@@ -24,7 +24,7 @@ const port = process.env.port || 5000
 
 app.get('/', (req, res) => res.send('Hello world'))
 
-app.post('/schedule', postSchedule)
+app.get('/schedule', getSchedule)
 
 app.get('/watchers', getWatchers)
 
