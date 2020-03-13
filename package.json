@@ -16,19 +16,18 @@
     "lint-staged": "^10.0.7"
   },
   "scripts": {
-    "client:start": "cd packages/itmo-app-client/ && yarn start",
-    "client:dev": "cd packages/itmo-app-client/ && yarn dev",
-    "client:build": "cd packages/itmo-app-client/ && yarn build",
-    "server:start": "cd packages/itmo-app-server/ && yarn start",
-    "server:dev": "cd packages/itmo-app-server/ && yarn dev",
-    "server:build": "cd packages/itmo-app-server/ && yarn build",
-    "start": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn client:start\"",
-    "build": "concurrently --kill-others-on-fail \"yarn server:build\" \"yarn client:build\"",
-    "dev": "concurrently --kill-others-on-fail \"yarn server:dev\" \"yarn client:dev\"",
-    "test:server": "cd packages/itmo-app-server/ && yarn test",
-    "test:cli": "cd packages/itmo-app-cli/ && yarn test",
-    "lint:client": "cd packages/itmo-app-client/ && yarn lint",
-    "lint:server": "cd packages/itmo-app-server/ && yarn lint"
+    "start:client": "yarn workspace client start",
+    "start:server": "yarn workspace server start",
+    "dev:client": "yarn workspace client dev",
+    "dev:server": "yarn workspace server dev",
+    "build:client": "yarn workspace client build",
+    "build:server": "yarn workspace server build",
+    "start": "concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\"",
+    "build": "concurrently --kill-others-on-fail \"yarn build:server\" \"yarn build:client\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn dev:server\" \"yarn dev:client\"",
+    "test": "yarn workspaces run test",
+    "lint:client": "yarn workspace client lint",
+    "lint:server": "yarn workspace server lint"
   },
   "lint-staged": {
     "packages/itmo-app-client/src/**/*.{js,jsx}": [
