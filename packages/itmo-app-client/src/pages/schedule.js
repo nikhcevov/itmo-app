@@ -18,7 +18,11 @@ const useStyles = makeStyles(theme => ({
 export default function Schedule () {
   const classes = useStyles()
   const [group, setGroup] = useState('')
-  const { data } = useSWR((group.length > 4 && group.length < 8) ? `/schedule?group=${group}` : '/schedule', fetcher)
+  const { data } = useSWR(
+    (group.length > 4 && group.length < 8)
+      ? `/schedule?group=${group}`
+      : '/schedule', fetcher
+  )
 
   const content = data || { odd: [], even: [] }
 
