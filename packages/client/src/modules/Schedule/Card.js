@@ -11,8 +11,6 @@ import TableRow from '@material-ui/core/TableRow'
 import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-  },
   table: {
     [theme.breakpoints.down('xs')]: {
       '& th,td': {

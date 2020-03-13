@@ -16,23 +16,20 @@ const useStyles = makeStyles(theme => ({
   },
   switchButtonGroup: {
     marginBottom: theme.spacing(1)
-  },
-  switchButton: {
   }
-
 }))
 
 export default function Container ({ data, group, setGroup }) {
   const classes = useStyles()
   const [isOdd, setWeekType] = useState(true)
-  const [isNotValid, setNotValid] = useState(false)
+  const [isValid, setIsValid] = useState(false)
 
   function handleChange (event) {
     if (event.target.value.length < 8) {
-      if (isNotValid) setNotValid(false)
-      setGroup(event.target.value)
+      if (isValid) setIsValid(false)
+      setGroup(event.target.value.toUpperCase())
     } else {
-      setNotValid(true)
+      setIsValid(true)
     }
   }
 
@@ -56,15 +53,26 @@ export default function Container ({ data, group, setGroup }) {
         fullWidth
         onChange={handleChange}
         placeholder='Введите номер учебной группы'
-        variant='outlined'
         color='secondary'
         className={classes.textField}
-        error={isNotValid}
-        helperText={isNotValid && '7 symbols maximum!'}
+        error={isValid}
+        helperText={isValid && '7 symbols maximum!'}
       />
       <ButtonGroup color='secondary' className={classes.switchButtonGroup} fullWidth>
-        <Button variant={isOdd ? 'contained' : 'outlined'} onClick={handleOddClick}>Нечётная</Button>
-        <Button variant={isOdd ? 'outlined' : 'contained'} onClick={handleEvenClick}>Чётная</Button>
+        <Button
+          variant={isOdd ? 'contained' : 'outlined'}
+          onClick={handleOddClick}
+          className={classes.switchButton}
+        >
+          Нечётная
+        </Button>
+        <Button
+          variant={isOdd ? 'outlined' : 'contained'}
+          onClick={handleEvenClick}
+          className={classes.switchButton}
+        >
+          Чётная
+        </Button>
       </ButtonGroup>
       <div className={classes.container}>
         {isOdd && data.odd &&
