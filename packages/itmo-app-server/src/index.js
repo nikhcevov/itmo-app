@@ -8,10 +8,12 @@ import getScores from './routes/scores'
 
 dotenv.config()
 
-const isDev = process.env.NODE_ENV === 'dev'
+// const isDev = process.env.NODE_ENV === 'dev'
 
+// На момент разработки для тестовых стендов отключаем корс
 const corsOptions = {
-  origin: isDev ? '*' : process.env.CLIENT_URL,
+  // origin: isDev ? '*' : process.env.CLIENT_URL,
+  origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
