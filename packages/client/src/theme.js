@@ -39,8 +39,17 @@ const breakpoints = createBreakpoints({
   }
 })
 
+const overrides = {
+  MuiButton: {
+    root: {
+      borderRadius: '4px'
+    }
+  }
+}
+
 const defaultTheme = {
   breakpoints,
+  overrides,
   shape: {
     borderRadius: 18
   },

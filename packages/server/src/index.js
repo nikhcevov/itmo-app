@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
+import getSchedule from './routes/schedule'
 import getWatchers from './routes/watchers'
 import getAnswers from './routes/answers'
 import getScores from './routes/scores'
@@ -22,6 +23,8 @@ app.use(cors(corsOptions))
 const port = process.env.port || 5000
 
 app.get('/', (req, res) => res.send('Hello world'))
+
+app.get('/schedule', getSchedule)
 
 app.get('/watchers', getWatchers)
 

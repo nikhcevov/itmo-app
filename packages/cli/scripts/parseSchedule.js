@@ -1,4 +1,4 @@
-export default function (dom) {
+module.exports = function (dom) {
   const answer = {
     odd: [],
     even: []
