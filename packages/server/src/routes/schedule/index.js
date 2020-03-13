@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { JSDOM } from 'jsdom'
-import parseSchedule from './parseSchedule'
+import parseSchedule from 'cli/scripts/parseSchedule'
 
 const handler = async (req, res) => {
   const group = req && req.query && req.query.group
