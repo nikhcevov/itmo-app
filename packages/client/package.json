@@ -6,7 +6,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "test": "echo no tests"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.1",

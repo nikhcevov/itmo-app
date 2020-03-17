@@ -6,7 +6,7 @@ import parseGroups from '../scripts/parseGroups'
 import parseSchedule from '../scripts/parseSchedule'
 
 // BE CAREFULL!!! IT IS NOT JEST, IT IS TAP TESTER
-// yarn tap ./test/allGroupsScheduleParse.test.js
+// yarn tap ./test/allGroupsScheduleParse.js
 
 async function getGroups () {
   const response = await fetch('https://itmo.ru/ru//schedule/raspisanie_zanyatiy.htm')
