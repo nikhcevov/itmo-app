@@ -3,40 +3,48 @@
     "name": "Физика",
     "answers": [
       {
-        "name": "Механика. Модуль 1",
-        "url": "https://www.google.ru/"
+        "name": "Вводное тестирование",
+        "url": "/static/physics/vvodnoye_testirovaniye.pdf"
       },
       {
-        "name": "Механика. Модуль 2",
-        "url": "https://www.google.ru/"
+        "name": "Кинематика",
+        "url": "/static/physics/kinematika.pdf"
       },
       {
-        "name": "Термодинамика. Модуль 3",
-        "url": "https://www.google.ru/"
+        "name": "Динамика",
+        "url": "/static/physics/dinamika-merged.pdf"
       },
       {
-        "name": "Термодинамика. Модуль 4",
-        "url": "https://www.google.ru/"
+        "name": "Молекулярная физика",
+        "url": "/static/physics/molekulyarnaya_phizika.pdf"
       },
       {
-        "name": "Электродинамика. Модуль 5",
-        "url": "https://www.google.ru/"
+        "name": "Электричество и магнетизм",
+        "url": "/static/physics/elektrichestvo_i_magnetizm.pdf"
       },
       {
-        "name": "Электродинамика. Модуль 6",
-        "url": "https://www.google.ru/"
+        "name": "Магнитостатика",
+        "url": "/static/physics/magnitostatika.pdf"
       },
       {
-        "name": "Потусторонние силы. Модуль 7",
-        "url": "https://www.google.ru/"
+        "name": "Электромагнитная индукция",
+        "url": "/static/physics/elektromagnitnaya_inducsiya.pdf"
       },
       {
-        "name": "Потусторонние силы. Модуль 8",
-        "url": "https://www.google.ru/"
+        "name": "Интерференция и дифракция Френеля",
+        "url": "/static/physics/interferenciya_i_difraktiya_fr.pdf"
       },
       {
-        "name": "Рубежки",
-        "url": "https://www.google.ru/"
+        "name": "Дифракция Фраунгофера",
+        "url": "/static/physics/difrakciya_fr.pdf"
+      },
+      {
+        "name": "Квантовые свойства света",
+        "url": "/static/physics/kvant_sv-va_sveta.pdf"
+      },
+      {
+        "name": "Молекулы, ФТТ и ядро",
+        "url": "/static/physics/molekuli_ftt_i_yadro.pdf"
       }
     ]
   },
