@@ -52,12 +52,8 @@
     "name": "Философия (Общая)",
     "answers": [
       {
-        "name": "Основы онтологии и гносеологии",
-        "url": "https://www.google.ru/"
-      },
-      {
-        "name": "Основы философской антропологии и социальной философии",
-        "url": "https://www.google.ru/"
+        "name": "Ответы на оба теста",
+        "url": "/static/philosophy/philosophy.pdf"
       }
     ]
   },
