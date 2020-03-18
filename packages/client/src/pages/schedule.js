@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import useSWR from 'swr'
@@ -15,11 +16,22 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Schedule () {
+function Schedule () {
   const classes = useStyles()
-  const [group, setGroup] = useState('')
+  const router = useRouter()
+
+  const [group, setGroup] = useState(router.query.group)
+
+  useEffect(() => {
+    router.push(
+      `/schedule?group=${group}`,
+      group && group.length > 0 ? `/schedule?group=${group}` : '/schedule',
+      { shallow: true }
+    )
+  }, [group])
+
   const { data } = useSWR(
-    (group.length > 4 && group.length < 8)
+    (group && group.length > 4 && group.length < 8)
       ? `/schedule?group=${group}`
       : '/schedule', fetcher
   )
@@ -35,3 +47,8 @@ export default function Schedule () {
     </>
   )
 }
+
+// disable static optimization for not null query first render
+Schedule.getInitialProps = () => ({})
+
+export default Schedule
