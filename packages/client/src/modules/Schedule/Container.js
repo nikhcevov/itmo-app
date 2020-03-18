@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 import Card from './Card'
 
 const useStyles = makeStyles(theme => ({
@@ -16,8 +18,18 @@ const useStyles = makeStyles(theme => ({
   },
   switchButtonGroup: {
     marginBottom: theme.spacing(1)
+  },
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(4)
   }
 }))
+
+function isDataEmply (data) {
+  return (data && data.odd && data.odd.length === 0) ||
+  (data && data.even && data.even.length === 0)
+}
 
 export default function Container ({ data, group, setGroup }) {
   const classes = useStyles()
@@ -74,11 +86,15 @@ export default function Container ({ data, group, setGroup }) {
         </Button>
       </ButtonGroup>
       <div className={classes.container}>
+        {group && isDataEmply(data) && (
+          <div className={classes.spinner}>
+            <CircularProgress color='secondary' />
+          </div>
+        )}
         {isOdd && data.odd &&
             data.odd.map((card) => (
               <Card key={card.weekDay} data={card} />
             ))}
-
         {!isOdd && data.even &&
             data.even.map((card) => (
               <Card key={card.weekDay} data={card} />

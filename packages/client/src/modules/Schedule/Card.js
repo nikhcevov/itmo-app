@@ -46,7 +46,7 @@ export default function Card ({ data }) {
           {data.weekDay}
         </Typography>
         <TableContainer>
-          <Table className={classes.table} aria-label='schedule table'>
+          <Table className={classes.table}>
             <TableBody>
               {data.lessons.map(row => (
                 <TableRow className={classes.row} key={row.timeStart}>
