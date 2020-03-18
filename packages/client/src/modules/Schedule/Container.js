@@ -44,7 +44,6 @@ export default function Container ({ data, group, setGroup }) {
   return (
     <>
       <TextField
-        id='standard-basic'
         autoFocus
         label='Группа'
         value={group}

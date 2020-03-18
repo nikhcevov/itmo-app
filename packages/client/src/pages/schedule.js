@@ -20,7 +20,7 @@ function Schedule () {
   const classes = useStyles()
   const router = useRouter()
 
-  const [group, setGroup] = useState(router.query.group)
+  const [group, setGroup] = useState(router.query.group || '')
 
   useEffect(() => {
     router.push(
