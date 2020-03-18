@@ -19,6 +19,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+function isDataEmply (data) {
+  return (data && data.odd && data.odd.length === 0) ||
+  (data && data.even && data.even.length === 0)
+}
+
 export default function Container ({ data, group, setGroup }) {
   const classes = useStyles()
   const [isOdd, setWeekType] = useState(true)
@@ -74,11 +79,11 @@ export default function Container ({ data, group, setGroup }) {
         </Button>
       </ButtonGroup>
       <div className={classes.container}>
+        {group && isDataEmply(data) && <div>Загрузка</div>}
         {isOdd && data.odd &&
             data.odd.map((card) => (
               <Card key={card.weekDay} data={card} />
             ))}
-
         {!isOdd && data.even &&
             data.even.map((card) => (
               <Card key={card.weekDay} data={card} />
