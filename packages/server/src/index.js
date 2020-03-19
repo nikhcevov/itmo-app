@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import path from 'path'
 
 import getSchedule from './routes/schedule'
 import getWatchers from './routes/watchers'
@@ -22,6 +23,8 @@ const app = express()
 app.use(cors(corsOptions))
 const port = process.env.port || 5000
 
+app.use('/static', express.static(path.join(__dirname, '../static')))
+
 app.get('/', (req, res) => res.send('Hello world'))
 
 app.get('/schedule', getSchedule)
@@ -33,7 +36,7 @@ app.get('/answers', getAnswers)
 app.get('/scores', getScores)
 
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => console.log(`Watchers app listening on port ${port}!`))
+  app.listen(port, () => console.log(`Itmo-app listening on port ${port}!`))
 }
 
 export default app

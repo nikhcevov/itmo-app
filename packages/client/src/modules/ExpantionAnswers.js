@@ -20,6 +20,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+function constructUrl (url) {
+  return process.env.HOST_API + url
+}
+
 export default function ExpansionAnswers ({ data }) {
   const classes = useStyles()
 
@@ -37,7 +41,11 @@ export default function ExpansionAnswers ({ data }) {
               {subject.answers.map((answer, ansIndex) => (
                 <li key={`sub${subIndex}-ans${ansIndex}`}>
                   <Typography>
-                    <a className={classes.answerLink} href={answer.url}>{answer.name}</a>
+                    <a
+                      className={classes.answerLink}
+                      href={constructUrl(answer.url)}
+                    >{answer.name}
+                    </a>
                   </Typography>
                 </li>
               ))}

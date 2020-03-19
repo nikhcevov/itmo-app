@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 import ScrollUpButton from '../modules/ScrollUpButton'
 import ExpantionAnswers from '../modules/ExpantionAnswers'
+import LoaderSpinner from '../modules/LoaderSpinner'
 import fetcher from '../utils/fetcher'
 
 const useStyles = makeStyles(theme => ({
@@ -14,11 +15,6 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2)
-  },
-  spinner: {
-    display: 'flex',
-    justifyContent: 'center',
-    paddingTop: theme.spacing(4)
   }
 }))
 
@@ -30,18 +26,18 @@ function Answers () {
     <>
       <Container className={classes.root}>
         <Typography variant='body1' gutterBottom>
-          Материал, который может быть полезен при посещении ЦДО:
+          На этой странице находятся материалы, которые могут быть полезны при посещении ЦДО
+        </Typography>
+        <Typography variant='body1' gutterBottom>
+          Если вы хотите поделиться своими ответами, мы с радостью их опубликуем. Пишите в телеграмме:
+          <a href='https://t.me/itmo_apps'> Тут</a>
         </Typography>
       </Container>
       {data ? (
         <Container maxWidth='lg'>
           <ExpantionAnswers data={data} />
         </Container>
-      ) : (
-        <div className={classes.spinner}>
-          <CircularProgress />
-        </div>
-      )}
+      ) : <LoaderSpinner />}
       <ScrollUpButton />
     </>
   )
