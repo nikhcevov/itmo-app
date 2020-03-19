@@ -61,25 +61,8 @@
     "name": "Математика",
     "answers": [
       {
-        "name": "Кратные интегралы",
-        "url": "https://www.google.ru/"
-      },
-      {
         "name": "Числовые и функциональные ряды",
-        "url": "https://www.google.ru/"
-      }
-    ]
-  },
-  {
-    "name": "Культурология",
-    "answers": [
-      {
-        "name": "Аттестующий тест №1. Теория культуры и культура первобытности, древности, средневековья и Возрождения",
-        "url": "https://www.google.ru/"
-      },
-      {
-        "name": "Аттестующий тест №2. Западноевропейская и русская культура в Новое и Новейшее время. Итоговый тест",
-        "url": "https://www.google.ru/"
+        "url": "/static/math/chislovyie_i_functianalniye_ryadi.pdf"
       }
     ]
   },
@@ -88,23 +71,23 @@
     "answers": [
       {
         "name": "Древнерусское государство",
-        "url": "https://www.google.ru/"
+        "url": "/static/history/history_all.pdf"
       },
       {
         "name": "Московская Русь",
-        "url": "https://www.google.ru/"
+        "url": "/static/history/history_all.pdf"
       },
       {
         "name": "Российская империя",
-        "url": "https://www.google.ru/"
+        "url": "/static/history/history_all.pdf"
       },
       {
         "name": "Советская Россия",
-        "url": "https://www.google.ru/"
+        "url": "/static/history/history_all.pdf"
       },
       {
         "name": "Российская Федерация",
-        "url": "https://www.google.ru/"
+        "url": "/static/history/history_all.pdf"
       }
     ]
   }
