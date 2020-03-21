@@ -1,4 +1,6 @@
-import scoresJSON from './scores.json'
+import fetch from 'node-fetch'
+
+import withSession from '../../util/withSession'
 import parseScores from './scoresParser'
 import parseVariants from './variantsParser'
 
@@ -6,7 +8,15 @@ function withVariant (group, semester, variants) {
   return variants.find(v => v.group === group && v.semester === semester)
 }
 
-const handler = async (req, res) => {
+const handler = async (req, res, next, session) => {
+  const scores = await fetch('http://de.ifmo.ru/api/private/eregister', {
+    headers: {
+      cookie: session
+    }
+  })
+
+  const scoresJSON = await scores.json()
+
   const variants = parseVariants(scoresJSON)
 
   if (variants.length === 0) {
@@ -37,4 +47,4 @@ const handler = async (req, res) => {
   })
 }
 
-export default handler
+export default withSession(handler)
