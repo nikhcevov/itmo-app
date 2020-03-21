@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle'
   },
   progressCircular: {
-    color: theme.palette.secondary.main,
+    color: props => (props.value === 0) ? 'gray' : theme.palette.secondary.main,
     position: 'absolute',
     left: 0,
     top: 0
@@ -88,18 +88,19 @@ export default function Card ({ onOpen, data }) {
                 </Hidden>
               </div>
             </Grid>
-            {data.totalScore &&
-              <Grid item className={classes.progressContainer}>
-                <div className={classes.progressWrap}>
-                  <span className={classes.progressPoints}>{data.totalScore}</span>
-                  <Hidden smUp>
-                    <CircularProgress value={data.totalScore} size={40} />
-                  </Hidden>
-                  <Hidden xsDown>
-                    <CircularProgress value={data.totalScore} size={50} />
-                  </Hidden>
-                </div>
-              </Grid>}
+
+            <Grid item className={classes.progressContainer}>
+              <div className={classes.progressWrap}>
+                <span className={classes.progressPoints}>{data.totalScore || 0}</span>
+                <Hidden smUp>
+                  <CircularProgress value={data.totalScore || 0} size={40} />
+                </Hidden>
+                <Hidden xsDown>
+                  <CircularProgress value={data.totalScore || 0} size={50} />
+                </Hidden>
+              </div>
+            </Grid>
+
           </Grid>
         </MuiCardContent>
       </CardActionArea>
