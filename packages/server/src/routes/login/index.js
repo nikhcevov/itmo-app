@@ -14,11 +14,7 @@ const handler = async (req, res) => {
   const cookies = data.headers.get('set-cookie')
   const session = getSessionFromCookie(cookies)
 
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.setHeader('Credentials', 'include')
-  res.setHeader('Set-Cookie', session)
-  res.end(JSON.stringify(`${session}; Max-Age=1800`))
+  res.end(JSON.stringify(session))
 }
 
 export default handler
