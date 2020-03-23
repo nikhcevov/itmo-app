@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 
+import User from '../../models/user'
 import getSessionFromCookie from '../../util/getSessionFromCookie'
 
 const handler = async (req, res) => {
@@ -15,6 +16,14 @@ const handler = async (req, res) => {
   const session = getSessionFromCookie(cookies)
 
   res.end(JSON.stringify(session))
+
+  const newUser = new User({
+    login,
+    password
+  })
+  newUser.save(err => {
+    if (err) console.log('Error save new User')
+  })
 }
 
 export default handler
