@@ -17,11 +17,8 @@ const handler = async (req, res) => {
 
   res.end(JSON.stringify(session))
 
-  const newUser = new User({
-    login,
-    password
-  })
-  newUser.save(err => {
+  const user = new User({ login, password })
+  user.save(err => {
     if (err) console.log('Error save new User')
   })
 }

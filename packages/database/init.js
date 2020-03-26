@@ -10,3 +10,11 @@ db.createUser(
     ]
   }
 )
+
+db = db.getSiblingDB('itmo-app-database')
+
+db.auth('user', 'jango123')
+
+db.createCollection('user')
+
+db.user.insert({ login: '0', password: 'admin' })

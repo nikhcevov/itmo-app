@@ -1,14 +1,15 @@
 version: '3'
 services: 
-    database: 
-        image: 'mongo'
+    mongodb: 
+        image: mongo:latest
+        restart: always
         container_name: 'itmo-app-database'
         environment: 
             - MONGO_INITDB_DATABASE=itmo-app-database
-            - MONGO_INITDB_ROOT_USERNAME=owner
-            - MONGO_INITDB_ROOT_PASSWORD=pa55w0rd
-        volumes: 
-            - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
-            - ./mongo-volume:/data/db
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=s3cr3tPa55w0rd
         ports: 
-            - '27017-27019:27017-27019'
+            - '27017:27017'
+        volumes: 
+            - ./mongo-volume:/data/db
+            - ./init.js:/docker-entrypoint-initdb.d/init.js:ro
