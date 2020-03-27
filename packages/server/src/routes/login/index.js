@@ -25,9 +25,10 @@ const handler = async (req, res) => {
       login,
       password
     }))
-    const user = new User({ login, password })
-    user.save(err => {
-      if (err) console.log('Error save new User')
+    // create or update if exist
+    User.findOneAndUpdate({ login }, { password }, { upsert: true, new: true, setDefaultsOnInsert: true }, (err, res) => {
+      if (err) console.log('Error findOneAndUpdate User')
+      // res - new user object in database.
     })
   } else {
     res.end(JSON.stringify({
