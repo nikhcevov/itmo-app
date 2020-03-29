@@ -1,5 +1,5 @@
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
 const lightTheme = {
   palette: {
@@ -17,7 +17,7 @@ const lightTheme = {
       default: '#F8D247'
     }
   }
-}
+};
 
 const darkTheme = {
   palette: {
@@ -26,7 +26,7 @@ const darkTheme = {
       main: '#000'
     }
   }
-}
+};
 
 // 375 === iphone 6, iphone x
 const breakpoints = createBreakpoints({
@@ -37,7 +37,7 @@ const breakpoints = createBreakpoints({
     lg: 960,
     xl: 1280
   }
-})
+});
 
 const overrides = {
   MuiButton: {
@@ -45,7 +45,7 @@ const overrides = {
       borderRadius: '4px'
     }
   }
-}
+};
 
 const defaultTheme = {
   breakpoints,
@@ -79,12 +79,12 @@ const defaultTheme = {
   },
   // hack to disable shadows
   shadows: Array(25).fill('none')
-}
+};
 
 export default function getTheme (paletteType = 'light') {
   return createMuiTheme(Object.assign(
     {},
     defaultTheme,
     paletteType === 'light' ? lightTheme : darkTheme
-  ))
+  ));
 }
