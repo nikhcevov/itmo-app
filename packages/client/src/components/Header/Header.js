@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
-import Divider from '@material-ui/core/Divider'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import AppBar from '@material-ui/core/AppBar'
-import CloseIcon from '@material-ui/icons/Close'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
-import Hidden from '@material-ui/core/Hidden'
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import AppBar from '@material-ui/core/AppBar';
+import CloseIcon from '@material-ui/icons/Close';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import Hidden from '@material-ui/core/Hidden';
 
-import Link from '../Link'
-import navRoutes from './routes.json'
-import MobileHeader from './Mobile'
-import DesktopHeader from './Desktop'
+import Link from '../Link';
+import navRoutes from './routes.json';
+import MobileHeader from './Mobile';
+import DesktopHeader from './Desktop';
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -33,15 +33,15 @@ const useStyles = makeStyles(theme => ({
   version: {
     flexGrow: 1
   }
-}))
+}));
 
-function Navigation () {
-  const classes = useStyles()
+const Header = () => {
+  const classes = useStyles();
 
-  const [isMenuShow, setIsMenuShow] = useState(false)
+  const [isMenuShow, setIsMenuShow] = useState(false);
 
   function handleMenuShow () {
-    setIsMenuShow(!isMenuShow)
+    setIsMenuShow(!isMenuShow);
   }
 
   return (
@@ -90,7 +90,7 @@ function Navigation () {
               button
               component={Link}
               key={route.name}
-              href={route.href}
+              to={route.href}
               color='inherit'
               onClick={() => setIsMenuShow(false)}
             >
@@ -103,7 +103,7 @@ function Navigation () {
         <Divider />
       </Drawer>
     </>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Header;

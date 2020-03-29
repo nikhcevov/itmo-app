@@ -2,7 +2,8 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-// import LoginModule from '../modules/Login'
+import LoginModule from '../modules/Login'
+import fetcher from '../utils/fetcher'
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -25,20 +26,14 @@ export default function SignIn () {
     password: ''
   })
 
-  async function handleSubmit () {
+  async function handleSubmit (e) {
+    e.preventDefault()
     setSent(true)
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify(credentials)
-    })
-    const answer = await res.text()
+    const session = await fetcher(
+      `/login?login=${credentials.login}&password=${credentials.password}`
+    )
 
-    if (JSON.parse(answer) !== 'OK') {
-      alert('Что-то пошло не так')
-    }
+    document.cookie = session
   }
 
   const handleChange = (e) => {

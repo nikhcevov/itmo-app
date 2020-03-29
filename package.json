@@ -6,7 +6,7 @@
   "repository": "git@github.com:ovchingus/itmo-app.git",
   "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
   "workspaces": [
-    "packages/*"
+    "packages/client"
   ],
   "dependencies": {
     "concurrently": "^5.1.0"
@@ -18,7 +18,7 @@
   "scripts": {
     "start:client": "yarn workspace client start",
     "start:server": "yarn workspace server start",
-    "dev:client": "yarn workspace client dev",
+    "dev:client": "yarn workspace client start",
     "dev:server": "yarn workspace server dev",
     "build:client": "yarn workspace client build",
     "build:server": "yarn workspace server build",

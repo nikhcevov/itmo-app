@@ -1,24 +1,25 @@
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
-import navRoutes from './routes.json'
-import Link from '../Link'
+import Link from '../Link';
+import navRoutes from './routes.json';
 
 const useStyles = makeStyles(theme => ({
   item: {
     paddingRight: theme.spacing(4)
   }
-}))
+}));
 
-export default function MobileHeader ({ handleMenuShow }) {
-  const classes = useStyles()
+const MobileHeader = ({ handleMenuShow }) => {
+  const classes = useStyles();
 
   return (
     <>
       {navRoutes.map((route, index) => (
         <Link
           key={route.name}
-          href={route.href}
+          to={route.href}
           color='inherit'
           className={classes.item}
         >
@@ -28,5 +29,7 @@ export default function MobileHeader ({ handleMenuShow }) {
         </Link>
       ))}
     </>
-  )
-}
+  );
+};
+
+export default MobileHeader;
