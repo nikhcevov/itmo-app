@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useState, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 
-import SubjectScores from '../../components/SubjectScores';
-import Spinner from '../../components/Spinner';
+import SubjectScores from '../../components/SubjectScores'
+import Spinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Scores = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const [variant, setVariant] = useState({
     codename: '',
@@ -27,7 +27,7 @@ const Scores = () => {
   //       ? `/scores?group=${variant.group}&semester=${variant.semester}`
   //       : '/scores',
   //     fetcher);
-  const data = null;
+  const data = null
 
   // TODO: optimize renders count
   // console.log('rendered')
@@ -52,7 +52,7 @@ const Scores = () => {
         </div>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default Scores;
+export default Scores

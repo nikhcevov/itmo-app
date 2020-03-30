@@ -1,14 +1,14 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import ScheduleIcon from '@material-ui/icons/Schedule';
-import CheckCircleOutlineOutlinedIcon from '@material-ui/icons/CheckCircleOutlineOutlined';
-import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import Grid from '@material-ui/core/Grid';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import ScheduleIcon from '@material-ui/icons/Schedule'
+import CheckCircleOutlineOutlinedIcon from '@material-ui/icons/CheckCircleOutlineOutlined'
+import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined'
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined'
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
+import Grid from '@material-ui/core/Grid'
 
-import Link from '../Link';
+import Link from '../Link'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LinkIconContainer = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const links = [
     {
@@ -87,7 +87,7 @@ const LinkIconContainer = () => {
 
       </Grid>
     </div>
-  );
-};
+  )
+}
 
-export default LinkIconContainer;
+export default LinkIconContainer

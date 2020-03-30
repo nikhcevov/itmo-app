@@ -1,7 +1,7 @@
-import React, { PureComponent, forwardRef } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import MuiLink from '@material-ui/core/Link';
+import React, { PureComponent, forwardRef } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import MuiLink from '@material-ui/core/Link'
 
 class Link extends PureComponent {
   render() {
@@ -14,7 +14,7 @@ class Link extends PureComponent {
       >
         {props.children}
       </MuiLink>
-    );
+    )
   }
 }
 
@@ -24,4 +24,4 @@ Link.propTypes = {
   className: PropTypes.string,
 };
 
-export default forwardRef((props, ref) => <Link {...props} forwardedRef={ref} />);
+export default forwardRef((props, ref) => <Link {...props} forwardedRef={ref} />)

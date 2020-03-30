@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 
-import Card from './Card';
-import Modal from './Modal';
+import Card from './Card'
+import Modal from './Modal'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -89,7 +89,7 @@ const Container = ({
         onClose={handleModalClose}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Container;
+export default Container

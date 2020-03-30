@@ -1,9 +1,9 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
 
-import Watchers from '../../components/Watchers';
+import Watchers from '../../components/Watchers'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Schedule = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const content = [];
+  const content = []
 
   return (
     <>
@@ -27,7 +27,7 @@ const Schedule = () => {
         <Watchers data={content} />
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Schedule;
+export default Schedule

@@ -1,1 +1,1 @@
-export { default } from './Watchers';
+export { default } from './Watchers'

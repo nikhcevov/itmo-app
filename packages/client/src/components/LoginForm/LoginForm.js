@@ -1,18 +1,18 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
 
-import Link from '../Link';
+import Link from '../Link'
 
 const Copyright = () => (
   <Typography variant='body2' color='textSecondary' align='center'>
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LoginForm = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -115,7 +115,7 @@ const LoginForm = () => {
         <Copyright />
       </Box>
     </Container>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

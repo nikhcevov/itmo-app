@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Skeleton from '@material-ui/lab/Skeleton';
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Skeleton from '@material-ui/lab/Skeleton'
 
-import WatcherModal from './WatcherModal';
+import WatcherModal from './WatcherModal'
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -52,8 +52,8 @@ function prepareData(data) {
 }
 
 const Watchers = ({ data }) => {
-  const classes = useStyles();
-  const rows = prepareData(data);
+  const classes = useStyles()
+  const rows = prepareData(data)
 
   const [modal, setModal] = useState({
     isOpen: false,
@@ -61,12 +61,12 @@ const Watchers = ({ data }) => {
   });
 
   const handleModalOpen = (row) => {
-    setModal({ data: row, isOpen: true });
-  };
+    setModal({ data: row, isOpen: true })
+  }
 
   const handleModalClose = () => {
-    setModal({ ...modal, isOpen: false });
-  };
+    setModal({ ...modal, isOpen: false })
+  }
 
   return (
     <>
@@ -102,7 +102,7 @@ const Watchers = ({ data }) => {
       </TableContainer>
       <WatcherModal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />
     </>
-  );
-};
+  )
+}
 
-export default Watchers;
+export default Watchers

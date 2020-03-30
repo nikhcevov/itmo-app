@@ -1,4 +1,4 @@
-import page from './page';
+import page from './page'
 
 // тут подключается логика редакса
-export default page;
+export default page

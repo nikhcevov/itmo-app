@@ -54,8 +54,8 @@ const Answers = ({ data }) => {
         </ExpansionPanel>
       ))}
     </div>
-  );
-};
+  )
+}
 
 Answers.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({

@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Card from './Card';
+import Card from './Card'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -31,26 +31,26 @@ const isDataEmply = (data) => (data && data.odd && data.odd.length === 0)
   || (data && data.even && data.even.length === 0);
 
 const Container = ({ data, group, setGroup }) => {
-  const classes = useStyles();
-  const [isOdd, setWeekType] = useState(true);
-  const [isValid, setIsValid] = useState(false);
+  const classes = useStyles()
+  const [isOdd, setWeekType] = useState(true)
+  const [isValid, setIsValid] = useState(false)
 
   const handleChange = (event) => {
     if (event.target.value.length < 8) {
-      if (isValid) setIsValid(false);
-      setGroup(event.target.value.toUpperCase());
+      if (isValid) setIsValid(false)
+      setGroup(event.target.value.toUpperCase())
     } else {
-      setIsValid(true);
+      setIsValid(true)
     }
-  };
+  }
 
   const handleOddClick = () => {
-    setWeekType(true);
-  };
+    setWeekType(true)
+  }
 
   const handleEvenClick = () => {
-    setWeekType(false);
-  };
+    setWeekType(false)
+  }
 
   return (
     <>
@@ -100,8 +100,8 @@ const Container = ({ data, group, setGroup }) => {
             ))}
       </div>
     </>
-  );
-};
+  )
+}
 
 Container.propTypes = {
   data: PropTypes.shape({

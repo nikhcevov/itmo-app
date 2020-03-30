@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
-import UpIcon from '@material-ui/icons/KeyboardArrowUp';
+import React, { useEffect, useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Zoom from '@material-ui/core/Zoom'
+import Fab from '@material-ui/core/Fab'
+import UpIcon from '@material-ui/icons/KeyboardArrowUp'
 
 const useStyles = makeStyles((theme) => ({
   scrollBtn: {
@@ -19,24 +19,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ScrollUpButton = () => {
-  const classes = useStyles();
-  const [isVisible, setVisibleButton] = useState(false);
+  const classes = useStyles()
+  const [isVisible, setVisibleButton] = useState(false)
 
   const showButton = () => {
     if (global.pageYOffset > 0) {
-      setVisibleButton(true);
+      setVisibleButton(true)
     } else {
-      setVisibleButton(false);
+      setVisibleButton(false)
     }
-  };
+  }
 
   useEffect(() => {
-    document.addEventListener('scroll', showButton);
-  });
+    document.addEventListener('scroll', showButton)
+  })
 
   const handleScrollTop = () => {
-    global.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    global.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <Zoom in={isVisible} style={{ transitionDelay: '0ms' }}>
@@ -48,7 +48,7 @@ const ScrollUpButton = () => {
         <UpIcon />
       </Fab>
     </Zoom>
-  );
-};
+  )
+}
 
-export default ScrollUpButton;
+export default ScrollUpButton
