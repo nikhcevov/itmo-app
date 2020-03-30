@@ -10,6 +10,7 @@ import HomePage from './modules/home'
 import AnswersPage from './modules/answers'
 import ScoresPage from './modules/scores'
 import SchedulePage from './modules/schedule'
+import LoginPage from './modules/login'
 
 const theme = getTheme()
 
@@ -23,6 +24,7 @@ const Routes = () => (
           <Route path='/answers' component={AnswersPage} />
           <Route path='/scores' component={ScoresPage} />
           <Route path='/schedule' component={SchedulePage} />
+          <Route path='/login' component={LoginPage} />
         </Switch>
       </Layout>
     </BrowserRouter>
