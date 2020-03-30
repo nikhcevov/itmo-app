@@ -1,17 +1,17 @@
-import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import React from 'react'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import { ThemeProvider } from '@material-ui/core/styles'
 
-import Layout from './components/Layout';
-import getTheme from './theme';
+import Layout from './components/Layout'
+import getTheme from './theme'
 
-import WatchersPage from './modules/watchers';
-import HomePage from './modules/home';
-import AnswersPage from './modules/answers';
-import ScoresPage from './modules/scores';
-import SchedulePage from './modules/schedule';
+import WatchersPage from './modules/watchers'
+import HomePage from './modules/home'
+import AnswersPage from './modules/answers'
+import ScoresPage from './modules/scores'
+import SchedulePage from './modules/schedule'
 
-const theme = getTheme();
+const theme = getTheme()
 
 const Routes = () => (
   <ThemeProvider theme={theme}>
@@ -27,6 +27,6 @@ const Routes = () => (
       </Layout>
     </BrowserRouter>
   </ThemeProvider>
-);
+)
 
-export default Routes;
+export default Routes

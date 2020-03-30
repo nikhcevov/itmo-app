@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Answers = () => {
-  const classes = useStyles();
-  const data = null;
+  const classes = useStyles()
+  const data = null
 
   return (
     <>

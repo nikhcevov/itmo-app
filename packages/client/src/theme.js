@@ -1,5 +1,5 @@
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
 
 const lightTheme = {
   palette: {
