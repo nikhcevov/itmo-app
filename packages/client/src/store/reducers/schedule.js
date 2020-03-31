@@ -4,7 +4,9 @@ import { cloneDeep } from 'lodash'
 
 export const initialState = {
   odd: [],
-  even: []
+  even: [],
+  group: '',
+  message: ''
 }
 
 const schedule = (state = initialState, action) => {
@@ -15,13 +17,17 @@ const schedule = (state = initialState, action) => {
     case PUT_SCHEDULE_FAIL: {
       return {
         odd: [],
-        even: []
+        even: [],
+        group: '',
+        message: ''
       }
     }
     default:
       return {
         odd: [],
-        even: []
+        even: [],
+        group: '',
+        message: ''
       }
   }
 }

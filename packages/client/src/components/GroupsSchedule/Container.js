@@ -7,6 +7,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Card from './Card'
+import { Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
   spinner: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: theme.spacing(4),
-  },
-}));
+    paddingTop: theme.spacing(4)
+  }
+
+}))
 
 const isDataEmply = (data) => (data && data.odd && data.odd.length === 0)
   || (data && data.even && data.even.length === 0);
@@ -88,13 +90,18 @@ const Container = ({ data, group, setGroup }) => {
         </Button>
       </ButtonGroup>
       <div className={classes.container}>
-        {group && isValid && isDataEmply(data) && (
+        {group && isValid && isDataEmply(data) && data.message !== 'not found' && (
           <div className={classes.spinner}>
             <CircularProgress color='secondary' />
           </div>
         )}
-        {isOdd && data.odd
-            && data.odd.map((card) => (
+        {data && data.group && (
+          <Typography variant='h6' align='center'>
+            Расписание группы {data.group} {data.message === 'not found' ? 'не найдено' : ''}
+          </Typography>
+        )}
+        {isOdd && data.odd &&
+            data.odd.map((card) => (
               <Card key={card.weekDay} data={card} />
             ))}
         {!isOdd && data.even

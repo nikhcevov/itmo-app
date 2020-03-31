@@ -7,14 +7,29 @@ const handler = async (req, res) => {
   if (!group) {
     res.send({
       odd: [],
-      even: []
+      even: [],
+      group: '',
+      message: ''
     })
     return
   }
   const data = await fetch(`https://itmo.ru/ru/schedule/0/${group}/schedule.htm`)
   const domText = await data.text()
   const ans = parseSchedule(new JSDOM(domText))
-  res.send(ans)
+  if (ans.odd.length === 0 && ans.even.length === 0) {
+    res.send({
+      odd: [],
+      even: [],
+      group,
+      message: 'not found'
+    })
+  } else {
+    res.send({
+      ...ans,
+      group,
+      message: 'success'
+    })
+  }
 }
 
 export default handler

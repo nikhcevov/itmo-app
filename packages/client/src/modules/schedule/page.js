@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 
 import GroupsSchedule from '../../components/GroupsSchedule'
 import ScrollUpButton from '../../components/ScrollUpButton'
-import { useQuery, fetcher } from '../../utils'
+import { useQuery } from '../../utils'
 
 import GroupsSchedule from '../../components/GroupsSchedule';
 import ScrollUpButton from '../../components/ScrollUpButton';
