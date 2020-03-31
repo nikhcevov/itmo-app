@@ -33,14 +33,17 @@ const isDataEmply = (data) => (data && data.odd && data.odd.length === 0)
 const Container = ({ data, group, setGroup }) => {
   const classes = useStyles()
   const [isOdd, setWeekType] = useState(true)
-  const [isValid, setIsValid] = useState(false)
+  const [isValid, setIsValid] = useState(true)
 
   const handleChange = (event) => {
-    if (event.target.value.length < 8) {
+    if (event.target.value.length <= 4) {
       if (isValid) setIsValid(false)
       setGroup(event.target.value.toUpperCase())
+    } else if (event.target.value.length >= 5 && event.target.value.length <= 7) {
+      if (!isValid) setIsValid(true)
+      setGroup(event.target.value.toUpperCase())
     } else {
-      setIsValid(true)
+      setIsValid(false)
     }
   }
 
@@ -65,8 +68,8 @@ const Container = ({ data, group, setGroup }) => {
         placeholder='Введите номер учебной группы'
         color='secondary'
         className={classes.textField}
-        error={isValid}
-        helperText={isValid && '7 symbols maximum!'}
+        error={!isValid}
+        helperText={!isValid && 'Length of group name must be between 5 and 7 inclusive!'}
       />
       <ButtonGroup color='secondary' className={classes.switchButtonGroup} fullWidth>
         <Button
@@ -85,7 +88,7 @@ const Container = ({ data, group, setGroup }) => {
         </Button>
       </ButtonGroup>
       <div className={classes.container}>
-        {group && isDataEmply(data) && (
+        {group && isValid && isDataEmply(data) && (
           <div className={classes.spinner}>
             <CircularProgress color='secondary' />
           </div>

@@ -18,6 +18,7 @@ export default function Login () {
     const data = await fetcher(
       `/login?login=${credentials.login}&password=${credentials.password}&remember=${remember}`
     )
+    console.log(data)
     if (data.message === 'success') {
       window.localStorage.setItem('LOGIN', data.login)
       window.localStorage.setItem('PASSWORD', data.password)
