@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
-import Watchers from '../../components/Watchers'
+import WatchersContainer from '../../components/Watchers'
+import LoaderSpinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,10 +14,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Schedule = () => {
+const Watchers = (props) => {
   const classes = useStyles()
 
-  const content = []
+  useEffect(() => {
+    props.loadWatchers()
+  }, [])
 
   return (
     <>
@@ -24,10 +27,14 @@ const Schedule = () => {
         <Typography variant='body1' gutterBottom>
           Таблица с информацией о смотрящих в ЦДО на ближайшие 2 недели.
         </Typography>
-        <Watchers data={content} />
+
+        {props.watchers
+          ? <WatchersContainer data={props.watchers} />
+          : <LoaderSpinner />}
+
       </Container>
     </>
   )
 }
 
-export default Schedule
+export default Watchers

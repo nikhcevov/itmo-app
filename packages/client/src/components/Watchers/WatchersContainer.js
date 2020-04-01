@@ -51,7 +51,7 @@ function prepareData(data) {
   }));
 }
 
-const Watchers = ({ data }) => {
+const WatchersContainer = ({ data }) => {
   const classes = useStyles()
   const rows = prepareData(data)
 
@@ -105,4 +105,4 @@ const Watchers = ({ data }) => {
   )
 }
 
-export default Watchers
+export default WatchersContainer

@@ -9,7 +9,6 @@ function fetchShedule (group) {
 function * workerLoadSchedule (action) {
   try {
     const data = yield call(fetchShedule, action.payload.group)
-    console.log(data)
     yield put(putSchedule(data))
   } catch (error) {
     console.log(error.message)

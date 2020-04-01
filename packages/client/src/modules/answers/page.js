@@ -15,9 +15,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Answers = () => {
+const Answers = (props) => {
   const classes = useStyles()
-  const data = null
+
+  useEffect(() => {
+    props.loadAnswers()
+  }, [])
 
   return (
     <>
@@ -32,9 +35,9 @@ const Answers = () => {
           <a href='https://t.me/itmo_apps'> Тут</a>
         </Typography>
       </Container>
-      {data ? (
+      {props.answers ? (
         <Container maxWidth='lg'>
-          <ExpantionAnswers data={data} />
+          <ExpantionAnswers data={props.answers} />
         </Container>
       ) : <LoaderSpinner />}
       <ScrollUpButton />
