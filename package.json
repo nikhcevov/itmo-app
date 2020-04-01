@@ -30,10 +30,10 @@
     "lint:server": "yarn workspace server lint"
   },
   "lint-staged": {
-    "packages/itmo-app-client/src/**/*.{js,jsx}": [
+    "packages/client/src/**/*.{js,jsx}": [
       "yarn lint:client"
     ],
-    "packages/itmo-app-server/src/**/*.{js}": [
+    "packages/server/src/**/*.{js}": [
       "yarn lint:server"
     ]
   },

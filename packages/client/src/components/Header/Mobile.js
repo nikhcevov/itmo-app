@@ -7,18 +7,18 @@ import MenuIcon from '@material-ui/icons/Menu';
 import navRoutes from './routes';
 
 const getCurrentPageName = (pathname) => {
-  const route = navRoutes.find(route => route.href === pathname);
+  const route = navRoutes.find((route) => route.href === pathname);
   return route ? route.label : 'Itmo app';
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'flex-start'
-  }
+    justifyContent: 'flex-start',
+  },
 }));
 
 const MobileHeader = (props) => {
@@ -42,7 +42,7 @@ const MobileHeader = (props) => {
 };
 
 MobileHeader.propTypes = {
-  handleMenuShow: PropTypes.func
+  handleMenuShow: PropTypes.func,
 };
 
 export default MobileHeader;

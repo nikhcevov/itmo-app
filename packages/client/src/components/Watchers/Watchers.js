@@ -11,29 +11,29 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 import WatcherModal from './WatcherModal';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   table: {
     [theme.breakpoints.down('xs')]: {
       '& th,td': {
         paddingLeft: '8px',
-        paddingRight: '8px'
-      }
-    }
+        paddingRight: '8px',
+      },
+    },
   },
   row: {
     transition: 'background-color 0.3s',
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
-      cursor: 'pointer'
-    }
-  }
+      cursor: 'pointer',
+    },
+  },
 }));
 
-function sortByDate (first, second) {
+function sortByDate(first, second) {
   return (+first[0] + first[1] * 100) - (+second[0] + second[1] * 100);
 }
 
-function prepareData (data) {
+function prepareData(data) {
   const prepared = [];
   for (const person of data) {
     for (const date of person.schedule) {
@@ -41,15 +41,13 @@ function prepareData (data) {
         name: person.name,
         date: date.split('.'),
         difficulty: 'Пока не ясно',
-        img: person.img
+        img: person.img,
       });
     }
   }
-  return prepared.sort((a, b) =>
-    sortByDate(a.date, b.date)
-  ).map(row => ({
+  return prepared.sort((a, b) => sortByDate(a.date, b.date)).map((row) => ({
     ...row,
-    date: row.date.join('.')
+    date: row.date.join('.'),
   }));
 }
 
@@ -59,7 +57,7 @@ const Watchers = ({ data }) => {
 
   const [modal, setModal] = useState({
     isOpen: false,
-    data: {}
+    data: {},
   });
 
   const handleModalOpen = (row) => {
@@ -82,17 +80,17 @@ const Watchers = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.length === 0 &&
-              [1, 2, 3, 4, 5, 6, 7, 8].map(row => (
+            {rows.length === 0
+              && [1, 2, 3, 4, 5, 6, 7, 8].map((row) => (
                 <TableRow key={`row_${row}`}>
-                  {[1, 2, 3].map(cell => (
+                  {[1, 2, 3].map((cell) => (
                     <TableCell key={`row_${row}_cell_${cell}`}>
                       <Skeleton />
                     </TableCell>
                   ))}
                 </TableRow>
               ))}
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.date} onClick={() => handleModalOpen(row)} className={classes.row}>
                 <TableCell>{row.date}</TableCell>
                 <TableCell>{row.name}</TableCell>

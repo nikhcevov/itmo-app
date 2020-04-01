@@ -5,10 +5,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Link from '../Link';
 import navRoutes from './routes.json';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   item: {
-    paddingRight: theme.spacing(4)
-  }
+    paddingRight: theme.spacing(4),
+  },
 }));
 
 const MobileHeader = ({ handleMenuShow }) => {

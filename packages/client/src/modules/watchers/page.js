@@ -5,12 +5,12 @@ import Typography from '@material-ui/core/Typography';
 
 import Watchers from '../../components/Watchers';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    display: 'grid'
-  }
+    display: 'grid',
+  },
 }));
 
 const Schedule = () => {

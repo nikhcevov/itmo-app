@@ -8,41 +8,41 @@ import Hidden from '@material-ui/core/Hidden';
 import MuiCard from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   text: {
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   progressWrap: {
     [theme.breakpoints.down('sm')]: {
       lineHeight: '40px',
       width: 40,
-      height: 40
+      height: 40,
     },
     [theme.breakpoints.up('sm')]: {
       lineHeight: '50px',
       width: 50,
-      height: 50
+      height: 50,
     },
     position: 'relative',
     textAlign: 'center',
-    verticalAlign: 'middle'
+    verticalAlign: 'middle',
   },
   progressCircular: {
-    color: props => (props.value === 0) ? 'gray' : theme.palette.secondary.main,
+    color: (props) => ((props.value === 0) ? 'gray' : theme.palette.secondary.main),
     position: 'absolute',
     left: 0,
-    top: 0
+    top: 0,
   },
   progressPoints: {
     [theme.breakpoints.down('sm')]: {
-      fontSize: '12px'
+      fontSize: '12px',
     },
     [theme.breakpoints.up('sm')]: {
-      fontSize: '16px'
-    }
-  }
+      fontSize: '16px',
+    },
+  },
 }));
 
 const CircularProgress = (props) => {

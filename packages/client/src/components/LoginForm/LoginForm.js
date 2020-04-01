@@ -14,37 +14,36 @@ import Container from '@material-ui/core/Container';
 
 import Link from '../Link';
 
-const Copyright = () => {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        gtfo-cdo
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-};
+const Copyright = () => (
+  <Typography variant='body2' color='textSecondary' align='center'>
+    {'Copyright © '}
+    <Link color='inherit' href='https://material-ui.com/'>
+      gtfo-cdo
+    </Link>
+    {' '}
+    {new Date().getFullYear()}
+    .
+  </Typography>
+);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 const LoginForm = () => {
@@ -106,7 +105,7 @@ const LoginForm = () => {
             </Grid>
             <Grid item>
               <Link href='#' variant='body2' color='inherit'>
-                {"Don't have an account? Sign Up"}
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

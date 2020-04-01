@@ -7,12 +7,12 @@ import ScrollUpButton from '../../components/ScrollUpButton';
 import ExpantionAnswers from '../../components/Answers';
 import LoaderSpinner from '../../components/Spinner';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2)
-  }
+    paddingBottom: theme.spacing(2),
+  },
 }));
 
 const Answers = () => {
@@ -23,10 +23,12 @@ const Answers = () => {
     <>
       <Container className={classes.root}>
         <Typography variant='body1' gutterBottom>
-          На этой странице находятся материалы, которые могут быть полезны при посещении ЦДО
+          На этой странице находятся материалы,
+          которые могут быть полезны при посещении ЦДО
         </Typography>
         <Typography variant='body1' gutterBottom>
-          Если вы хотите поделиться своими ответами, мы с радостью их опубликуем. Пишите в телеграмме:
+          Если вы хотите поделиться своими ответами, мы с
+          радостью их опубликуем. Пишите в телеграмме:
           <a href='https://t.me/itmo_apps'> Тут</a>
         </Typography>
       </Container>

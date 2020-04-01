@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Link from '../Link';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
   },
   linkIcon: {
@@ -21,9 +21,9 @@ const useStyles = makeStyles(theme => ({
     transition: 'transform 0.3s, color 0.3s',
     '&:hover': {
       color: theme.palette.secondary.main,
-      transform: 'scale(1.1)'
-    }
-  }
+      transform: 'scale(1.1)',
+    },
+  },
 }));
 
 const LinkIconContainer = () => {
@@ -33,38 +33,38 @@ const LinkIconContainer = () => {
     {
       icon: <ScheduleIcon className={classes.linkIcon} />,
       name: 'Расписание занятий',
-      href: '/schedule'
+      href: '/schedule',
     },
 
     {
       icon: <DescriptionOutlinedIcon className={classes.linkIcon} />,
       name: 'Ответы',
-      href: '/answers'
+      href: '/answers',
     },
 
     {
       icon: <CheckCircleOutlineOutlinedIcon className={classes.linkIcon} />,
       name: 'Баллы',
-      href: '/scores'
+      href: '/scores',
     },
 
     {
       icon: <VisibilityOutlinedIcon className={classes.linkIcon} />,
       name: 'Расписание смотрящих ЦДО',
-      href: '/watchers'
+      href: '/watchers',
     },
 
     {
       icon: <MonetizationOnOutlinedIcon className={classes.linkIcon} />,
       name: 'Помощь разработчикам',
-      href: '/sponsorship'
+      href: '/sponsorship',
     },
 
     {
       icon: <HelpOutlineIcon className={classes.linkIcon} />,
       name: 'Вопросы',
-      href: '/'
-    }
+      href: '/',
+    },
   ];
 
   return (

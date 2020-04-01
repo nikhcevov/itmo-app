@@ -16,23 +16,23 @@ import navRoutes from './routes.json';
 import MobileHeader from './Mobile';
 import DesktopHeader from './Desktop';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   toolbarSpacing: theme.mixins.toolbar,
   drawer: {
     width: '100%',
-    flexShrink: 0
+    flexShrink: 0,
   },
   drawerPaper: {
     width: '100%',
-    background: theme.palette.secondary.light
+    background: theme.palette.secondary.light,
   },
   version: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 
 const Header = () => {
@@ -40,7 +40,7 @@ const Header = () => {
 
   const [isMenuShow, setIsMenuShow] = useState(false);
 
-  function handleMenuShow () {
+  function handleMenuShow() {
     setIsMenuShow(!isMenuShow);
   }
 
@@ -63,16 +63,16 @@ const Header = () => {
         open={isMenuShow}
         onClose={() => setIsMenuShow(false)}
         classes={{
-          paper: classes.drawerPaper
+          paper: classes.drawerPaper,
         }}
         ModalProps={{
-          keepMounted: true // Better open performance on mobile.
+          keepMounted: true, // Better open performance on mobile.
         }}
       >
         <List className={classes.toolbarSpacing}>
           <ListItem>
             <Typography variant='h5' className={classes.version}>
-              {'SB0101 v.beta_1'}
+              SB0101 v.beta_1
             </Typography>
             <IconButton
               color='inherit'

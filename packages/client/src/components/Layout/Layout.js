@@ -5,14 +5,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Header from '../Header';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   content: {
-    flexGrow: 1
+    flexGrow: 1,
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
 }));
 
 const Layout = (props) => {
@@ -29,7 +29,7 @@ const Layout = (props) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 };
 
 export default Layout;

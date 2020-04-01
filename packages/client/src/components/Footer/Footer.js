@@ -6,28 +6,28 @@ import Grid from '@material-ui/core/Grid';
 
 import Link from '../Link';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   toolbar: {
     minHeight: 128,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     '& a': {
-      transition: 'color 0.2s'
+      transition: 'color 0.2s',
     },
     '& a:hover': {
       color: theme.palette.secondary.main,
-      textDecoration: 'none'
+      textDecoration: 'none',
     },
-    textAlign: 'center'
+    textAlign: 'center',
   },
   extraInfo: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   buttons: {
     '& button': {
-      color: theme.palette.text.secondary
-    }
-  }
+      color: theme.palette.text.secondary,
+    },
+  },
 }));
 
 const Footer = () => {
@@ -50,17 +50,17 @@ const Footer = () => {
           >
             <Grid item>
               <Typography variant='body1' noWrap>
-                  Приложение
+                Приложение
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant='body2' noWrap>
-                  О нас
+                О нас
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant='body2' noWrap>
-                  Связаться с разработчиками
+                Связаться с разработчиками
               </Typography>
             </Grid>
           </Grid>
@@ -73,18 +73,18 @@ const Footer = () => {
           >
             <Grid item>
               <Typography variant='body1' noWrap>
-                  Помощь & поддержка
+                Помощь & поддержка
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant='body2' noWrap>
-                  FAQ
+                FAQ
               </Typography>
             </Grid>
             <Grid item>
               <Link to='/sponsorship' color='inherit'>
                 <Typography variant='body2' noWrap>
-                    Спонсорство
+                  Спонсорство
                 </Typography>
               </Link>
             </Grid>
@@ -98,20 +98,20 @@ const Footer = () => {
           >
             <Grid item>
               <Typography variant='body1' noWrap>
-                  Мобильное приложение
+                Мобильное приложение
               </Typography>
             </Grid>
             <Grid item>
               <Link to='/wip' color='inherit'>
                 <Typography variant='body2' noWrap>
-                    IOS
+                  IOS
                 </Typography>
               </Link>
             </Grid>
             <Grid item>
               <Link to='/wip' color='inherit'>
                 <Typography variant='body2' noWrap>
-                    Androed
+                  Androed
                 </Typography>
               </Link>
             </Grid>
@@ -119,7 +119,7 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12}>
           <Typography className={classes.extraInfo} variant='body2'>
-              © Gtfo-cdo. Сделано с ❤️ для списывания с удовольствием.
+            © Gtfo-cdo. Сделано с ❤️ для списывания с удовольствием.
           </Typography>
         </Grid>
       </Grid>

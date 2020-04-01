@@ -4,18 +4,18 @@ import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   scrollBtn: {
     [theme.breakpoints.down('sm')]: {
       bottom: 20,
-      right: 20
+      right: 20,
     },
     bottom: 50,
     right: 50,
     position: 'fixed',
     opacity: 0.9,
-    zIndex: '50'
-  }
+    zIndex: '50',
+  },
 }));
 
 const ScrollUpButton = () => {

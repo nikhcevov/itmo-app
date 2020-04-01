@@ -10,30 +10,30 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   table: {
     [theme.breakpoints.down('xs')]: {
       '& th,td': {
-        padding: '8px'
-      }
-    }
+        padding: '8px',
+      },
+    },
   },
   leftCell: {
-    width: '15%'
+    width: '15%',
   },
   rigthCell: {
-    width: '85%'
+    width: '85%',
   },
   row: {
     '&:last-child': {
       '& > th, td': {
-        borderBottom: 'none'
-      }
-    }
+        borderBottom: 'none',
+      },
+    },
   },
   teacher: {
-    color: theme.palette.secondary.main
-  }
+    color: theme.palette.secondary.main,
+  },
 }));
 
 const Card = ({ data }) => {
@@ -48,7 +48,7 @@ const Card = ({ data }) => {
         <TableContainer>
           <Table className={classes.table}>
             <TableBody>
-              {data.lessons.map(row => (
+              {data.lessons.map((row) => (
                 <TableRow className={classes.row} key={row.timeStart}>
                   <TableCell className={classes.leftCell} component='th' scope='row'>
                     <Grid
@@ -81,25 +81,31 @@ const Card = ({ data }) => {
                           {row.lesson}
                         </Typography>
                       </Grid>
-                      {(row.teacher !== '') &&
+                      {(row.teacher !== '')
+                        && (
                         <Grid item>
                           <Typography variant='body2' className={classes.teacher}>
                             {row.teacher}
                           </Typography>
-                        </Grid>}
+                        </Grid>
+                        )}
 
-                      {(row.room !== '') &&
+                      {(row.room !== '')
+                        && (
                         <Grid item>
                           <Typography variant='caption'>
                             {row.adress}
                           </Typography>
-                        </Grid>}
-                      {(row.room !== '') &&
+                        </Grid>
+                        )}
+                      {(row.room !== '')
+                        && (
                         <Grid item>
                           <Typography variant='caption'>
                             {row.room}
                           </Typography>
-                        </Grid>}
+                        </Grid>
+                        )}
                     </Grid>
                   </TableCell>
                 </TableRow>

@@ -9,27 +9,27 @@ import ScrollUpButton from '../../components/ScrollUpButton';
 import LinkIconContainer from '../../components/LinkIconContainer';
 import Footer from '../../components/Footer';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
     position: 'relative',
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
   },
   content: {
-    flex: '1 0 auto'
+    flex: '1 0 auto',
   },
   footer: {
-    flexShrink: 0
+    flexShrink: 0,
   },
   container: {
   },
   title: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   text: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   image: {
     pointerEvents: 'none',
@@ -38,10 +38,10 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     zIndex: -1,
     position: 'absolute',
-    top: 0
+    top: 0,
   },
   important: {
-    color: 'red'
+    color: 'red',
   },
   heart: {
     width: 100,
@@ -51,35 +51,30 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     '&:hover': {
       transform: 'scale(1.2)',
-      color: theme.palette.secondary.dark
+      color: theme.palette.secondary.dark,
     },
     '&:active': {
-      transform: 'scale(1.4)'
-    }
+      transform: 'scale(1.4)',
+    },
   },
   heartBtn: {
     width: 100,
-    height: 100
+    height: 100,
   },
   heartContainer: {
     width: 100,
     padding: 0,
     paddingTop: theme.spacing(5),
-    paddingBottom: theme.spacing(5)
+    paddingBottom: theme.spacing(5),
   },
   heartCount: {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 }));
 
 const Home = () => {
   const classes = useStyles();
   const [likesCount, setLikesCount] = React.useState(0);
-
-  const handleClickLike = () => {
-    setLikesCount(likesCount + 1);
-    if (likesCount === 10) easterEgg();
-  };
 
   const easterEgg = () => {
     setTimeout(() => {
@@ -87,17 +82,26 @@ const Home = () => {
     }, 5000);
   };
 
+  const handleClickLike = () => {
+    setLikesCount(likesCount + 1);
+    if (likesCount === 10) easterEgg();
+  };
+
+
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        {likesCount >= 10 &&
+        {likesCount >= 10
+          && (
           <img
             className={classes.image}
             src='/index-background-creeper.gif'
-          />}
+            alt='easter-egg'
+          />
+          )}
         <Container maxWidth='lg' className={classes.container}>
           <Typography variant='h5' className={classes.title} gutterBottom>
-            Первый некласcический ITMO app
+            Первый неклассический ITMO app
           </Typography>
           <Typography variant='body1' className={classes.text} gutterBottom>
             Добро пожаловать на сайт, созданный студентами, для студентов.

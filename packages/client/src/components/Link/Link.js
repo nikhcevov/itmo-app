@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import MuiLink from '@material-ui/core/Link';
 
 class Link extends PureComponent {
-  render () {
+  render() {
     const { forwardedRef, ...props } = this.props;
     return (
       <MuiLink
@@ -21,7 +21,7 @@ class Link extends PureComponent {
 Link.propTypes = {
   children: PropTypes.any,
   to: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default forwardRef((props, ref) => <Link {...props} forwardedRef={ref} />);

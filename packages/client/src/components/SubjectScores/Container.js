@@ -8,16 +8,18 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Card from './Card';
 import Modal from './Modal';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     '& > :not(:last-child)': {
-      marginBottom: theme.spacing(1)
+      marginBottom: theme.spacing(1),
     },
-    display: 'grid'
-  }
+    display: 'grid',
+  },
 }));
 
-const Container = ({ variant, setVariant, data, variants }) => {
+const Container = ({
+  variant, setVariant, data, variants,
+}) => {
   const classes = useStyles();
 
   const [modal, setModal] = useState({
@@ -25,29 +27,29 @@ const Container = ({ variant, setVariant, data, variants }) => {
     data: {
       name: '',
       type: '',
-      scores: []
-    }
+      scores: [],
+    },
   });
 
   const handleModalOpen = (card) => {
     setModal({
       data: card,
-      isOpen: true
+      isOpen: true,
     });
   };
 
   const handleModalClose = () => {
     setModal({
       ...modal,
-      isOpen: false
+      isOpen: false,
     });
   };
 
-  const handleChange = event => {
-    const newVariant = variants.find(v => v.codename === event.target.value);
+  const handleChange = (event) => {
+    const newVariant = variants.find((v) => v.codename === event.target.value);
     setVariant({
       ...newVariant,
-      codename: event.target.value
+      codename: event.target.value,
     });
   };
 
@@ -59,7 +61,7 @@ const Container = ({ variant, setVariant, data, variants }) => {
           onChange={handleChange}
           value={variant.codename}
         >
-          {variants.map(v => (
+          {variants.map((v) => (
             <MenuItem
               key={v.codename}
               value={v.codename}
@@ -70,14 +72,14 @@ const Container = ({ variant, setVariant, data, variants }) => {
         </Select>
       </FormControl>
 
-      {data.map(card => (
+      {data.map((card) => (
         <Card
           key={card.name + card.type}
-          onOpen={(card.totalScore) ? () => handleModalOpen(card) : () => {}}
+          onOpen={(card.totalScore) ? () => handleModalOpen(card) : () => { }}
           data={{
             name: card.name,
             type: card.type,
-            totalScore: card.totalScore
+            totalScore: card.totalScore,
           }}
         />
       ))}

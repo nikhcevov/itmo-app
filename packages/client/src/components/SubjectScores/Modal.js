@@ -11,22 +11,22 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Hidden from '@material-ui/core/Hidden';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: 400,
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
   },
   table: {
     padding: 0,
     '& th,td': {
-      borderBottom: `0px solid ${theme.palette.secondary.main}`
-    }
+      borderBottom: `0px solid ${theme.palette.secondary.main}`,
+    },
   },
   text: {
     textOverflow: 'ellipsis',
-    overflow: 'hidden'
-  }
+    overflow: 'hidden',
+  },
 }));
 
 const Modal = ({ open, data, onClose }) => {
@@ -56,7 +56,11 @@ const Modal = ({ open, data, onClose }) => {
             {data.name}
           </Typography>
           <Typography className={classes.text} variant='h6' gutterBottom>
-            Итого: {data.totalScore || '0'} / 100
+            Итого:
+            {' '}
+            {data.totalScore || '0'}
+            {' '}
+            / 100
           </Typography>
         </Hidden>
 
@@ -65,7 +69,11 @@ const Modal = ({ open, data, onClose }) => {
             {data.name}
           </Typography>
           <Typography className={classes.text} variant='h6' gutterBottom>
-            Итого: {data.totalScore || '0'} / 100
+            Итого:
+            {' '}
+            {data.totalScore || '0'}
+            {' '}
+            / 100
           </Typography>
         </Hidden>
 
@@ -79,10 +87,14 @@ const Modal = ({ open, data, onClose }) => {
             <TableContainer>
               <Table className={classes.table}>
                 <TableBody>
-                  {firstHalfOfData.map(row => (
+                  {firstHalfOfData.map((row) => (
                     <TableRow key={row.variable}>
                       <TableCell component='th' scope='row'>{row.variable}</TableCell>
-                      <TableCell align='right'>{row.value}/{row.max}</TableCell>
+                      <TableCell align='right'>
+                        {row.value}
+                        /
+                        {row.max}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -93,10 +105,14 @@ const Modal = ({ open, data, onClose }) => {
             <TableContainer>
               <Table className={classes.table}>
                 <TableBody>
-                  {secondHalfOfData.map(row => (
+                  {secondHalfOfData.map((row) => (
                     <TableRow key={row.variable}>
                       <TableCell component='th' scope='row'>{row.variable}</TableCell>
-                      <TableCell align='right'>{row.value}/{row.max}</TableCell>
+                      <TableCell align='right'>
+                        {row.value}
+                        /
+                        {row.max}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -109,11 +125,17 @@ const Modal = ({ open, data, onClose }) => {
           <Table className={classes.table}>
 
             <TableBody>
-              {exam &&
+              {exam
+                && (
                 <TableRow className={classes.tableRow}>
                   <TableCell className={classes.tableRow}>{exam.variable}</TableCell>
-                  <TableCell align='right'>{exam.value}/{exam.max}</TableCell>
-                </TableRow>}
+                  <TableCell align='right'>
+                    {exam.value}
+                    /
+                    {exam.max}
+                  </TableCell>
+                </TableRow>
+                )}
             </TableBody>
           </Table>
         </TableContainer>

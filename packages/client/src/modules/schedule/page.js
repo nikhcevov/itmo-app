@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
@@ -7,12 +6,12 @@ import GroupsSchedule from '../../components/GroupsSchedule';
 import ScrollUpButton from '../../components/ScrollUpButton';
 import { useQuery } from '../../utils';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2)
-  }
+    paddingBottom: theme.spacing(2),
+  },
 }));
 
 const Schedule = () => {
