@@ -35,9 +35,9 @@ const Answers = (props) => {
           <a href='https://t.me/itmo_apps'> Тут</a>
         </Typography>
       </Container>
-      {props.answers ? (
+      {props.answers.length !== 0 ? (
         <Container maxWidth='lg'>
-          <ExpantionAnswers data={props.answers} />
+          <ExpantionAnswers answers={props.answers} />
         </Container>
       ) : <LoaderSpinner />}
       <ScrollUpButton />

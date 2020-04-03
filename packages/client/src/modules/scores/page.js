@@ -9,42 +9,44 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
   },
-}));
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+}))
 
-const Scores = () => {
+const Scores = (props) => {
   const classes = useStyles()
 
   const [variant, setVariant] = useState({
     codename: '',
-    group: null,
-    semester: null,
-  });
+    group: '',
+    semester: ''
+  })
 
-  //   const { data } = useSWR(
-  //     variant.group && variant.semester
-  //       ? `/scores?group=${variant.group}&semester=${variant.semester}`
-  //       : '/scores',
-  //     fetcher);
-  const data = null
-
-  // TODO: optimize renders count
-  // console.log('rendered')
   useEffect(() => {
-    if (data) {
-      setVariant(data.variant);
+    const login = window.localStorage.getItem('LOGIN')
+    const password = window.localStorage.getItem('PASSWORD')
+    if (login && password) {
+      props.loadScores(login, password, variant.group, variant.semester)
+    } else {
+      // redirect to login page
     }
-  }, [data]);
+  }, [variant])
 
   return (
     <Container maxWidth='lg' className={classes.root}>
-      {data ? (
+      {props.variants.length !== 0 ? (
         <SubjectScores
           variant={variant}
           setVariant={setVariant}
-          variants={data.variants}
-          data={data.scores}
+
+          scores={props.scores}
+          variants={props.variants}
+          respVariant={props.variant}
+          message={props.message}
         />
       ) : (
         <div className={classes.spinner}>

@@ -5,13 +5,16 @@ import { scoresSelectors } from '../../store/selectors'
 
 const mapStateToProps = (state) => {
   return {
-    scores: scoresSelectors.scores(state)
+    message: scoresSelectors.getMessage(state),
+    scores: scoresSelectors.getScores(state),
+    variant: scoresSelectors.getVariant(state),
+    variants: scoresSelectors.getVariants(state)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadScores: () => dispatch(scoresActions.loadScores())
+    loadScores: (login, password, group, semester) => dispatch(scoresActions.loadScores(login, password, group, semester))
   }
 }
 

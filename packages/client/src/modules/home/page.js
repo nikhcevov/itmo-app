@@ -74,31 +74,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles()
-  const [likesCount, setLikesCount] = React.useState(0)
-
-  const easterEgg = () => {
-    setTimeout(() => {
-      setLikesCount(0)
-    }, 5000)
-  }
-
-  const handleClickLike = () => {
-    setLikesCount(likesCount + 1);
-    if (likesCount === 10) easterEgg();
-  };
-
-
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        {likesCount >= 10
-          && (
-          <img
-            className={classes.image}
-            src='/index-background-creeper.gif'
-            alt='easter-egg'
-          />
-          )}
         <Container maxWidth='lg' className={classes.container}>
           <Typography variant='h5' className={classes.title} gutterBottom>
             Первый неклассический ITMO app
@@ -116,7 +94,6 @@ const Home = () => {
               className={classes.heartBtn}
               disableRipple
               disableFocusRipple
-              onClick={() => handleClickLike()}
             >
               <FavoriteIcon className={classes.heart} />
             </IconButton>

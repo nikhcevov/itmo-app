@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
 import WatchersContainer from '../../components/Watchers'
-import LoaderSpinner from '../../components/Spinner'
+import Spinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,8 +29,8 @@ const Watchers = (props) => {
         </Typography>
 
         {props.watchers
-          ? <WatchersContainer data={props.watchers} />
-          : <LoaderSpinner />}
+          ? <WatchersContainer watchers={props.watchers} />
+          : <Spinner />}
 
       </Container>
     </>

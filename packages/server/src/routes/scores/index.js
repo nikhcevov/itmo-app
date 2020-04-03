@@ -21,7 +21,8 @@ const handler = async (req, res, next, session, message) => {
       res.send({
         message,
         variants: [],
-        scores: {}
+        variant: {},
+        scores: []
       })
       return
     }
@@ -49,7 +50,8 @@ const handler = async (req, res, next, session, message) => {
     res.send({
       message,
       variants: [],
-      scores: {}
+      variant: {},
+      scores: []
     })
   }
 }

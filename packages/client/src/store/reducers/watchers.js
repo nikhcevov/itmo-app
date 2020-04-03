@@ -15,11 +15,11 @@ const watchers = (state = initialState, action) => {
     }
     case PUT_WATCHERS_FAIL: {
       return {
+        watchers: []
       }
     }
     default:
-      return {
-      }
+      return state
   }
 }
 

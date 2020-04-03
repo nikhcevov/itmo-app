@@ -6,7 +6,7 @@ import { watchersSelectors } from '../../store/selectors'
 
 const mapStateToProps = (state) => {
   return {
-    watchers: watchersSelectors.watchers(state)
+    watchers: watchersSelectors.getWatchers(state)
   }
 }
 

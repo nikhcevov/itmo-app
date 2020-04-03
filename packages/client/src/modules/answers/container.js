@@ -6,7 +6,7 @@ import { answersSelectors } from '../../store/selectors'
 
 const mapStateToProps = (state) => {
   return {
-    answers: answersSelectors.answers(state)
+    answers: answersSelectors.getAnswers(state)
   }
 }
 

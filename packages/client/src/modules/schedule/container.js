@@ -5,7 +5,10 @@ import { scheduleSelectors } from '../../store/selectors'
 
 const mapStateToProps = (state) => {
   return {
-    schedule: scheduleSelectors.schedule(state)
+    message: scheduleSelectors.getMessage(state),
+    group: scheduleSelectors.getGroup(state),
+    odd: scheduleSelectors.getOdd(state),
+    even: scheduleSelectors.getEven(state)
   }
 }
 

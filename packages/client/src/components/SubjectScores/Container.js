@@ -4,23 +4,27 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import Typography from '@material-ui/core/Typography'
 
 import Card from './Card'
 import Modal from './Modal'
+import Spinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   container: {
     '& > :not(:last-child)': {
       marginBottom: theme.spacing(1),
     },
-    display: 'grid',
+    display: 'grid'
   },
-}));
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+}))
 
-const Container = ({
-  variant, setVariant, data, variants,
-}) => {
-  const classes = useStyles();
+const Container = ({ variant, setVariant, scores, variants, respVariant, message, data }) => {
+  const classes = useStyles()
 
   const [modal, setModal] = useState({
     isOpen: false,
@@ -59,7 +63,7 @@ const Container = ({
         <InputLabel>Группа/Семестр</InputLabel>
         <Select
           onChange={handleChange}
-          value={variant.codename}
+          value={variant.codename || respVariant.codename}
         >
           {variants.map((v) => (
             <MenuItem
@@ -72,7 +76,17 @@ const Container = ({
         </Select>
       </FormControl>
 
-      {data.map((card) => (
+      {message === 'loading' &&
+        <div className={classes.spinner}>
+          <Spinner />
+        </div>}
+
+      {variant &&
+        <Typography variant='h6' align='center'>
+          {respVariant.codename}
+        </Typography>}
+
+      {scores.map(card => (
         <Card
           key={card.name + card.type}
           onOpen={(card.totalScore) ? () => handleModalOpen(card) : () => { }}

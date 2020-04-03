@@ -19,5 +19,6 @@ export default function getVariants (scores) {
       }
     }
   }
+
   return result
 }

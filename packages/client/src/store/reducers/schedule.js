@@ -1,16 +1,22 @@
-import { PUT_SCHEDULE, PUT_SCHEDULE_FAIL } from '../actions/scheduleActions'
+import { LOAD_SCHEDULE, PUT_SCHEDULE, PUT_SCHEDULE_FAIL } from '../actions/scheduleActions'
 
 import { cloneDeep } from 'lodash'
 
 export const initialState = {
-  odd: [],
-  even: [],
+  message: null,
   group: '',
-  message: ''
+  odd: [],
+  even: []
 }
 
 const schedule = (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_SCHEDULE: {
+      return {
+        ...cloneDeep(state),
+        message: 'loading'
+      }
+    }
     case PUT_SCHEDULE: {
       return cloneDeep(action.payload.schedule)
     }
@@ -19,16 +25,11 @@ const schedule = (state = initialState, action) => {
         odd: [],
         even: [],
         group: '',
-        message: ''
+        message: null
       }
     }
     default:
-      return {
-        odd: [],
-        even: [],
-        group: '',
-        message: ''
-      }
+      return state
   }
 }
 

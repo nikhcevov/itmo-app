@@ -9,8 +9,6 @@ import getWatchers from './routes/watchers'
 import getAnswers from './routes/answers'
 import getScores from './routes/scores'
 import doLogin from './routes/login'
-import getTest from './routes/test'
-import getTestScore from './routes/getTestScore'
 
 dotenv.config()
 mongoose.connect(
@@ -44,9 +42,6 @@ app.get('/answers', getAnswers)
 app.get('/scores', getScores)
 
 app.get('/login', doLogin)
-
-app.get('/test', getTest)
-app.get('/testscore', getTestScore)
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => console.log(`Itmo-app listening on port ${port}!`))

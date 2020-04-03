@@ -14,10 +14,12 @@ const schedule = (state = initialState, action) => {
       }
     }
     case PUT_ANSWERS_FAIL: {
-      return {}
+      return {
+        answers: []
+      }
     }
     default:
-      return {}
+      return state
   }
 }
 

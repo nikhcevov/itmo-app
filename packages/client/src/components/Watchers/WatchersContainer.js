@@ -51,9 +51,9 @@ function prepareData(data) {
   }));
 }
 
-const WatchersContainer = ({ data }) => {
+const WatchersContainer = ({ watchers }) => {
   const classes = useStyles()
-  const rows = prepareData(data)
+  const rows = prepareData(watchers)
 
   const [modal, setModal] = useState({
     isOpen: false,

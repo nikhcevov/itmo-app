@@ -6,9 +6,10 @@ const useStyles = makeStyles((theme) => ({
   spinner: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: theme.spacing(4),
-  },
-}));
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
+  }
+}))
 
 const LoaderSpinner = () => {
   const classes = useStyles()
