@@ -1,9 +1,9 @@
-import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../Link'
-import navRoutes from './routes.json'
+import Link from '../Link';
+import navRoutes from './routes.json';
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MobileHeader = ({ handleMenuShow }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <>
@@ -29,7 +29,7 @@ const MobileHeader = ({ handleMenuShow }) => {
         </Link>
       ))}
     </>
-  )
-}
+  );
+};
 
-export default MobileHeader
+export default MobileHeader;

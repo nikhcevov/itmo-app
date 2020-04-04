@@ -1,19 +1,15 @@
-import Answers from './page'
+import { connect } from 'react-redux';
+import Answers from './page';
 
-import { connect } from 'react-redux'
-import { answersActions } from '../../store/actions'
-import { answersSelectors } from '../../store/selectors'
+import { answersActions } from '../../store/actions';
+import { answersSelectors } from '../../store/selectors';
 
-const mapStateToProps = (state) => {
-  return {
-    answers: answersSelectors.getAnswers(state)
-  }
-}
+const mapStateToProps = (state) => ({
+  answers: answersSelectors.getAnswers(state),
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadAnswers: () => dispatch(answersActions.loadAnswers())
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  loadAnswers: () => dispatch(answersActions.load.base()),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Answers)
+export default connect(mapStateToProps, mapDispatchToProps)(Answers);

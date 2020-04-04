@@ -1,30 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-import ScrollUpButton from '../../components/ScrollUpButton'
-import ExpantionAnswers from '../../components/Answers'
-import Spinner from '../../components/Spinner'
+import ScrollUpButton from '../../components/ScrollUpButton';
+import ExpantionAnswers from '../../components/Answers';
+import Spinner from '../../components/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
   },
   spinner: {
     display: 'flex',
-    justifyContent: 'center'
-  }
-}))
+    justifyContent: 'center',
+  },
+}));
 
-const Answers = (props) => {
-  const classes = useStyles()
+const Answers = ({
+  answers, loadAnswers,
+}) => {
+  const classes = useStyles();
 
   useEffect(() => {
-    props.loadAnswers()
-  }, [])
+    loadAnswers();
+  }, [loadAnswers]);
 
   return (
     <>
@@ -39,9 +42,9 @@ const Answers = (props) => {
           <a href='https://t.me/itmo_apps'> Тут</a>
         </Typography>
       </Container>
-      {props.answers.length !== 0 ? (
+      {answers.length !== 0 ? (
         <Container maxWidth='lg'>
-          <ExpantionAnswers answers={props.answers} />
+          <ExpantionAnswers answers={answers} />
         </Container>
       ) : (
         <div className={classes.spinner}>
@@ -51,6 +54,18 @@ const Answers = (props) => {
       <ScrollUpButton />
     </>
   );
+};
+
+Answers.propTypes = {
+  loadAnswers: PropTypes.func,
+  answers: PropTypes.arrayOf(PropTypes.shape({
+      
+  })),
+};
+
+Answers.defaultProps = {
+  loadAnswers: () => {},
+  answers: [],
 };
 
 export default Answers;

@@ -1,14 +1,14 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import MuiCard from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableRow from '@material-ui/core/TableRow'
-import Grid from '@material-ui/core/Grid'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import MuiCard from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableRow from '@material-ui/core/TableRow';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Card = ({ data }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <MuiCard className={classes.root}>
@@ -115,7 +115,7 @@ const Card = ({ data }) => {
         </TableContainer>
       </CardContent>
     </MuiCard>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

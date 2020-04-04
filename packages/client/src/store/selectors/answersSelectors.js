@@ -1,3 +1,5 @@
-export const answers = (state) => state.getIn(['answers'])
+import { toJS } from '../utils';
 
-export const getAnswers = (state) => state.getIn(['answers', 'answers'])
+export const answers = (state) => toJS(state.getIn(['answers']));
+
+export const getAnswers = (state) => toJS(state.getIn(['answers', 'answers']));

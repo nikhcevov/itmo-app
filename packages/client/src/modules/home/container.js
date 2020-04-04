@@ -1,5 +1,5 @@
-import Home from './page'
+import Home from './page';
 
 // Redux connection here
 
-export default Home
+export default Home;

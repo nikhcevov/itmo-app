@@ -1,3 +1,3 @@
-import Login from './page'
+import Login from './page';
 
-export default Login
+export default Login;

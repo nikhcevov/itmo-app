@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const WatcherModal = ({ onClose, open, data }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const handleClose = () => {
-    onClose()
-  }
+    onClose();
+  };
 
   return (
     <Dialog
@@ -72,8 +72,8 @@ const WatcherModal = ({ onClose, open, data }) => {
         </CardActionArea>
       </Card>
     </Dialog>
-  )
-}
+  );
+};
 
 WatcherModal.propTypes = {
   data: PropTypes.shape({

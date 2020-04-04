@@ -3,7 +3,8 @@
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/no-array-index-key": 0,
-        "jsx-quotes": ["error", "prefer-single"]
+        "jsx-quotes": ["error", "prefer-single"],
+        "semi": ["error", "always"]
     },
     "globals": {
         "document": false,

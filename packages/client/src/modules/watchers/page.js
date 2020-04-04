@@ -1,29 +1,29 @@
-import React, { useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
+import React, { useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 
-import WatchersContainer from '../../components/Watchers'
-import Spinner from '../../components/Spinner'
+import WatchersContainer from '../../components/Watchers';
+import Spinner from '../../components/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    display: 'grid'
+    display: 'grid',
   },
   spinner: {
     display: 'flex',
-    justifyContent: 'center'
-  }
-}))
+    justifyContent: 'center',
+  },
+}));
 
 const Watchers = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   useEffect(() => {
-    props.loadWatchers()
-  }, [])
+    props.loadWatchers();
+  }, []);
 
   return (
     <>
@@ -31,22 +31,25 @@ const Watchers = (props) => {
         {props.watchers.length !== 0
           ? (
             <Typography variant='body1' gutterBottom>
-            Таблица с информацией о смотрящих в ЦДО на ближайшие 2 недели.
-            </Typography>) : (
+              Таблица с информацией о смотрящих в ЦДО на ближайшие 2 недели.
+            </Typography>
+          ) : (
             <Typography variant='body1' gutterBottom>
-            Информация о смотрящих в ЦДО на ближайшие 2 недели на данный момент отсутствует.
-              </Typography>
+              Информация о смотрящих в ЦДО на ближайшие 2 недели на данный момент отсутствует.
+            </Typography>
           )}
 
-        {props.message === 'loading' &&
+        {props.message === 'loading'
+          && (
           <div className={classes.spinner}>
             <Spinner />
-          </div>}
-        {props.watchers.length !== 0 &&
-          <WatchersContainer watchers={props.watchers} />}
+          </div>
+          )}
+        {props.watchers.length !== 0
+          && <WatchersContainer watchers={props.watchers} />}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Watchers
+export default Watchers;

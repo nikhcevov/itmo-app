@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Spinner from '../../components/Spinner'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Typography from '@material-ui/core/Typography';
+
+import Spinner from '../Spinner';
 import Card from './Card';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
   },
   spinner: {
     display: 'flex',
-    justifyContent: 'center'
-  }
-}))
+    justifyContent: 'center',
+  },
+}));
 
 const isScheduleEmply = (odd, even) => odd.length === 0 || even.length === 0;
 

@@ -1,26 +1,28 @@
-import { PUT_ANSWERS, PUT_ANSWERS_FAIL } from '../actions/answersActions'
+import { cloneDeep } from 'lodash';
+import { fromJS } from 'immutable';
+import { load, PUT_ANSWERS_FAIL } from '../actions/answersActions';
 
-import { cloneDeep } from 'lodash'
 
-export const initialState = {
-  answers: []
-}
+export const initialState = fromJS({
+  answers: [],
+});
 
 const schedule = (state = initialState, action) => {
   switch (action.type) {
-    case PUT_ANSWERS: {
-      return {
-        answers: [].concat(cloneDeep(action.payload.answers))
-      }
+    case load.types.SUCCESS: {
+      const { answers } = action.payload;
+      return state.mergeIn(['answers'], fromJS(answers));
     }
-    case PUT_ANSWERS_FAIL: {
-      return {
-        answers: []
-      }
-    }
-    default:
-      return state
-  }
-}
 
-export default schedule
+    case load.types.FAILED: {
+      return {
+        answers: [],
+      };
+    }
+
+    default:
+      return state;
+  }
+};
+
+export default schedule;

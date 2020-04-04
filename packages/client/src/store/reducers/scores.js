@@ -1,41 +1,41 @@
-import { LOAD_SCORES, PUT_SCORES, PUT_SCORES_FAIL } from '../actions/scoresActions'
+import { cloneDeep } from 'lodash';
+import { LOAD_SCORES, PUT_SCORES, PUT_SCORES_FAIL } from '../actions/scoresActions';
 
-import { cloneDeep } from 'lodash'
 
 export const initialState = {
   message: null,
   variants: [],
   variant: {},
-  scores: []
-}
+  scores: [],
+};
 
 const scores = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_SCORES: {
       return {
         ...cloneDeep(state),
-        message: 'loading'
-      }
+        message: 'loading',
+      };
     }
     case PUT_SCORES: {
-      const newState = cloneDeep(action.payload.scores)
+      const newState = cloneDeep(action.payload.scores);
       return {
         variant: {},
         scores: [],
-        ...newState
-      }
+        ...newState,
+      };
     }
     case PUT_SCORES_FAIL: {
       return {
         message: null,
         variants: [],
         variant: {},
-        scores: []
-      }
+        scores: [],
+      };
     }
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default scores
+export default scores;

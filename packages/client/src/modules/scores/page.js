@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-import SubjectScores from '../../components/SubjectScores'
-import Spinner from '../../components/Spinner'
+import SubjectScores from '../../components/SubjectScores';
+import Spinner from '../../components/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
   },
   spinner: {
     display: 'flex',
-    justifyContent: 'center'
-  }
-}))
+    justifyContent: 'center',
+  },
+}));
 
 const Scores = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const [variant, setVariant] = useState({
     codename: props.variant.codename || '',
     group: props.variant.group || '',
-    semester: props.variant.semester || ''
-  })
+    semester: props.variant.semester || '',
+  });
 
   useEffect(() => {
-    const login = window.localStorage.getItem('LOGIN')
-    const password = window.localStorage.getItem('PASSWORD')
+    const login = window.localStorage.getItem('LOGIN');
+    const password = window.localStorage.getItem('PASSWORD');
     if (login && password) {
-      props.loadScores(login, password, variant.group, variant.semester)
+      props.loadScores(login, password, variant.group, variant.semester);
     } else {
       // redirect to login page
     }
-  }, [variant])
+  }, [variant]);
 
   return (
     <Container maxWidth='lg' className={classes.root}>
@@ -54,7 +54,7 @@ const Scores = (props) => {
         </div>
       )}
     </Container>
-  )
-}
+  );
+};
 
-export default Scores
+export default Scores;

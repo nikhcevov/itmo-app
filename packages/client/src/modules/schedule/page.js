@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-import GroupsSchedule from '../../components/GroupsSchedule'
-import ScrollUpButton from '../../components/ScrollUpButton'
-import { useQuery } from '../../utils'
 
 import GroupsSchedule from '../../components/GroupsSchedule';
 import ScrollUpButton from '../../components/ScrollUpButton';
 import { useQuery } from '../../utils';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Schedule = (props) => {
-  const classes = useStyles()
-  const { group: queryGroup } = useQuery()
-  const [group, setGroup] = useState(queryGroup || props.group || '')
+  const classes = useStyles();
+  const { group: queryGroup } = useQuery();
+  const [group, setGroup] = useState(queryGroup || props.group || '');
 
   useEffect(() => {
-    if (!(group.length < 5 || group.length > 8)) { props.loadSchedule(group) }
-  }, [group])
+    if (!(group.length < 5 || group.length > 8)) { props.loadSchedule(group); }
+  }, [group]);
 
   return (
     <>

@@ -25,7 +25,7 @@
     "start:db": "cd packages/database && docker-compose up",
     "start": "concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\"",
     "build": "concurrently --kill-others-on-fail \"yarn build:server\" \"yarn build:client\"",
-    "dev": "concurrently --kill-others-on-fail \"yarn dev:server\" \"yarn start:client\" \"yarn start:db\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn dev:server\" \"yarn start:client\" ",
     "test": "yarn workspaces run test",
     "lint:client": "yarn workspace client lint",
     "lint:server": "yarn workspace server lint"

@@ -1,13 +1,13 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import IconButton from '@material-ui/core/IconButton'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import IconButton from '@material-ui/core/IconButton';
 
-import ScrollUpButton from '../../components/ScrollUpButton'
-import LinkIconContainer from '../../components/LinkIconContainer'
-import Footer from '../../components/Footer'
+import ScrollUpButton from '../../components/ScrollUpButton';
+import LinkIconContainer from '../../components/LinkIconContainer';
+import Footer from '../../components/Footer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = () => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <div className={classes.content}>
@@ -104,7 +104,7 @@ const Home = () => {
       </div>
       <Footer className={classes.footer} />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -1,21 +1,21 @@
-import { takeLatest, put, call } from 'redux-saga/effects'
-import { LOAD_ANSWERS, putAnswers, putAnswersFail } from '../actions/answersActions'
-import { fetcher } from '../../utils'
+import { takeLatest, put, call } from 'redux-saga/effects';
+import { load, putAnswers, putAnswersFail } from '../actions/answersActions';
+import { fetcher } from '../../utils';
 
-function fetchAnswers () {
-  return fetcher('/answers')
+function fetchAnswers() {
+  return fetcher('/answers');
 }
 
-function * workerLoadAnswers () {
+function* workerLoadAnswers() {
   try {
-    const data = yield call(fetchAnswers)
-    yield put(putAnswers(data))
+    const data = yield call(fetchAnswers);
+    yield put(load.success(data));
   } catch (error) {
-    console.log(error.message)
-    yield put(putAnswersFail(error))
+    console.log(error.message);
+    yield put(load.failed(error));
   }
 }
 
-export default function * watchLoadAnswers () {
-  yield takeLatest(LOAD_ANSWERS, workerLoadAnswers)
+export default function* watchLoadAnswers() {
+  yield takeLatest(load.types.BASE, workerLoadAnswers);
 }
