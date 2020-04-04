@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Skeleton from '@material-ui/lab/Skeleton';
-import Typography from '@material-ui/core/Typography';
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Skeleton from '@material-ui/lab/Skeleton'
+import Typography from '@material-ui/core/Typography'
 
-import WatcherModal from './WatcherModal';
+import WatcherModal from './WatcherModal'
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-}));
+}))
 
 function sortByDate(first, second) {
-  return (+first[0] + first[1] * 100) - (+second[0] + second[1] * 100);
+  return (+first[0] + first[1] * 100) - (+second[0] + second[1] * 100)
 }
 
 function prepareData(data) {
-  const prepared = [];
+  const prepared = []
   for (const person of data) {
     for (const date of person.schedule) {
       prepared.push({
@@ -43,31 +43,31 @@ function prepareData(data) {
         date: date.split('.'),
         difficulty: 'Пока не ясно',
         img: person.img,
-      });
+      })
     }
   }
   return prepared.sort((a, b) => sortByDate(a.date, b.date)).map((row) => ({
     ...row,
     date: row.date.join('.'),
-  }));
+  }))
 }
 
 const WatchersContainer = ({ watchers }) => {
-  const classes = useStyles();
-  const rows = prepareData(watchers);
+  const classes = useStyles()
+  const rows = prepareData(watchers)
 
   const [modal, setModal] = useState({
     isOpen: false,
     data: {},
-  });
+  })
 
   const handleModalOpen = (row) => {
-    setModal({ data: row, isOpen: true });
-  };
+    setModal({ data: row, isOpen: true })
+  }
 
   const handleModalClose = () => {
-    setModal({ ...modal, isOpen: false });
-  };
+    setModal({ ...modal, isOpen: false })
+  }
 
   return (
     <>
@@ -105,7 +105,7 @@ const WatchersContainer = ({ watchers }) => {
       </TableContainer>
       <WatcherModal open={modal.isOpen} data={modal.data} onClose={handleModalClose} />
     </>
-  );
-};
+  )
+}
 
-export default WatchersContainer;
+export default WatchersContainer

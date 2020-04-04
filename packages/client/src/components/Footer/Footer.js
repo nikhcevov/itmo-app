@@ -1,10 +1,10 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 
-import Link from '../Link';
+import Link from '../Link'
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.text.secondary,
     },
   },
-}));
+}))
 
 const Footer = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Toolbar className={classes.toolbar}>
@@ -124,7 +124,7 @@ const Footer = () => {
         </Grid>
       </Grid>
     </Toolbar>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

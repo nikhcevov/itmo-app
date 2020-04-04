@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
 
-import ScrollUpButton from '../../components/ScrollUpButton';
-import ExpantionAnswers from '../../components/Answers';
-import Spinner from '../../components/Spinner';
+import ScrollUpButton from '../../components/ScrollUpButton'
+import ExpantionAnswers from '../../components/Answers'
+import Spinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,16 +18,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
   },
-}));
+}))
 
 const Answers = ({
   answers, loadAnswers,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   useEffect(() => {
-    loadAnswers();
-  }, [loadAnswers]);
+    loadAnswers()
+  }, [loadAnswers])
 
   return (
     <>
@@ -53,19 +53,19 @@ const Answers = ({
       )}
       <ScrollUpButton />
     </>
-  );
-};
+  )
+}
 
 Answers.propTypes = {
   loadAnswers: PropTypes.func,
   answers: PropTypes.arrayOf(PropTypes.shape({
-      
+
   })),
-};
+}
 
 Answers.defaultProps = {
   loadAnswers: () => {},
   answers: [],
-};
+}
 
-export default Answers;
+export default Answers

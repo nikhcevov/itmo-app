@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import React, { useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
 
-import WatchersContainer from '../../components/Watchers';
-import Spinner from '../../components/Spinner';
+import WatchersContainer from '../../components/Watchers'
+import Spinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
   },
-}));
+}))
 
 const Watchers = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   useEffect(() => {
-    props.loadWatchers();
-  }, []);
+    props.loadWatchers()
+  }, [])
 
   return (
     <>
@@ -49,7 +49,7 @@ const Watchers = (props) => {
           && <WatchersContainer watchers={props.watchers} />}
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Watchers;
+export default Watchers

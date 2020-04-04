@@ -1,20 +1,20 @@
-import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { ThemeProvider } from '@material-ui/core/styles';
+import React from 'react'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { ThemeProvider } from '@material-ui/core/styles'
 
-import Layout from './components/Layout';
-import getTheme from './theme';
-import store from './store';
+import Layout from './components/Layout'
+import getTheme from './theme'
+import store from './store'
 
-import WatchersPage from './modules/watchers';
-import HomePage from './modules/home';
-import AnswersPage from './modules/answers';
-import ScoresPage from './modules/scores';
-import SchedulePage from './modules/schedule';
-import LoginPage from './modules/login';
+import WatchersPage from './modules/watchers'
+import HomePage from './modules/home'
+import AnswersPage from './modules/answers'
+import ScoresPage from './modules/scores'
+import SchedulePage from './modules/schedule'
+import LoginPage from './modules/login'
 
-const theme = getTheme();
+const theme = getTheme()
 
 const Routes = () => (
   <Provider store={store}>
@@ -33,6 +33,6 @@ const Routes = () => (
       </BrowserRouter>
     </ThemeProvider>
   </Provider>
-);
+)
 
-export default Routes;
+export default Routes

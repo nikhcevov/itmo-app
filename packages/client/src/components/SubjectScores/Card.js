@@ -1,12 +1,12 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import MuiCircularProgress from '@material-ui/core/CircularProgress';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import MuiCardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-import MuiCard from '@material-ui/core/Card';
-import Grid from '@material-ui/core/Grid';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import MuiCircularProgress from '@material-ui/core/CircularProgress'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import MuiCardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import Hidden from '@material-ui/core/Hidden'
+import MuiCard from '@material-ui/core/Card'
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -43,19 +43,19 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '16px',
     },
   },
-}));
+}))
 
 const CircularProgress = (props) => {
-  const classes = useStyles(props);
-  return <MuiCircularProgress variant='static' className={classes.progressCircular} {...props} />;
-};
+  const classes = useStyles(props)
+  return <MuiCircularProgress variant='static' className={classes.progressCircular} {...props} />
+}
 
 const Card = ({ onOpen, data }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const handleOnOpen = () => {
-    onOpen();
-  };
+    onOpen()
+  }
 
   return (
     <MuiCard className={classes.root} onClick={handleOnOpen}>
@@ -105,7 +105,7 @@ const Card = ({ onOpen, data }) => {
         </MuiCardContent>
       </CardActionArea>
     </MuiCard>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

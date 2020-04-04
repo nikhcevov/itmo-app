@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import Dialog from '@material-ui/core/Dialog'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -19,14 +19,14 @@ const useStyles = makeStyles((theme) => ({
   difficultyText: {
     color: theme.palette.secondary.main,
   },
-}));
+}))
 
 const WatcherModal = ({ onClose, open, data }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const handleClose = () => {
-    onClose();
-  };
+    onClose()
+  }
 
   return (
     <Dialog
@@ -72,8 +72,8 @@ const WatcherModal = ({ onClose, open, data }) => {
         </CardActionArea>
       </Card>
     </Dialog>
-  );
-};
+  )
+}
 
 WatcherModal.propTypes = {
   data: PropTypes.shape({
@@ -83,7 +83,7 @@ WatcherModal.propTypes = {
   }),
   onClose: PropTypes.func,
   open: PropTypes.bool,
-};
+}
 
 WatcherModal.defaultProps = {
   data: {
@@ -93,6 +93,6 @@ WatcherModal.defaultProps = {
   },
   onClose: () => {},
   open: () => false,
-};
+}
 
-export default WatcherModal;
+export default WatcherModal

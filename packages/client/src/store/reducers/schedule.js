@@ -1,5 +1,5 @@
-import { cloneDeep } from 'lodash';
-import { LOAD_SCHEDULE, PUT_SCHEDULE, PUT_SCHEDULE_FAIL } from '../actions/scheduleActions';
+import { cloneDeep } from 'lodash'
+import { LOAD_SCHEDULE, PUT_SCHEDULE, PUT_SCHEDULE_FAIL } from '../actions/scheduleActions'
 
 
 export const initialState = {
@@ -7,7 +7,7 @@ export const initialState = {
   group: '',
   odd: [],
   even: [],
-};
+}
 
 const schedule = (state = initialState, action) => {
   switch (action.type) {
@@ -15,10 +15,10 @@ const schedule = (state = initialState, action) => {
       return {
         ...cloneDeep(state),
         message: 'loading',
-      };
+      }
     }
     case PUT_SCHEDULE: {
-      return cloneDeep(action.payload.schedule);
+      return cloneDeep(action.payload.schedule)
     }
     case PUT_SCHEDULE_FAIL: {
       return {
@@ -26,11 +26,11 @@ const schedule = (state = initialState, action) => {
         even: [],
         group: '',
         message: null,
-      };
+      }
     }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default schedule;
+export default schedule

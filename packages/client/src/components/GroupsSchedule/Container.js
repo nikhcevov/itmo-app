@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Typography from '@material-ui/core/Typography'
 
-import Spinner from '../Spinner';
-import Card from './Card';
+import Spinner from '../Spinner'
+import Card from './Card'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -26,36 +26,36 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
   },
-}));
+}))
 
-const isScheduleEmply = (odd, even) => odd.length === 0 || even.length === 0;
+const isScheduleEmply = (odd, even) => odd.length === 0 || even.length === 0
 
 const Container = ({
   message, respGroup, odd, even, group, setGroup,
 }) => {
-  const classes = useStyles();
-  const [isOdd, setWeekType] = useState(true);
-  const [isValid, setIsValid] = useState(true);
+  const classes = useStyles()
+  const [isOdd, setWeekType] = useState(true)
+  const [isValid, setIsValid] = useState(true)
 
   const handleChange = (event) => {
     if (event.target.value.length <= 4) {
-      if (isValid) setIsValid(false);
-      setGroup(event.target.value.toUpperCase());
+      if (isValid) setIsValid(false)
+      setGroup(event.target.value.toUpperCase())
     } else if (event.target.value.length >= 5 && event.target.value.length <= 7) {
-      if (!isValid) setIsValid(true);
-      setGroup(event.target.value.toUpperCase());
+      if (!isValid) setIsValid(true)
+      setGroup(event.target.value.toUpperCase())
     } else {
-      setIsValid(false);
+      setIsValid(false)
     }
-  };
+  }
 
   const handleOddClick = () => {
-    setWeekType(true);
-  };
+    setWeekType(true)
+  }
 
   const handleEvenClick = () => {
-    setWeekType(false);
-  };
+    setWeekType(false)
+  }
 
   return (
     <>
@@ -120,8 +120,8 @@ const Container = ({
             ))}
       </div>
     </>
-  );
-};
+  )
+}
 
 Container.propTypes = {
   data: PropTypes.shape({
@@ -130,7 +130,7 @@ Container.propTypes = {
   }),
   group: PropTypes.string,
   setGroup: PropTypes.func,
-};
+}
 
 Container.defaultProps = {
   data: {
@@ -139,6 +139,6 @@ Container.defaultProps = {
   },
   group: '',
   setGroup: () => {},
-};
+}
 
-export default Container;
+export default Container

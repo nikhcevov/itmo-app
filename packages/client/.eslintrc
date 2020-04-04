@@ -4,7 +4,7 @@
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/no-array-index-key": 0,
         "jsx-quotes": ["error", "prefer-single"],
-        "semi": ["error", "always"]
+        "semi": ["error", "never"]
     },
     "globals": {
         "document": false,

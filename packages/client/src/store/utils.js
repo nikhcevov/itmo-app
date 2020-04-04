@@ -1,10 +1,10 @@
-export const toJS = (s) => (s && typeof s.toJS !== 'undefined' ? s.toJS() : s);
+export const toJS = (s) => (s && typeof s.toJS !== 'undefined' ? s.toJS() : s)
 
 const createActionType = (baseName) => ({
   BASE: baseName,
   SUCCESS: `${baseName}--success`,
   FAILED: `${baseName}--failed`,
-});
+})
 
 export const actionCreator = (baseName) => ({
   types: createActionType(baseName),
@@ -23,4 +23,4 @@ export const actionCreator = (baseName) => ({
     type: createActionType(baseName).FAILED,
     payload,
   }),
-});
+})
