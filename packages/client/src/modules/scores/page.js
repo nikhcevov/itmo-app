@@ -21,9 +21,9 @@ const Scores = (props) => {
   const classes = useStyles()
 
   const [variant, setVariant] = useState({
-    codename: '',
-    group: '',
-    semester: ''
+    codename: props.variant.codename || '',
+    group: props.variant.group || '',
+    semester: props.variant.semester || ''
   })
 
   useEffect(() => {

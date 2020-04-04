@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Spinner from '../../components/Spinner'
 
 import { Typography } from '@material-ui/core';
 import Card from './Card';
@@ -23,10 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
   spinner: {
     display: 'flex',
-    justifyContent: 'center',
-  },
-
-}));
+    justifyContent: 'center'
+  }
+}))
 
 const isScheduleEmply = (odd, even) => odd.length === 0 || even.length === 0;
 
@@ -73,9 +71,10 @@ const Container = ({
         error={!isValid}
         helperText={!isValid && 'Length of group name must be between 5 and 7 inclusive!'}
       />
+
       {message === 'loading' && (
         <div className={classes.spinner}>
-          <CircularProgress color='secondary' />
+          <Spinner />
         </div>
       )}
 

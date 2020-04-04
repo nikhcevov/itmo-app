@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Skeleton from '@material-ui/lab/Skeleton'
+import Typography from '@material-ui/core/Typography'
 
 import WatcherModal from './WatcherModal'
 
@@ -80,23 +81,25 @@ const WatchersContainer = ({ watchers }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.length === 0
-              && [1, 2, 3, 4, 5, 6, 7, 8].map((row) => (
+
+            {/* {rows.length === 0 &&
+              [1, 2, 3, 4, 5, 6, 7, 8].map(row => (
                 <TableRow key={`row_${row}`}>
                   {[1, 2, 3].map((cell) => (
                     <TableCell key={`row_${row}_cell_${cell}`}>
                       <Skeleton />
                     </TableCell>
                   ))}
-                </TableRow>
-              ))}
-            {rows.map((row) => (
+                </TableRow>))} */}
+
+            {rows.map(row => (
               <TableRow key={row.date} onClick={() => handleModalOpen(row)} className={classes.row}>
                 <TableCell>{row.date}</TableCell>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.difficulty}</TableCell>
               </TableRow>
             ))}
+
           </TableBody>
         </Table>
       </TableContainer>

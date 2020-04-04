@@ -3,17 +3,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-import ScrollUpButton from '../../components/ScrollUpButton';
-import ExpantionAnswers from '../../components/Answers';
-import LoaderSpinner from '../../components/Spinner';
+import ScrollUpButton from '../../components/ScrollUpButton'
+import ExpantionAnswers from '../../components/Answers'
+import Spinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
   },
-}));
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+}))
 
 const Answers = (props) => {
   const classes = useStyles()
@@ -39,7 +43,11 @@ const Answers = (props) => {
         <Container maxWidth='lg'>
           <ExpantionAnswers answers={props.answers} />
         </Container>
-      ) : <LoaderSpinner />}
+      ) : (
+        <div className={classes.spinner}>
+          <Spinner />
+        </div>
+      )}
       <ScrollUpButton />
     </>
   );
