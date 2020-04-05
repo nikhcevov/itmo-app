@@ -6,25 +6,26 @@
   "repository": "git@github.com:ovchingus/itmo-app.git",
   "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
   "workspaces": [
-    "packages/client"
+    "packages/*"
   ],
   "dependencies": {
     "concurrently": "^5.1.0"
   },
   "devDependencies": {
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.7"
+    "lint-staged": "^10.0.10"
   },
   "scripts": {
     "start:client": "yarn workspace client start",
     "start:server": "yarn workspace server start",
-    "dev:client": "yarn workspace client start",
+    "dev:client": "yarn workspace client dev",
     "dev:server": "yarn workspace server dev",
     "build:client": "yarn workspace client build",
     "build:server": "yarn workspace server build",
+    "start:db": "cd packages/database && docker-compose up",
     "start": "concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\"",
     "build": "concurrently --kill-others-on-fail \"yarn build:server\" \"yarn build:client\"",
-    "dev": "concurrently --kill-others-on-fail \"yarn dev:server\" \"yarn dev:client\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn dev:server\" \"yarn start:client\" ",
     "test": "yarn workspaces run test",
     "lint:client": "yarn workspace client lint",
     "lint:server": "yarn workspace server lint"

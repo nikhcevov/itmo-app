@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useState, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 
-import GroupsSchedule from '../../components/GroupsSchedule';
-import ScrollUpButton from '../../components/ScrollUpButton';
-import { useQuery } from '../../utils';
+import GroupsSchedule from '../../components/GroupsSchedule'
+import ScrollUpButton from '../../components/ScrollUpButton'
+import { useQuery } from '../../utils'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,39 +13,33 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
-}));
+}))
 
-const Schedule = () => {
-  const classes = useStyles();
-  const { group: queryGroup } = useQuery();
+const Schedule = (props) => {
+  const classes = useStyles()
+  const { group: queryGroup } = useQuery()
+  const [group, setGroup] = useState(queryGroup || props.group || '')
 
-  const [group, setGroup] = useState(queryGroup || '');
-
-  //   useEffect(() => {
-  //     router.push(
-  //       `/schedule?group=${group}`,
-  //       group && group.length > 0 ? `/schedule?group=${group}` : '/schedule',
-  //       { shallow: true }
-  //     );
-  //   }, [group]);
-
-  //   const { data } = useSWR(
-  //     (group && group.length > 4 && group.length < 8)
-  //       ? `/schedule?group=${group}`
-  //       : '/schedule', fetcher
-  //   );
-  const data = null;
-
-  const content = data || { odd: [], even: [] };
+  useEffect(() => {
+    if (!(group.length < 5 || group.length > 8)) { props.loadSchedule(group) }
+  }, [group])
 
   return (
     <>
       <Container maxWidth='lg' className={classes.root}>
-        <GroupsSchedule group={group} setGroup={setGroup} data={content} />
+        <GroupsSchedule
+          group={group}
+          setGroup={setGroup}
+
+          message={props.message}
+          respGroup={props.group}
+          odd={props.odd}
+          even={props.even}
+        />
       </Container>
       <ScrollUpButton />
     </>
-  );
-};
+  )
+}
 
-export default Schedule;
+export default Schedule

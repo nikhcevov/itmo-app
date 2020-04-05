@@ -1,13 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import IconButton from '@material-ui/core/IconButton';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import IconButton from '@material-ui/core/IconButton'
 
-import ScrollUpButton from '../../components/ScrollUpButton';
-import LinkIconContainer from '../../components/LinkIconContainer';
-import Footer from '../../components/Footer';
+import ScrollUpButton from '../../components/ScrollUpButton'
+import LinkIconContainer from '../../components/LinkIconContainer'
+import Footer from '../../components/Footer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,35 +70,13 @@ const useStyles = makeStyles((theme) => ({
   heartCount: {
     textAlign: 'center',
   },
-}));
+}))
 
 const Home = () => {
-  const classes = useStyles();
-  const [likesCount, setLikesCount] = React.useState(0);
-
-  const easterEgg = () => {
-    setTimeout(() => {
-      setLikesCount(0);
-    }, 5000);
-  };
-
-  const handleClickLike = () => {
-    setLikesCount(likesCount + 1);
-    if (likesCount === 10) easterEgg();
-  };
-
-
+  const classes = useStyles()
   return (
     <div className={classes.root}>
       <div className={classes.content}>
-        {likesCount >= 10
-          && (
-          <img
-            className={classes.image}
-            src='/index-background-creeper.gif'
-            alt='easter-egg'
-          />
-          )}
         <Container maxWidth='lg' className={classes.container}>
           <Typography variant='h5' className={classes.title} gutterBottom>
             Первый неклассический ITMO app
@@ -116,7 +94,6 @@ const Home = () => {
               className={classes.heartBtn}
               disableRipple
               disableFocusRipple
-              onClick={() => handleClickLike()}
             >
               <FavoriteIcon className={classes.heart} />
             </IconButton>
@@ -127,7 +104,7 @@ const Home = () => {
       </div>
       <Footer className={classes.footer} />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

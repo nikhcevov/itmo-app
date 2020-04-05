@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel'
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,17 +18,17 @@ const useStyles = makeStyles((theme) => ({
       color: 'red',
     },
   },
-}));
+}))
 
-const constructUrl = (url) => process.env.HOST_API + url;
+const constructUrl = (url) => process.env.HOST_API + url
 
-const Answers = ({ data }) => {
-  const classes = useStyles();
+const Answers = ({ answers }) => {
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>
-      {data.map((subject, subIndex) => (
-        <ExpansionPanel key={`sub_${subIndex}`}>
+      {answers.map((subject, subIndex) => (
+        <ExpansionPanel key={`sub${subIndex}`}>
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
           >
@@ -38,7 +37,7 @@ const Answers = ({ data }) => {
           <ExpansionPanelDetails>
             <ul>
               {subject.answers.map((answer, ansIndex) => (
-                <li key={`sub${subIndex}_ans${ansIndex}`}>
+                <li key={`sub${subIndex}-ans${ansIndex}`}>
                   <Typography>
                     <a
                       className={classes.answerLink}
@@ -54,25 +53,7 @@ const Answers = ({ data }) => {
         </ExpansionPanel>
       ))}
     </div>
-  );
-};
+  )
+}
 
-Answers.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-      url: PropTypes.string,
-    })),
-  })),
-};
-
-Answers.defaultProps = {
-  data: [{
-    answers: {
-      name: '',
-      url: '',
-    },
-  }],
-};
-
-export default Answers;
+export default Answers

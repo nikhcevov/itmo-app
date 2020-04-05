@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useState, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 
-import SubjectScores from '../../components/SubjectScores';
-import Spinner from '../../components/Spinner';
+import SubjectScores from '../../components/SubjectScores'
+import Spinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,40 +11,42 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
-}));
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+}))
 
-const Scores = () => {
-  const classes = useStyles();
+const Scores = (props) => {
+  const classes = useStyles()
 
   const [variant, setVariant] = useState({
-    codename: '',
-    group: null,
-    semester: null,
-  });
+    codename: props.variant.codename || '',
+    group: props.variant.group || '',
+    semester: props.variant.semester || '',
+  })
 
-  //   const { data } = useSWR(
-  //     variant.group && variant.semester
-  //       ? `/scores?group=${variant.group}&semester=${variant.semester}`
-  //       : '/scores',
-  //     fetcher);
-  const data = null;
-
-  // TODO: optimize renders count
-  // console.log('rendered')
   useEffect(() => {
-    if (data) {
-      setVariant(data.variant);
+    const login = window.localStorage.getItem('LOGIN')
+    const password = window.localStorage.getItem('PASSWORD')
+    if (login && password) {
+      props.loadScores(login, password, variant.group, variant.semester)
+    } else {
+      // redirect to login page
     }
-  }, [data]);
+  }, [variant])
 
   return (
     <Container maxWidth='lg' className={classes.root}>
-      {data ? (
+      {props.variants.length !== 0 ? (
         <SubjectScores
           variant={variant}
           setVariant={setVariant}
-          variants={data.variants}
-          data={data.scores}
+
+          scores={props.scores}
+          variants={props.variants}
+          respVariant={props.variant}
+          message={props.message}
         />
       ) : (
         <div className={classes.spinner}>
@@ -52,7 +54,7 @@ const Scores = () => {
         </div>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default Scores;
+export default Scores

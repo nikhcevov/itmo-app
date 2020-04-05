@@ -9,14 +9,14 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.7",
+    "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
-    "@babel/plugin-transform-runtime": "^7.8.3",
-    "@babel/preset-env": "^7.8.7",
-    "babel-jest": "^25.1.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "babel-jest": "^24.9.0",
     "babel-tap": "^5.0.0",
-    "jest": "^25.1.0",
+    "jest": "^24.9.0",
     "node-fetch": "^2.6.0",
-    "tap": "^14.10.6"
+    "tap": "^14.10.7"
   }
 }

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-import Card from './Card';
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Typography from '@material-ui/core/Typography'
+
+import Spinner from '../Spinner'
+import Card from './Card'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,34 +25,37 @@ const useStyles = makeStyles((theme) => ({
   spinner: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: theme.spacing(4),
   },
-}));
+}))
 
-const isDataEmply = (data) => (data && data.odd && data.odd.length === 0)
-  || (data && data.even && data.even.length === 0);
+const isScheduleEmply = (odd, even) => odd.length === 0 || even.length === 0
 
-const Container = ({ data, group, setGroup }) => {
-  const classes = useStyles();
-  const [isOdd, setWeekType] = useState(true);
-  const [isValid, setIsValid] = useState(false);
+const Container = ({
+  message, respGroup, odd, even, group, setGroup,
+}) => {
+  const classes = useStyles()
+  const [isOdd, setWeekType] = useState(true)
+  const [isValid, setIsValid] = useState(true)
 
   const handleChange = (event) => {
-    if (event.target.value.length < 8) {
-      if (isValid) setIsValid(false);
-      setGroup(event.target.value.toUpperCase());
+    if (event.target.value.length <= 4) {
+      if (isValid) setIsValid(false)
+      setGroup(event.target.value.toUpperCase())
+    } else if (event.target.value.length >= 5 && event.target.value.length <= 7) {
+      if (!isValid) setIsValid(true)
+      setGroup(event.target.value.toUpperCase())
     } else {
-      setIsValid(true);
+      setIsValid(false)
     }
-  };
+  }
 
   const handleOddClick = () => {
-    setWeekType(true);
-  };
+    setWeekType(true)
+  }
 
   const handleEvenClick = () => {
-    setWeekType(false);
-  };
+    setWeekType(false)
+  }
 
   return (
     <>
@@ -65,43 +70,58 @@ const Container = ({ data, group, setGroup }) => {
         placeholder='Введите номер учебной группы'
         color='secondary'
         className={classes.textField}
-        error={isValid}
-        helperText={isValid && '7 symbols maximum!'}
+        error={!isValid}
+        helperText={!isValid && 'Length of group name must be between 5 and 7 inclusive!'}
       />
-      <ButtonGroup color='secondary' className={classes.switchButtonGroup} fullWidth>
-        <Button
-          variant={isOdd ? 'contained' : 'outlined'}
-          onClick={handleOddClick}
-          className={classes.switchButton}
-        >
-          Нечётная
-        </Button>
-        <Button
-          variant={isOdd ? 'outlined' : 'contained'}
-          onClick={handleEvenClick}
-          className={classes.switchButton}
-        >
-          Чётная
-        </Button>
-      </ButtonGroup>
-      <div className={classes.container}>
-        {group && isDataEmply(data) && (
-          <div className={classes.spinner}>
-            <CircularProgress color='secondary' />
-          </div>
+
+      {message === 'loading' && (
+        <div className={classes.spinner}>
+          <Spinner />
+        </div>
+      )}
+
+      {respGroup && (
+        <Typography variant='h6' align='center' gutterBottom>
+          Расписание группы
+          {' '}
+          {respGroup}
+          {' '}
+          {isScheduleEmply(odd, even) ? 'не найдено' : ''}
+        </Typography>
+      )}
+
+      {(message === 'success' || message === 'loading') && !isScheduleEmply(odd, even)
+        && (
+        <ButtonGroup color='secondary' className={classes.switchButtonGroup} fullWidth>
+          <Button
+            variant={isOdd ? 'contained' : 'outlined'}
+            onClick={handleOddClick}
+            className={classes.switchButton}
+          >
+            Нечётная
+          </Button>
+          <Button
+            variant={isOdd ? 'outlined' : 'contained'}
+            onClick={handleEvenClick}
+            className={classes.switchButton}
+          >
+            Чётная
+          </Button>
+        </ButtonGroup>
         )}
-        {isOdd && data.odd
-            && data.odd.map((card) => (
+      <div className={classes.container}>
+        {isOdd && odd
+            && odd.map((card) => (
               <Card key={card.weekDay} data={card} />
             ))}
-        {!isOdd && data.even
-            && data.even.map((card) => (
+        {!isOdd && even
+            && even.map((card) => (
               <Card key={card.weekDay} data={card} />
             ))}
       </div>
     </>
-  );
-};
+  )
+}
 
 Container.propTypes = {
   data: PropTypes.shape({
@@ -110,7 +130,7 @@ Container.propTypes = {
   }),
   group: PropTypes.string,
   setGroup: PropTypes.func,
-};
+}
 
 Container.defaultProps = {
   data: {
@@ -119,6 +139,6 @@ Container.defaultProps = {
   },
   group: '',
   setGroup: () => {},
-};
+}
 
-export default Container;
+export default Container

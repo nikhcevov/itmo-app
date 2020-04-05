@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
-import { IconButton, Typography, makeStyles } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useLocation } from 'react-router-dom'
+import { IconButton, Typography, makeStyles } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
 
-import navRoutes from './routes';
+import navRoutes from './routes'
 
 const getCurrentPageName = (pathname) => {
-  const route = navRoutes.find((route) => route.href === pathname);
-  return route ? route.label : 'Itmo app';
-};
+  const route = navRoutes.find((route) => route.href === pathname)
+  return route ? route.label : 'Itmo app'
+}
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-start',
   },
-}));
+}))
 
 const MobileHeader = (props) => {
-  const { pathname } = useLocation();
-  const classes = useStyles();
+  const { pathname } = useLocation()
+  const classes = useStyles()
 
   return (
     <>
@@ -38,11 +38,11 @@ const MobileHeader = (props) => {
         <MenuIcon />
       </IconButton>
     </>
-  );
-};
+  )
+}
 
 MobileHeader.propTypes = {
   handleMenuShow: PropTypes.func,
-};
+}
 
-export default MobileHeader;
+export default MobileHeader

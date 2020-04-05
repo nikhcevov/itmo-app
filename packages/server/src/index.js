@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import path from 'path'
+import mongoose from 'mongoose'
 
 import getSchedule from './routes/schedule'
 import getWatchers from './routes/watchers'
@@ -10,9 +11,16 @@ import getScores from './routes/scores'
 import doLogin from './routes/login'
 
 dotenv.config()
+mongoose.connect(
+  process.env.DB_CONNECTION_STRING,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
 
 const corsOptions = {
-  origin: [process.env.CLIENT_URL, /https:\/\/itmo-app.*now\.sh\//, /localhost/],
+  origin: [
+    process.env.CLIENT_URL, // production
+    /https:\/\/itmo-app.*now\.sh\//, // for test stands on zeit.now
+    /localhost/], // dev
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   credentials: true
 }
