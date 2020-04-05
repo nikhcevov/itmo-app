@@ -1,5 +1,5 @@
-# how to deploy
+# How to start
 
-```
-git clone git@github.com:ovchingus/itmo-app.git
-```
+ * clone this repo
+ * run `yarn install`
+ * 

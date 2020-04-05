@@ -1,17 +1,19 @@
 {
-  "name": "client",
+  "name": "itmo-app-client",
   "version": "1.0.0",
+  "repository": "git@github.com:ovchingus/itmo-app.git",
+  "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.8",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.47",
-    "prop-types": "^15.7.2",
     "@testing-library/jest-dom": "^5.3.0",
     "@testing-library/react": "^10.0.1",
     "@testing-library/user-event": "^10.0.1",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -23,12 +25,11 @@
     "redux-saga": "^1.1.3"
   },
   "scripts": {
-    "dev": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --fix"
+    "lint": "eslint --fix"
   },
   "browserslist": {
     "production": [
@@ -48,6 +49,18 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^3.0.0"
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "yarn lint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

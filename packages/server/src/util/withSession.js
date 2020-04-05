@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 import getSessionFromCookie from './getSessionFromCookie'
-import parseLoginResponse from 'cli/scripts/parseLoginResponse'
+import parseLoginResponse from '../scripts/parseLoginResponse'
 import { JSDOM } from 'jsdom'
 
 export default function (fn) {
