@@ -1,4 +1,3 @@
-import { cloneDeep } from 'lodash'
 import { fromJS } from 'immutable'
 import { load } from '../actions/answersActions'
 
@@ -11,7 +10,7 @@ const schedule = (state = initialState, action) => {
   switch (action.type) {
     case load.types.SUCCESS: {
       const { answers } = action.payload
-      return state.mergeIn(['answers'], fromJS(answers))
+      return state.setIn(['answers'], fromJS(answers))
     }
 
     case load.types.FAILED: {

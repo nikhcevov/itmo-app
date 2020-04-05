@@ -1,5 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects'
-import { load, putAnswers, putAnswersFail } from '../actions/answersActions'
+import { load } from '../actions/answersActions'
 import { fetcher } from '../../utils'
 
 function fetchAnswers() {
