@@ -1,6 +1,6 @@
 db.createUser(
   {
-    user: 'user',
+    user: 'server_user',
     pwd: 'jango123',
     roles: [
       {
@@ -13,7 +13,7 @@ db.createUser(
 
 db = db.getSiblingDB('itmo-app-database')
 
-db.auth('user', 'jango123')
+db.auth('server_user', 'jango123')
 
 db.createCollection('user')
 

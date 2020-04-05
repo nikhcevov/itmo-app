@@ -1,7 +1,7 @@
-import data from './answers.json'
+import data from './answers.json';
 
 const handler = async (req, res) => {
-  res.send(data)
-}
+  res.send(data);
+};
 
-export default handler
+export default handler;

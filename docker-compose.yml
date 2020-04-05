@@ -1,0 +1,68 @@
+version: "3.7"
+
+services:
+  database:
+    image: mongo:latest
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./packages/database/mongo-volume:/data/db
+      - ./packages/database/init.js:/docker-entrypoint-initdb.d/init.js:ro
+    environment:
+      - MONGO_INITDB_DATABASE=itmo-app-database
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+
+  database-ui:
+    image: mongo-express:latest
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./packages/database-ui/docker-entrypoint.sh:/docker-entrypoint.sh
+    env_file:
+      - .env
+    depends_on:
+      - database
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=database
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD}
+
+  server:
+    build:
+      context: ./packages/server
+      dockerfile: Dockerfile
+    volumes:
+      - "./packages/server:/itmo-app/server"
+      - "/itmo-app/server/node_modules"
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - database
+    command: sh -c "/wait && yarn dev"
+    environment:
+      - WAIT_HOSTS=database:27017
+
+
+  client:
+    stdin_open: true
+    build:
+      context: ./packages/client
+      dockerfile: Dockerfile
+    volumes:
+      - "./packages/client:/itmo-app/client"
+      - "/itmo-app/client/node_modules"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
