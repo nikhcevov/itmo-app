@@ -1,5 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects'
-import { LOAD_SCORES, putScores, putScoresFail } from '../actions/scoresActions'
+import { load } from '../actions/scoresActions'
 import { fetcher } from '../../utils'
 
 function fetchScores(login, password, group, semester) {
@@ -8,14 +8,13 @@ function fetchScores(login, password, group, semester) {
 
 function* workerLoadScores(action) {
   try {
-    const data = yield call(fetchScores, action.payload.login, action.payload.password, action.payload.group, action.payload.semester)
-    yield put(putScores(data))
+    const { message, variants, variant, scores } = yield call(fetchScores, action.payload.login, action.payload.password, action.payload.group, action.payload.semester)
+    yield put(load.success({ message, variants, variant, scores }))
   } catch (error) {
-    console.log(error.message)
-    yield put(putScoresFail(error))
+    yield put(load.failed())
   }
 }
 
 export default function* watchLoadScores() {
-  yield takeLatest(LOAD_SCORES, workerLoadScores)
+  yield takeLatest(load.types.BASE, workerLoadScores)
 }

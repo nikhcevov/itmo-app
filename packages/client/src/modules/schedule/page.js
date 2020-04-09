@@ -12,32 +12,40 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-  },
+  }
 }))
 
-const Schedule = (props) => {
+const Schedule = ({
+  status,
+  message,
+  group,
+  odd,
+  even,
+  loadSchedule,
+}) => {
   const classes = useStyles()
   const { group: queryGroup } = useQuery()
-  const [group, setGroup] = useState(queryGroup || props.group || '')
+  const [hookGroup, setHookGroup] = useState(queryGroup || group || '')
 
   useEffect(() => {
-    if (!(group.length < 5 || group.length > 8)) { props.loadSchedule(group) }
-  }, [group])
+    if (!(hookGroup.length < 5 || hookGroup.length > 8)) { loadSchedule(hookGroup) }
+  }, [hookGroup, loadSchedule])
 
   return (
     <>
       <Container maxWidth='lg' className={classes.root}>
         <GroupsSchedule
+          status={status}
+          message={message}
           group={group}
-          setGroup={setGroup}
-
-          message={props.message}
-          respGroup={props.group}
-          odd={props.odd}
-          even={props.even}
+          odd={odd}
+          even={even}
+          hookGroup={hookGroup}
+          setHookGroup={setHookGroup}
         />
       </Container>
-      <ScrollUpButton />
+
+      <ScrollUpButton/>
     </>
   )
 }

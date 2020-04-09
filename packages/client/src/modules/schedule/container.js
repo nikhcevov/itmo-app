@@ -4,6 +4,7 @@ import { scheduleActions } from '../../store/actions'
 import { scheduleSelectors } from '../../store/selectors'
 
 const mapStateToProps = (state) => ({
+  status: scheduleSelectors.getStatus(state),
   message: scheduleSelectors.getMessage(state),
   group: scheduleSelectors.getGroup(state),
   odd: scheduleSelectors.getOdd(state),
@@ -11,7 +12,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  loadSchedule: (group) => dispatch(scheduleActions.loadSchedule(group)),
+  loadSchedule: (group) => dispatch(scheduleActions.load.base({ group })),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Schedule)

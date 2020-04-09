@@ -18,35 +18,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Watchers = (props) => {
+const Watchers = ({
+  status,
+  watchers,
+  loadWatchers
+}) => {
   const classes = useStyles()
 
   useEffect(() => {
-    props.loadWatchers()
-  }, [])
+    loadWatchers()
+  }, [loadWatchers])
 
   return (
     <>
       <Container maxWidth='lg' className={classes.root}>
-        {props.watchers.length !== 0
+        {watchers.length !== 0
           ? (
             <Typography variant='body1' gutterBottom>
               Таблица с информацией о смотрящих в ЦДО на ближайшие 2 недели.
             </Typography>
-          ) : (
+          ) : status === 'success' ? (
             <Typography variant='body1' gutterBottom>
               Информация о смотрящих в ЦДО на ближайшие 2 недели на данный момент отсутствует.
             </Typography>
-          )}
-
-        {props.message === 'loading'
+          ) : null}
+        {status === 'loading'
           && (
           <div className={classes.spinner}>
             <Spinner />
           </div>
           )}
-        {props.watchers.length !== 0
-          && <WatchersContainer watchers={props.watchers} />}
+        {watchers.length !== 0
+          && <WatchersContainer watchers={watchers} />}
       </Container>
     </>
   )

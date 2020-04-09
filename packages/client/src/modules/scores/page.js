@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
 
 import SubjectScores from '../../components/SubjectScores'
 import Spinner from '../../components/Spinner'
+import ScrollUpButton from '../../components/ScrollUpButton'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,43 +19,57 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Scores = (props) => {
+const Scores = ({
+  status,
+  message,
+  variants,
+  variant,
+  scores,
+  loadScores,
+}) => {
   const classes = useStyles()
 
-  const [variant, setVariant] = useState({
-    codename: props.variant.codename || '',
-    group: props.variant.group || '',
-    semester: props.variant.semester || '',
+  const [hookVariant, setHookVariant] = useState({
+    codename: variant.codename || '',
+    group: variant.group || '',
+    semester: variant.semester || '',
   })
 
   useEffect(() => {
     const login = window.localStorage.getItem('LOGIN')
     const password = window.localStorage.getItem('PASSWORD')
     if (login && password) {
-      props.loadScores(login, password, variant.group, variant.semester)
+      loadScores(login, password, hookVariant.group, hookVariant.semester)
     } else {
       // redirect to login page
     }
-  }, [variant])
+  }, [hookVariant, loadScores])
 
   return (
+    <>
     <Container maxWidth='lg' className={classes.root}>
-      {props.variants.length !== 0 ? (
+      {variants.length !== 0 ? (
         <SubjectScores
+          status={status}
+          message={message}
+          variants={variants}
           variant={variant}
-          setVariant={setVariant}
-
-          scores={props.scores}
-          variants={props.variants}
-          respVariant={props.variant}
-          message={props.message}
+          scores={scores}
+          hookVariant={hookVariant}
+          setHookVariant={setHookVariant}
         />
-      ) : (
+      ) : status ==='loading' ? (
         <div className={classes.spinner}>
           <Spinner />
         </div>
+      ) : status === 'failed' && (
+        <Typography variant='h6' align='center'>
+          {'Failed to load... please, try again'}
+        </Typography>
       )}
     </Container>
+    <ScrollUpButton/>
+    </>
   )
 }
 

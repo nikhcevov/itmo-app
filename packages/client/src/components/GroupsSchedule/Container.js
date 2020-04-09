@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const isScheduleEmply = (odd, even) => odd.length === 0 || even.length === 0
 
 const Container = ({
-  message, respGroup, odd, even, group, setGroup,
+  status, message, group, odd, even, hookGroup, setHookGroup,
 }) => {
   const classes = useStyles()
   const [isOdd, setWeekType] = useState(true)
@@ -40,10 +40,10 @@ const Container = ({
   const handleChange = (event) => {
     if (event.target.value.length <= 4) {
       if (isValid) setIsValid(false)
-      setGroup(event.target.value.toUpperCase())
+      setHookGroup(event.target.value.toUpperCase())
     } else if (event.target.value.length >= 5 && event.target.value.length <= 7) {
       if (!isValid) setIsValid(true)
-      setGroup(event.target.value.toUpperCase())
+      setHookGroup(event.target.value.toUpperCase())
     } else {
       setIsValid(false)
     }
@@ -62,7 +62,7 @@ const Container = ({
       <TextField
         autoFocus
         label='Группа'
-        value={group}
+        value={hookGroup}
         autoComplete='off'
         spellCheck='false'
         fullWidth
@@ -74,23 +74,26 @@ const Container = ({
         helperText={!isValid && 'Length of group name must be between 5 and 7 inclusive!'}
       />
 
-      {message === 'loading' && (
+      {status === 'loading' && (
         <div className={classes.spinner}>
           <Spinner />
         </div>
       )}
 
-      {respGroup && (
-        <Typography variant='h6' align='center' gutterBottom>
-          Расписание группы
-          {' '}
-          {respGroup}
-          {' '}
-          {isScheduleEmply(odd, even) ? 'не найдено' : ''}
-        </Typography>
-      )}
+      {group && (
+        isScheduleEmply(odd, even) ? (
+          status !== 'loading' &&
+          <Typography variant='h6' align='center' gutterBottom>
+            {`Расписание группы ${group} не найдено`}
+          </Typography>
+        ) : (
+          <Typography variant='h6' align='center' gutterBottom>
+            {`Расписание группы ${group}:`}
+          </Typography>
+        ))
+      }
 
-      {(message === 'success' || message === 'loading') && !isScheduleEmply(odd, even)
+      {(status === 'success' || status === 'loading') && !isScheduleEmply(odd, even)
         && (
         <ButtonGroup color='secondary' className={classes.switchButtonGroup} fullWidth>
           <Button
@@ -124,21 +127,17 @@ const Container = ({
 }
 
 Container.propTypes = {
-  data: PropTypes.shape({
-    odd: PropTypes.array,
-    even: PropTypes.array,
-  }),
-  group: PropTypes.string,
-  setGroup: PropTypes.func,
+  odd: PropTypes.array,
+  even: PropTypes.array,
+  hookGroup: PropTypes.string,
+  setHookGroup: PropTypes.func,
 }
 
 Container.defaultProps = {
-  data: {
-    odd: [],
-    even: [],
-  },
-  group: '',
-  setGroup: () => {},
+  odd: [],
+  even: [],
+  hookGroup: '',
+  setHookGroup: () => {},
 }
 
 export default Container

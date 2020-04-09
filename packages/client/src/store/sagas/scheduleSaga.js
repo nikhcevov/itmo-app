@@ -1,5 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects'
-import { LOAD_SCHEDULE, putSchedule, putScheduleFail } from '../actions/scheduleActions'
+import { load } from '../actions/scheduleActions'
 import { fetcher } from '../../utils'
 
 function fetchShedule(group) {
@@ -8,14 +8,13 @@ function fetchShedule(group) {
 
 function* workerLoadSchedule(action) {
   try {
-    const data = yield call(fetchShedule, action.payload.group)
-    yield put(putSchedule(data))
+    const { message, group, odd, even } = yield call(fetchShedule, action.payload.group)
+    yield put(load.success({ message, group, odd, even }))
   } catch (error) {
-    console.log(error.message)
-    yield put(putScheduleFail(error))
+    yield put(load.failed())
   }
 }
 
 export default function* watchLoadSchedule() {
-  yield takeLatest(LOAD_SCHEDULE, workerLoadSchedule)
+  yield takeLatest(load.types.BASE, workerLoadSchedule)
 }

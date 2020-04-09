@@ -8,11 +8,10 @@ function fetchAnswers() {
 
 function* workerLoadAnswers() {
   try {
-    const data = yield call(fetchAnswers)
-    yield put(load.success({ answers: data }))
+    const { answers } = yield call(fetchAnswers)
+    yield put(load.success({ answers }))
   } catch (error) {
-    console.log(error.message)
-    yield put(load.failed(error))
+    yield put(load.failed())
   }
 }
 

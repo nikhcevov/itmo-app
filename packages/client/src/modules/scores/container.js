@@ -4,14 +4,15 @@ import { scoresActions } from '../../store/actions'
 import { scoresSelectors } from '../../store/selectors'
 
 const mapStateToProps = (state) => ({
+  status: scoresSelectors.getStatus(state),
   message: scoresSelectors.getMessage(state),
-  scores: scoresSelectors.getScores(state),
-  variant: scoresSelectors.getVariant(state),
   variants: scoresSelectors.getVariants(state),
+  variant: scoresSelectors.getVariant(state),
+  scores: scoresSelectors.getScores(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  loadScores: (login, password, group, semester) => dispatch(scoresActions.loadScores(login, password, group, semester)),
+  loadScores: (login, password, group, semester) => dispatch(scoresActions.load.base({ login, password, group, semester })),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scores)

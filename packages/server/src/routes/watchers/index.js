@@ -17,7 +17,9 @@ const handler = async (req, res) => {
       });
     }
   }
-  res.send(ans);
+  res.send({
+    watchers: ans
+  });
 };
 
 export default handler;

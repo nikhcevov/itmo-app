@@ -1,24 +1,5 @@
-export const LOAD_SCHEDULE = 'LOAD_SCHEDULE'
-export const PUT_SCHEDULE = 'PUT_SCHEDULE'
-export const PUT_SCHEDULE_FAIL = 'PUT_SCHEDULE_FAIL'
+import { actionCreator } from '../utils'
 
-export const loadSchedule = (group) => ({
-  type: LOAD_SCHEDULE,
-  payload: {
-    group,
-  },
-})
+const prefix = 'schedule'
 
-export const putSchedule = (schedule) => ({
-  type: PUT_SCHEDULE,
-  payload: {
-    schedule,
-  },
-})
-
-export const putScheduleFail = (error) => ({
-  type: PUT_SCHEDULE_FAIL,
-  payload: {
-    error,
-  },
-})
+export const load = actionCreator(`${prefix}/load`)

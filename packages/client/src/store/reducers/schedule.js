@@ -1,32 +1,25 @@
-import { cloneDeep } from 'lodash'
-import { LOAD_SCHEDULE, PUT_SCHEDULE, PUT_SCHEDULE_FAIL } from '../actions/scheduleActions'
+import { fromJS } from 'immutable'
+import { load } from '../actions/scheduleActions'
 
 
-export const initialState = {
+export const initialState = fromJS({
+  status: null,
   message: null,
-  group: '',
+  group: null,
   odd: [],
   even: [],
-}
+})
 
 const schedule = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_SCHEDULE: {
-      return {
-        ...cloneDeep(state),
-        message: 'loading',
-      }
+    case load.types.BASE: {
+      return state.set('status', 'loading')
     }
-    case PUT_SCHEDULE: {
-      return cloneDeep(action.payload.schedule)
+    case load.types.SUCCESS: {
+      return state.merge(fromJS(action.payload)).set('status', 'success')
     }
-    case PUT_SCHEDULE_FAIL: {
-      return {
-        odd: [],
-        even: [],
-        group: '',
-        message: null,
-      }
+    case load.types.FAILED: {
+      return state.set('status', 'failed')
     }
     default:
       return state

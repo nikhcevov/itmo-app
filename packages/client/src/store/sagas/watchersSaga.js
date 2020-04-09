@@ -1,5 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects'
-import { LOAD_WATCHERS, putWatchers, putWatchersFail } from '../actions/watchersActions'
+import { load } from '../actions/watchersActions'
 import { fetcher } from '../../utils'
 
 function fetchWatchers() {
@@ -8,14 +8,13 @@ function fetchWatchers() {
 
 function* workerLoadWatchers() {
   try {
-    const data = yield call(fetchWatchers)
-    yield put(putWatchers(data))
+    const { watchers } = yield call(fetchWatchers)
+    yield put(load.success({ watchers }))
   } catch (error) {
-    console.log(error.message)
-    yield put(putWatchersFail(error))
+    yield put(load.failed())
   }
 }
 
 export default function* watchLoadWatchers() {
-  yield takeLatest(LOAD_WATCHERS, workerLoadWatchers)
+  yield takeLatest(load.types.BASE, workerLoadWatchers)
 }

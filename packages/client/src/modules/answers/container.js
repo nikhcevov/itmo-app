@@ -5,6 +5,7 @@ import { answersActions } from '../../store/actions'
 import { answersSelectors } from '../../store/selectors'
 
 const mapStateToProps = (state) => ({
+  status: answersSelectors.getStatus(state),
   answers: answersSelectors.getAnswers(state),
 })
 

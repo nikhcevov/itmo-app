@@ -1,37 +1,25 @@
-import { cloneDeep } from 'lodash'
-import { LOAD_SCORES, PUT_SCORES, PUT_SCORES_FAIL } from '../actions/scoresActions'
+import { fromJS } from 'immutable'
+import { load } from '../actions/scoresActions'
 
 
-export const initialState = {
+export const initialState = fromJS({
+  status: null,
   message: null,
   variants: [],
   variant: {},
   scores: [],
-}
+})
 
 const scores = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_SCORES: {
-      return {
-        ...cloneDeep(state),
-        message: 'loading',
-      }
+    case load.types.BASE: {
+      return state.set('status', 'loading')
     }
-    case PUT_SCORES: {
-      const newState = cloneDeep(action.payload.scores)
-      return {
-        variant: {},
-        scores: [],
-        ...newState,
-      }
+    case load.types.SUCCESS: {
+      return state.merge(fromJS(action.payload)).set('status', 'success')
     }
-    case PUT_SCORES_FAIL: {
-      return {
-        message: null,
-        variants: [],
-        variant: {},
-        scores: [],
-      }
+    case load.types.FAILED: {
+      return state.set('status', 'failed')
     }
     default:
       return state
