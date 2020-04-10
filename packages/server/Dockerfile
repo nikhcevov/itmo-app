@@ -1,16 +1,17 @@
 FROM node:13
-
+RUN apk add --update --no-cache \
+    curl
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
 WORKDIR /itmo-app/server
-
-ENV PATH ./node_modules/.bin:$PATH
-
-COPY package.json ./package.json
-
+COPY package.json ./
 RUN yarn install
+COPY . .
+RUN yarn build
 
-# Add docker-compose-wait tool -------------------
-ENV WAIT_VERSION 2.7.2
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERSION/wait /wait
-RUN chmod +x /wait
+HEALTHCHECK --interval=1m --timeout=3s --start-period=15s \
+    CMD curl -fs http://localhost:5000/healthcheck || exit 1
 
-CMD [ "yarn", "dev" ]
+EXPOSE 5000
+
+CMD [ "yarn", "start" ]

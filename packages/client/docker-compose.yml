@@ -4,21 +4,15 @@ version: "3.7"
 
 services:
   traefik:
-    image: "traefik:v2.2"
-    container_name: "traefik"
-    command:
-      #- "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
+    image: traefik:2.1
+    restart: always
     ports:
-      - "80:80"
-      - "8080:8080"
+      - '80:80'
+      - '443:443'
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - ./traefik:/etc/traefik
-      
+    - ./traefik:/etc/traefik
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+
   client:
     stdin_open: true
     build:
@@ -26,10 +20,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - "./:/itmo-app/client"
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.client.rule=Host(`sb0101.ru`)"
