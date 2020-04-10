@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+
+  client:
+    container_name: client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
