@@ -30,3 +30,4 @@ onHostRule = true
 domain = "sb0101.ru"
 watch = true
 network = "web"
+
