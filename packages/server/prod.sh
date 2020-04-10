@@ -6,7 +6,7 @@ chmod 600 acme.json
 
 docker network create web
 
-docker run -d \
+docker run \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v $PWD/traefik.toml:/traefik.toml \
   -v $PWD/acme.json:/acme.json \
