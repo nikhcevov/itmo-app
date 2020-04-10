@@ -21,10 +21,15 @@ entrypoint="dashboard"
 [acme]
 email = "mail@sb0101.ru"
 storage = "acme.json"
-entryPoint = "https"
 onHostRule = true
+caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+entryPoint = "https"
   [acme.httpChallenge]
   entryPoint = "http"
+
+[[acme.domains]]
+  main = "sb0101.ru"
+  sans = ["monitor.sb0101.ru", "api.sb0101.ru"]
 
 [docker]
 domain = "sb0101.ru"
