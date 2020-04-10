@@ -45,14 +45,12 @@ services:
       - "/itmo-app/server/node_modules"
     ports:
       - "5000:5000"
-    environment:
-      - NODE_ENV=development
     depends_on:
       - database
     command: sh -c "/wait && yarn dev"
     environment:
       - WAIT_HOSTS=database:27017
-
+      - NODE_ENV=development
 
   client:
     stdin_open: true

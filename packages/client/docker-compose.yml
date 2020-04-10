@@ -1,0 +1,37 @@
+# https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-ubuntu-18-04
+
+version: "3.7"
+
+services:
+  traefik:
+    image: "traefik:v2.2"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - ./traefik:/etc/traefik
+      
+  client:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./:/itmo-app/client"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.client.rule=Host(`sb0101.ru`)"
+      - "traefik.http.routers.client.tls=true"
+      - "traefik.http.routers.client.tls.certresolver=lets-encrypt"

@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  client-prod:
+    stdin_open: true
+    container_name: client-prod
+    build:
+      context: ./packages/client
+      dockerfile: Dockerfile-prod
+    ports:
+      - 80:80
+
+  server-prod:
+    container_name: server-prod
+    build:
+      context: ./packages/server
+      dockerfile: Dockerfile-prod
+    ports:
+      - 80:80
