@@ -1,4 +1,4 @@
-FROM node:13
+FROM node:13 as build
 
 WORKDIR /itmo-app/client
 
@@ -15,7 +15,8 @@ RUN yarn build
 
 # production environment
 FROM nginx:stable-alpine
-COPY --from=build /itmo-app/client /usr/share/nginx/html
+COPY --from=build /itmo-app/client/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY certs /etc/nginx/certs
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
