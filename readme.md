@@ -7,8 +7,7 @@
 ## How to start
 
  * clone this repo
- * run `build.sh` to build docker images
- * run `run.sh` to start development containers
+ * run `run.sh` to build and start development containers
 
 ## Development containers
 
