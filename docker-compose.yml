@@ -1,19 +1,11 @@
 version: "3"
 
 services:
-  # client-prod:
-  #   stdin_open: true
-  #   container_name: client-prod
-  #   build:
-  #     context: ./packages/client
-  #     dockerfile: Dockerfile-prod
-  #   ports:
-  #     - 80:80
-
   nginx:
     image: nginx:latest
-    depends_on: 
+    depends_on:
       - server
+      - client
     ports:
       - 80:80
       - 443:443
@@ -22,7 +14,7 @@ services:
       - ./packages/proxy/deploy/certbot/conf:/etc/letsencrypt
       - ./packages/proxy/deploy/certbot/www:/var/www/certbot
     command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
- 
+
   certbot:
     image: certbot/certbot
     volumes:
@@ -36,3 +28,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5000:5000
+
+  client:
+    build:
+      context: ./packages/client
+      dockerfile: Dockerfile
