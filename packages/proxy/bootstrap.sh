@@ -8,7 +8,7 @@ mkdir ./deploy/nginx
 
 echo '2. Generate production files from templates'
 
-echo '2.1 Add environment values'
+echo '2.1 Add environment variables'
 set -a
 source ./.env
 set +a

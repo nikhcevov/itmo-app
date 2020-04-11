@@ -10,13 +10,12 @@ services:
   #   ports:
   #     - 80:80
 
-  # server-prod:
-  #   container_name: server-prod
-  #   build:
-  #     context: ./packages/server
-  #     dockerfile: Dockerfile-prod
-  #   ports:
-  #     - 80:80
+  server:
+    build:
+      context: ./packages/server
+      dockerfile: Dockerfile-prod
+    ports:
+      - 5000:5000
 
   nginx:
     image: nginx:latest
