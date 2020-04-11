@@ -3,9 +3,10 @@ version: "3"
 services:
   nginx:
     image: nginx:latest
-    depends_on:
-      - server
+    # depends_on:
+    #   - server
       # - client
+    restart: unless-stopped
     ports:
       - 80:80
       - 443:443
@@ -17,17 +18,18 @@ services:
 
   certbot:
     image: certbot/certbot
+    restart: unless-stopped
     volumes:
       - ./packages/proxy/deploy/certbot/conf:/etc/letsencrypt
       - ./packages/proxy/deploy/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
-  server:
-    build:
-      context: ./packages/server
-      dockerfile: Dockerfile
-    ports:
-      - 5000:5000
+  # server:
+  #   build:
+  #     context: ./packages/server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 5000:5000
 
   # client:
   #   build:
