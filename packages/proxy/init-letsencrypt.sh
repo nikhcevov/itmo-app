@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(${API_SERVER_DOMAIN} ${CLIENT_DOMAIN})
+domains=(${API_SERVER_DOMAIN})
 rsa_key_size=4096
 data_path="./deploy/certbot"
 email="${DOMAIN_MAIL}" # Adding a valid address is strongly recommended
