@@ -4,7 +4,7 @@ services:
   nginx:
     image: nginx:latest
     depends_on:
-      - server
+      # - server
       # - client
     ports:
       - 80:80
@@ -22,12 +22,12 @@ services:
       - ./packages/proxy/deploy/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
-  server:
-    build:
-      context: ./packages/server
-      dockerfile: Dockerfile
-    ports:
-      - 5000:5000
+  # server:
+  #   build:
+  #     context: ./packages/server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 5000:5000
 
   # client:
   #   build:
