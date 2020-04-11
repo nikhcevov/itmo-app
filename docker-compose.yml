@@ -3,7 +3,7 @@ version: "3"
 services:
   nginx:
     image: nginx:latest
-    depends_on:
+    # depends_on:
       # - server
       # - client
     ports:
