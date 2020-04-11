@@ -5,7 +5,7 @@ services:
     image: nginx:latest
     depends_on:
       - server
-      - client
+      # - client
     ports:
       - 80:80
       - 443:443
