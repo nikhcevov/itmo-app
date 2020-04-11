@@ -7,7 +7,7 @@ mkdir ./deploy
 mkdir ./deploy/nginx
 
 echo '2. Generate production files from templates'
-set -a
+set -o allexport
 
 echo '2.1 Generate server configuration for nginx'
 . ./.env &&
@@ -21,7 +21,7 @@ echo '2.3 Generate certbot init script'
 . ./.env &&
     envsubst "$REGEX" <./init-letsencrypt.sh &>./deploy/init-letsencrypt.sh
 
-set +a
+set +o allexport
 
 echo '3. Start certbot init'
 chmod u+x ./deploy/init-letsencrypt.sh
