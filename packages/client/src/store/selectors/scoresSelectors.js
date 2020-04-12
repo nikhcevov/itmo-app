@@ -1,6 +1,7 @@
-export const scores = (state) => state.getIn(['scores'])
+import { toJS } from '../utils'
 
-export const getMessage = (state) => state.getIn(['scores', 'message'])
-export const getVariants = (state) => state.getIn(['scores', 'variants'])
-export const getVariant = (state) => state.getIn(['scores', 'variant'])
-export const getScores = (state) => state.getIn(['scores', 'scores'])
+export const getStatus = (state) => toJS(state.getIn(['scores', 'status']))
+export const getMessage = (state) => toJS(state.getIn(['scores', 'message']))
+export const getVariants = (state) => toJS(state.getIn(['scores', 'variants']))
+export const getVariant = (state) => toJS(state.getIn(['scores', 'variant']))
+export const getScores = (state) => toJS(state.getIn(['scores', 'scores']))

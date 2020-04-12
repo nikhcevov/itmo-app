@@ -24,7 +24,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Container = ({
-  variant, setVariant, scores, variants, respVariant, message, data,
+  status,
+  message,
+  variants,
+  variant,
+  scores,
+  hookVariant,
+  setHookVariant,
 }) => {
   const classes = useStyles()
 
@@ -53,7 +59,7 @@ const Container = ({
 
   const handleChange = (event) => {
     const newVariant = variants.find((v) => v.codename === event.target.value)
-    setVariant({
+    setHookVariant({
       ...newVariant,
       codename: event.target.value,
     })
@@ -65,7 +71,7 @@ const Container = ({
         <InputLabel>Группа/Семестр</InputLabel>
         <Select
           onChange={handleChange}
-          value={variant.codename || respVariant.codename}
+          value={hookVariant.codename || variant.codename}
         >
           {variants.map((v) => (
             <MenuItem
@@ -78,17 +84,17 @@ const Container = ({
         </Select>
       </FormControl>
 
-      {message === 'loading'
+      {status === 'loading'
         && (
         <div className={classes.spinner}>
           <Spinner />
         </div>
         )}
 
-      {variant
+      {hookVariant
         && (
         <Typography variant='h6' align='center'>
-          {respVariant.codename}
+          {variant.codename}
         </Typography>
         )}
 

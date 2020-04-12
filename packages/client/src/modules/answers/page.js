@@ -21,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Answers = ({
-  answers, loadAnswers,
+  answers,
+  status,
+  loadAnswers,
 }) => {
   const classes = useStyles()
 
