@@ -11,3 +11,4 @@ export DOMAIN_MAIL=mail@sb0101.ru
 export CLIENT_DOMAIN=sb0101.ru
 export CLIENT_COMPILED_PATH=/usr/share/nginx/html
 
+export CERT_NAME=$CLIENT_DOMAIN
