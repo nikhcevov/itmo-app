@@ -10,3 +10,4 @@ export DOMAIN_MAIL=mail@sb0101.ru
 
 export CLIENT_DOMAIN=sb0101.online
 export CLIENT_COMPILED_PATH=/itmo-app/client/build
+

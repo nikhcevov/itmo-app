@@ -1,6 +1,6 @@
 #!/bin/bash
 # Export envs
-. ./Envfile
+. ./env.sh
 REGEX=$(perl -e 'print "\$$_" for grep /^[_a-zA-Z]\w*$/, keys %ENV')
 
 echo '1. Recreate deploy dir'
@@ -19,6 +19,6 @@ envsubst "$REGEX" <./nginx/client.conf &>./deploy/nginx/client.conf
 echo '2.3 Generate certbot init script'
 envsubst "$REGEX" <./init-letsencrypt.sh &>./deploy/init-letsencrypt.sh
 
-echo '3. Start certbot init'
-chmod u+x ./deploy/init-letsencrypt.sh
-./deploy/init-letsencrypt.sh
+# echo '3. Start certbot init'
+# chmod u+x ./deploy/init-letsencrypt.sh
+# ./deploy/init-letsencrypt.sh
