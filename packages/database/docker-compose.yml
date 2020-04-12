@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  database:
+    image: mongo:latest
+    restart: always
+    env_file:
+      - .env
+    expose:
+      - "27017"
+    volumes:
+      - ./mongo-volume:/data/db
+      - ./init.js:/docker-entrypoint-initdb.d/init.js:ro
+    environment:
+      - MONGO_INITDB_DATABASE=itmo-app-database
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}

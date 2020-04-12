@@ -4,10 +4,10 @@
 
   Web app build by ITMO students.
 
-## How to start
+## How to deploy
 
  * clone this repo
- * run `run.sh` to build and start development containers
+ * run `docker-compose up --build` to build and start production containers
 
 ## Development containers
 

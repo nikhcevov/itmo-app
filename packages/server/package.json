@@ -5,9 +5,8 @@
   "repository": "git@github.com:ovchingus/itmo-app.git",
   "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
   "scripts": {
-    "start": "node build/index.js",
     "build": "babel ./src -d build --copy-files",
-    "dev": "nodemon --exec babel-node src/index.js",
+    "start": "nodemon --exec babel-node src/index.js",
     "lint": "eslint --fix",
     "test": "NODE_ENV=test jest"
   },

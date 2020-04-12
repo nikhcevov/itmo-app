@@ -1,0 +1,34 @@
+{
+  "name": "itmo-app",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "repository": "git@github.com:ovchingus/itmo-app.git",
+  "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
+  "workspaces": ["packages/client", "packages/server"],
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  },
+  "devDependencies": {
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.10"
+  },
+  "scripts": {
+    "start:client": "yarn workspace itmo-app-client start",
+    "start:server": "yarn workspace itmo-app-server start",
+    "start:db": "cd packages/database && docker-compose up",
+    "start": "concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\" \"yarn start:db\"",
+    "test": "yarn workspaces run test",
+    "lint:client": "yarn workspace client lint",
+    "lint:server": "yarn workspace server lint"
+  },
+  "lint-staged": {
+    "packages/client/src/**/*.{js,jsx}": ["yarn lint:client"],
+    "packages/server/src/**/*.{js}": ["yarn lint:server"]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
