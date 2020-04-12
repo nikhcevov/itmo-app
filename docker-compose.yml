@@ -1,6 +1,41 @@
 version: "3"
 
 services:
+  database:
+    image: mongo:latest
+    restart: always
+    env_file:
+      - .env
+    expose: 
+      - "27017"
+    volumes:
+      - ./packages/database/mongo-volume:/data/db
+      - ./packages/database/init.js:/docker-entrypoint-initdb.d/init.js:ro
+    environment:
+      - MONGO_INITDB_DATABASE=itmo-app-database
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+
+  database-ui:
+    image: mongo-express:latest
+    expose:
+      - "8081"
+    volumes:
+      - ./packages/database-ui/docker-entrypoint.sh:/docker-entrypoint.sh
+    env_file:
+      - .env
+    depends_on:
+      - database
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=database
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD}
+    
   nginx:
     image: valian/docker-nginx-auto-ssl
     restart: on-failure
@@ -13,14 +48,14 @@ services:
       - ./packages/client:/etc/nginx/conf.d
     environment:
       # ALLOWED_DOMAINS: sb0101.online api.sb0101.online"
-      SITES: "api.sb0101.online=server:5000"
+      SITES: "api.itmo-app.online=server:5000; db.itmo-app.ru=database:27017; db-admin.itmo-app.ru=database-ui:8081"
 
   server:
     build:
       context: ./packages/server
       dockerfile: Dockerfile
-    ports:
-      - 5000:5000
+    expose:
+      - "5000"
 
   client:
     build:
