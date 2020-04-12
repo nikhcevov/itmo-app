@@ -16,10 +16,7 @@ jobs:
           password: ${{ secrets.DEPLOY_HOST_PASSWORD }}
           script_stop: true
           script: |
-            cd apps/itmo-app
-            uname -a
+            cd ./itmo-app
             git pull
-            pm2 stop itmo-app
-            yarn install
-            yarn build
-            pm2 start itmo-app
+            docker stop $(docker ps -a -q)
+            docker-compose up --build -d
