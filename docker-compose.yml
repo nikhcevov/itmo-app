@@ -5,7 +5,7 @@ services:
     image: nginx:latest
     depends_on:
       - server
-      # - client
+      - client
     restart: unless-stopped
     ports:
       - 80:80
@@ -13,15 +13,8 @@ services:
     volumes:
       - ./packages/proxy/deploy/nginx:/etc/nginx/conf.d
       - ./packages/proxy/certs:/etc/nginx/certs/
+      - client-build:/usr/share/nginx/html
     command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
-
-  # certbot:
-  #   image: certbot/certbot
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./packages/proxy/deploy/certbot/conf:/etc/letsencrypt
-  #     - ./packages/proxy/deploy/certbot/www:/var/www/certbot
-  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   server:
     build:
@@ -30,7 +23,12 @@ services:
     ports:
       - 5000:5000
 
-  # client:
-  #   build:
-  #     context: ./packages/client
-  #     dockerfile: Dockerfile
+  client:
+    build:
+      context: ./packages/client
+      dockerfile: Dockerfile
+    volumes:
+      - client-build:/itmo-app-client/build
+
+volume:
+  client-build:

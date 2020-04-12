@@ -1,6 +1,6 @@
 # build environment
 FROM node:13 as build
-WORKDIR /itmo-app/client
+WORKDIR /itmo-app-client
 
 ENV PATH ./node_modules/.bin:$PATH
 COPY package.json ./
