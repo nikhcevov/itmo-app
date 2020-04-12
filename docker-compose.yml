@@ -30,5 +30,5 @@ services:
     volumes:
       - client-build:/itmo-app-client/build
 
-volume:
+volumes:
   client-build:
