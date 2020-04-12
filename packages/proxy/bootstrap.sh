@@ -1,6 +1,6 @@
 #!/bin/bash
 # Export envs
-. ./.env
+. ./Envfile
 REGEX=$(perl -e 'print "\$$_" for grep /^[_a-zA-Z]\w*$/, keys %ENV')
 
 echo '1. Recreate deploy dir'
