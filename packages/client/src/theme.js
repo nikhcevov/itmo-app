@@ -83,7 +83,6 @@ const defaultTheme = {
 
 export default function getTheme(paletteType = 'light') {
   return createMuiTheme({
-
     ...defaultTheme,
     ...(paletteType === 'light' ? lightTheme : darkTheme),
   })
