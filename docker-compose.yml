@@ -2,19 +2,18 @@ version: "3"
 
 services:
   nginx:
-    image: nginx:latest
-    depends_on:
-      - server
-      - client
-    restart: unless-stopped
+    image: valian/docker-nginx-auto-ssl
+    restart: on-failure
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./packages/proxy/deploy/nginx:/etc/nginx/conf.d
-      - ./packages/proxy/certs:/etc/nginx/certs/
+      - ssl_data:/etc/resty-auto-ssl
       - client-build:/usr/share/nginx/html
-    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+      - ./packages/client:/etc/nginx/conf.d
+    environment:
+      # ALLOWED_DOMAINS: sb0101.online api.sb0101.online"
+      SITES: "api.sb0101.online=server:5000"
 
   server:
     build:
@@ -31,4 +30,5 @@ services:
       - client-build:/itmo-app-client/build
 
 volumes:
+  ssl_data:
   client-build:
