@@ -11,10 +11,10 @@ import getScores from './routes/scores';
 import doLogin from './routes/login';
 
 dotenv.config();
-// mongoose.connect(
-//   process.env.DB_CONNECTION_STRING,
-//   { useNewUrlParser: true, useUnifiedTopology: true },
-// );
+mongoose.connect(
+  process.env.DB_CONNECTION_STRING,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+);
 
 const corsOptions = {
   origin: [
