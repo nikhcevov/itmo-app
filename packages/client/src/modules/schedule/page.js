@@ -45,7 +45,7 @@ const Schedule = ({
         />
       </Container>
 
-      <ScrollUpButton/>
+      <ScrollUpButton />
     </>
   )
 }
