@@ -5,7 +5,13 @@
   "license": "MIT",
   "repository": "git@github.com:ovchingus/itmo-app.git",
   "author": "Vladimir Ovechkin <ovchingus@gmail.com>",
-  "workspaces": ["packages/client", "packages/server"],
+  "workspaces": {
+    "packages": [
+      "packages/client",
+      "packages/server"
+    ],
+    "nohoist": ["**/babel**", "**/eslint**", "**/jest"]
+  },
   "dependencies": {
     "concurrently": "^5.1.0"
   },
@@ -23,8 +29,12 @@
     "lint:server": "yarn workspace server lint"
   },
   "lint-staged": {
-    "packages/client/src/**/*.{js,jsx}": ["yarn lint:client"],
-    "packages/server/src/**/*.{js}": ["yarn lint:server"]
+    "packages/client/src/**/*.{js,jsx}": [
+      "yarn lint:client"
+    ],
+    "packages/server/src/**/*.{js}": [
+      "yarn lint:server"
+    ]
   },
   "husky": {
     "hooks": {

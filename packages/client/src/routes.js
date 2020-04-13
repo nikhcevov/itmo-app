@@ -1,4 +1,5 @@
 import React from 'react'
+import Cookies from 'js-cookie'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -14,7 +15,8 @@ import ScoresPage from './modules/scores'
 import SchedulePage from './modules/schedule'
 import LoginPage from './modules/login'
 
-const theme = getTheme()
+
+const theme = getTheme(Cookies.get('theme'))
 
 const Routes = () => (
   <Provider store={store}>

@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux-immutablejs'
+import { combineReducers } from 'redux-immutable'
 
 import schedule from './schedule'
 import answers from './answers'
