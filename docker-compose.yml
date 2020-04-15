@@ -47,8 +47,7 @@ services:
       - client-build:/usr/share/nginx/html
       - ./packages/client:/etc/nginx/conf.d
     environment:
-      # ALLOWED_DOMAINS: sb0101.online api.sb0101.online"
-      SITES: "api.itmo-app.online=server:5000;db.itmo-app.ru=database:27017;db-admin.itmo-app.ru=database-ui:8081"
+      SITES: "api.itmo-app.ru=server:5000;db.itmo-app.ru=database:27017;db-admin.itmo-app.ru=database-ui:8081"
 
   server:
     build:

@@ -99,6 +99,7 @@ const Home = () => {
             </IconButton>
           </Container>
           <LinkIconContainer />
+
           <ScrollUpButton />
         </Container>
       </div>
