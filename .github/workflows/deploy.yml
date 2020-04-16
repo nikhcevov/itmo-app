@@ -18,5 +18,7 @@ jobs:
           script: |
             cd ./itmo-app
             git pull
-            docker stop $(docker ps -a -q)
-            docker-compose up --build -d
+            docker system prune --volumes -a -f
+            docker-compose rm -f client
+            docker-compose up --build client
+            docker system prune --volumes -a -f
