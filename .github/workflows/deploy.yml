@@ -19,7 +19,7 @@ jobs:
             cd ./itmo-app
             git pull
             docker-compose stop server
-            docker-compose up --build server
+            docker-compose up --build -d server
             docker-compose stop client
-            docker-compose up --build client
+            docker-compose up --build -d client
 
