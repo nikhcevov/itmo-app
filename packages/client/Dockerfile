@@ -7,5 +7,10 @@ COPY package.json ./
 
 RUN yarn install
 RUN yarn global add react-scripts
+RUN yarn global add express
 COPY . .
 RUN yarn build
+
+EXPOSE 3000
+
+CMD yarn serve

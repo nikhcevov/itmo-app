@@ -44,11 +44,9 @@ services:
       - 443:443
     volumes:
       - ssl_data:/etc/resty-auto-ssl
-      - client-build:/usr/share/nginx/html
-      - ./packages/client:/etc/nginx/conf.d
     environment:
       # ALLOWED_DOMAINS: sb0101.online api.sb0101.online"
-      SITES: "api.itmo-app.online=server:5000;db.itmo-app.ru=database:27017;db-admin.itmo-app.ru=database-ui:8081"
+      SITES: "api.itmo-app.ru=server:5000;db.itmo-app.ru=database:27017;db-admin.itmo-app.ru=database-ui:8081;itmo-app.ru=client:3000"
 
   server:
     build:
@@ -63,9 +61,8 @@ services:
     build:
       context: ./packages/client
       dockerfile: Dockerfile
-    volumes:
-      - client-build:/itmo-app-client/build
+    expose: 
+      - "3000"
 
 volumes:
   ssl_data:
-  client-build:
