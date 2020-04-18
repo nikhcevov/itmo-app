@@ -17,6 +17,7 @@ jobs:
           script_stop: true
           script: |
             cd ./itmo-app
+            ./bootstrap.sh
             git pull
             docker-compose stop server
             docker-compose up --build -d server

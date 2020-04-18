@@ -1,0 +1,20 @@
+db.createUser(
+  {
+    user: '${SERVER_CONNECTOR_DB_LOGIN}',
+    pwd: '${SERVER_CONNECTOR_DB_PASSWORD}',
+    roles: [
+      {
+        role: 'readWrite',
+        db: '${MONGO_INITDB_DATABASE}'
+      }
+    ]
+  }
+)
+
+db = db.getSiblingDB('${MONGO_INITDB_DATABASE}')
+
+db.auth('${SERVER_CONNECTOR_DB_LOGIN}', '${SERVER_CONNECTOR_DB_PASSWORD}')
+
+db.createCollection('user')
+
+db.user.insert({ login: '0', password: 'admin' })

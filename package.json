@@ -23,7 +23,7 @@
     "start:client": "yarn workspace itmo-app-client start",
     "start:server": "yarn workspace itmo-app-server start",
     "start:db": "cd packages/database && docker-compose up",
-    "start": "concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\" \"yarn start:db\"",
+    "start": "./bootstrap.sh && concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\" \"yarn start:db\"",
     "test": "yarn workspaces run test",
     "lint:client": "yarn workspace client lint",
     "lint:server": "yarn workspace server lint"
