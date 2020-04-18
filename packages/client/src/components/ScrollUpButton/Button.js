@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+    zIndex: 50,
   },
 }))
 
@@ -20,13 +21,14 @@ const ScrollUpButton = () => {
     disableHysteresis: true,
     threshold: 100,
   })
+
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   return (
     <Zoom in={trigger}>
       <div onClick={handleScrollTop} className={classes.root}>
-        <Fab color="secondary" size="small">
+        <Fab color='secondary' size='small'>
           <KeyboardArrowUpIcon />
         </Fab>
       </div>

@@ -12,7 +12,7 @@
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
     "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "babel-jest": "^24.9.0",
     "babel-tap": "^5.0.0",
     "jest": "^24.9.0",

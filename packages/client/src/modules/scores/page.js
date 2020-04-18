@@ -47,28 +47,28 @@ const Scores = ({
 
   return (
     <>
-    <Container maxWidth='lg' className={classes.root}>
-      {variants.length !== 0 ? (
-        <SubjectScores
-          status={status}
-          message={message}
-          variants={variants}
-          variant={variant}
-          scores={scores}
-          hookVariant={hookVariant}
-          setHookVariant={setHookVariant}
-        />
-      ) : status ==='loading' ? (
-        <div className={classes.spinner}>
-          <Spinner />
-        </div>
-      ) : status === 'failed' && (
+      <Container maxWidth='lg' className={classes.root}>
+        {variants.length !== 0 ? (
+          <SubjectScores
+            status={status}
+            message={message}
+            variants={variants}
+            variant={variant}
+            scores={scores}
+            hookVariant={hookVariant}
+            setHookVariant={setHookVariant}
+          />
+        ) : status === 'loading' ? (
+          <div className={classes.spinner}>
+            <Spinner />
+          </div>
+        ) : status === 'failed' && (
         <Typography variant='h6' align='center'>
-          {'Failed to load... please, try again'}
+          Failed to load... please, try again
         </Typography>
-      )}
-    </Container>
-    <ScrollUpButton/>
+        )}
+      </Container>
+      <ScrollUpButton />
     </>
   )
 }
