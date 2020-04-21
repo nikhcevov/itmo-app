@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import LoginForm from '../../components/LoginForm'
 import { fetcher } from '../../utils'
 
+
 export default function Login() {
+  const history = useHistory()
   const [credentials, setCredentials] = useState({
     login: '',
     password: '',
@@ -21,7 +24,7 @@ export default function Login() {
     if (data.message === 'success') {
       window.localStorage.setItem('LOGIN', data.login)
       window.localStorage.setItem('PASSWORD', data.password)
-      // Redirect to =>
+      history.push('/scores') // пока только scores
     }
     setSent(false)
     setMessage(data.message)

@@ -72,7 +72,7 @@ const Header = () => {
         <List className={classes.toolbarSpacing}>
           <ListItem>
             <Typography variant='h5' className={classes.version}>
-              SB0101 v.beta_1
+              ITMO-APP v.beta_1
             </Typography>
             <IconButton
               color='inherit'
