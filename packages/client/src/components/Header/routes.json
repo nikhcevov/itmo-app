@@ -15,13 +15,18 @@
     "href": "/scores"
   },
   {
-    "label": "Ответы",
+    "label": "Шпаргалки",
     "name": "answers",
     "href": "/answers"
   },
   {
-    "label": "Расписание/цдо",
+    "label": "Надзиратели",
     "name": "watchers",
     "href": "/watchers"
+  },
+  {
+    "label": "Запись в ЦДО",
+    "name": "entry",
+    "href": "/wip"
   }
 ]
