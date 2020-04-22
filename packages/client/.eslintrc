@@ -1,13 +1,14 @@
 {
-    "root": true,
-    "extends": ["airbnb", "airbnb/hooks"],
-    "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react/no-array-index-key": 0,
-        "jsx-quotes": ["error", "prefer-single"],
-        "semi": ["error", "never"]
-    },
-    "env": {
-        "browser": true
-    }
+  "root": true,
+  "extends": ["airbnb", "airbnb/hooks"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/no-array-index-key": 0,
+    "react/jsx-props-no-spreading": 0,
+    "jsx-quotes": ["error", "prefer-single"],
+    "semi": ["error", "never"]
+  },
+  "env": {
+    "browser": true
+  }
 }
