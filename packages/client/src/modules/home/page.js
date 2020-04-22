@@ -31,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
   text: {
     textAlign: 'center',
   },
+  textLeft: {
+    textAlign: 'left',
+    '&:not(:last-child)': {
+      paddingBottom: theme.spacing(2),
+    },
+  },
   image: {
     pointerEvents: 'none',
     objectFit: 'cover',
@@ -67,6 +73,9 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(5),
     paddingBottom: theme.spacing(5),
   },
+  iconContainer: {
+    paddingTop: theme.spacing(5),
+  },
   heartCount: {
     textAlign: 'center',
   },
@@ -79,13 +88,11 @@ const Home = () => {
       <div className={classes.content}>
         <Container maxWidth='lg' className={classes.container}>
           <Typography variant='h5' className={classes.title} gutterBottom>
-            Первый неклассический ITMO app
+            Добро пожаловать в ITMO-APP
           </Typography>
           <Typography variant='body1' className={classes.text} gutterBottom>
-            Добро пожаловать на сайт, созданный студентами, для студентов.
-            Здесь можно найти все необходимые ресурсы для повседневной учебы.
-            Расписание смотрящих в цдо, выбирайте наиболее легкий день и списывайте!
-            А еще, у нас собраны действующие ответы на цдо.
+            Приложение-агрегатор ITMO-APP
+            разработано для облегчения взаимодействия студентов и аспирантов с основопологающими и часто использующимися функциями электронной системы Университета ИТМО.
           </Typography>
           <Container className={classes.heartContainer}>
 
@@ -98,7 +105,47 @@ const Home = () => {
               <FavoriteIcon className={classes.heart} />
             </IconButton>
           </Container>
-          <LinkIconContainer />
+
+          <div>
+            <Typography variant='body2' className={classes.textLeft} gutterBottom>
+              Во вкладке
+              {' '}
+              <b>&quot;Расписание&quot;</b>
+              {' '}
+              находится расписание всех существующих групп Университета ИТМО.
+            </Typography>
+            <Typography variant='body2' className={classes.textLeft} gutterBottom>
+              Во вкладке
+              {' '}
+              <b>&quot;Баллы&quot;</b>
+              {' '}
+              можно посмотреть личный рейтинг.
+            </Typography>
+            <Typography variant='body2' className={classes.textLeft} gutterBottom>
+              Во вкладке
+              {' '}
+              <b>&quot;Шпаргалки&quot;</b>
+              {' '}
+              находится полезный учебный материал.
+            </Typography>
+            <Typography variant='body2' className={classes.textLeft} gutterBottom>
+              Во вкладке
+              {' '}
+              <b>&quot;Надзиратели&quot;</b>
+              {' '}
+              можно посмотреть расписание надзирателей центра дистанционного обучения (ЦДО).
+            </Typography>
+            <Typography variant='body2' className={classes.textLeft} gutterBottom>
+              Во вкладке
+              {' '}
+              <b>&quot;Запись в ЦДО&quot;</b>
+              {' '}
+              можно оформить заявку на посещение центра дистанционного обучения (ЦДО).
+            </Typography>
+          </div>
+          <div className={classes.iconContainer}>
+            <LinkIconContainer />
+          </div>
 
           <ScrollUpButton />
         </Container>

@@ -38,7 +38,7 @@ const LinkIconContainer = () => {
 
     {
       icon: <DescriptionOutlinedIcon className={classes.linkIcon} />,
-      name: 'Ответы',
+      name: 'Шпаргалки',
       href: '/answers',
     },
 
@@ -50,7 +50,7 @@ const LinkIconContainer = () => {
 
     {
       icon: <VisibilityOutlinedIcon className={classes.linkIcon} />,
-      name: 'Расписание смотрящих ЦДО',
+      name: 'Надзиратели',
       href: '/watchers',
     },
 

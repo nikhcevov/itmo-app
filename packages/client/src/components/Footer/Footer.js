@@ -54,14 +54,18 @@ const Footer = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant='body2' noWrap>
-                О нас
-              </Typography>
+              <Link to='/wip' color='inherit'>
+                <Typography variant='body2' noWrap>
+                  О нас
+                </Typography>
+              </Link>
             </Grid>
             <Grid item>
-              <Typography variant='body2' noWrap>
-                Связаться с разработчиками
-              </Typography>
+              <Link to='/wip' color='inherit'>
+                <Typography variant='body2' noWrap>
+                  Связаться с разработчиками
+                </Typography>
+              </Link>
             </Grid>
           </Grid>
         </Grid>
@@ -77,12 +81,14 @@ const Footer = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant='body2' noWrap>
-                FAQ
-              </Typography>
+              <Link to='/wip' color='inherit'>
+                <Typography variant='body2' noWrap>
+                  FAQ
+                </Typography>
+              </Link>
             </Grid>
             <Grid item>
-              <Link to='/sponsorship' color='inherit'>
+              <Link to='/wip' color='inherit'>
                 <Typography variant='body2' noWrap>
                   Спонсорство
                 </Typography>
@@ -98,20 +104,20 @@ const Footer = () => {
           >
             <Grid item>
               <Typography variant='body1' noWrap>
-                Мобильное приложение
+                Руководство по установке
               </Typography>
             </Grid>
             <Grid item>
               <Link to='/wip' color='inherit'>
                 <Typography variant='body2' noWrap>
-                  IOS
+                  На персональный компьютер
                 </Typography>
               </Link>
             </Grid>
             <Grid item>
               <Link to='/wip' color='inherit'>
                 <Typography variant='body2' noWrap>
-                  Androed
+                  На мобильное устройство
                 </Typography>
               </Link>
             </Grid>
@@ -119,7 +125,7 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12}>
           <Typography className={classes.extraInfo} variant='body2'>
-            © Gtfo-cdo. Сделано с ❤️ для списывания с удовольствием.
+            © Itmo-app. Сделано с ❤️ для студентов.
           </Typography>
         </Grid>
       </Grid>

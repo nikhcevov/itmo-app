@@ -14,6 +14,7 @@ import AnswersPage from './modules/answers'
 import ScoresPage from './modules/scores'
 import SchedulePage from './modules/schedule'
 import LoginPage from './modules/login'
+import WipPage from './modules/wip'
 
 
 const theme = getTheme(Cookies.get('theme'))
@@ -30,6 +31,7 @@ const Routes = () => (
             <Route path='/scores' component={ScoresPage} />
             <Route path='/schedule' component={SchedulePage} />
             <Route path='/login' component={LoginPage} />
+            <Route path='/wip' component={WipPage} />
           </Switch>
         </Layout>
       </BrowserRouter>

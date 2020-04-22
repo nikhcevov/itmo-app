@@ -36,12 +36,12 @@ const Answers = ({
       <Container className={classes.root}>
         <Typography variant='body1' gutterBottom>
           На этой странице находятся материалы,
-          которые могут быть полезны при посещении ЦДО
+          которые могут быть полезны при посещении центра дистанционного обучения Университета ИТМО.
         </Typography>
         <Typography variant='body1' gutterBottom>
-          Если вы хотите поделиться своими ответами, мы с
-          радостью их опубликуем. Пишите в телеграмме:
-          <a href='https://t.me/itmo_apps'> Тут</a>
+          Если вы хотите поделиться полезными материалами, мы с
+          радостью их опубликуем. Пишите нам в&nbsp;
+          <a href='https://t.me/itmo_apps'>Telegram</a>.
         </Typography>
       </Container>
       {answers.length !== 0 ? (
