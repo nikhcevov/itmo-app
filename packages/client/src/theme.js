@@ -81,9 +81,9 @@ const defaultTheme = {
   shadows: Array(25).fill('none'),
 }
 
-export default function getTheme(paletteType = 'light') {
+export default function getTheme(paletteType = 'dark') {
   return createMuiTheme({
     ...defaultTheme,
-    ...(paletteType === 'dark' ? darkTheme : lightTheme),
+    ...(paletteType === 'light' ? lightTheme : darkTheme),
   })
 }

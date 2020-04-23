@@ -71,7 +71,7 @@ const Container = ({
         color='secondary'
         className={classes.textField}
         error={!isValid}
-        helperText={!isValid && 'Length of group name must be between 5 and 7 inclusive!'}
+        helperText={!isValid && 'Длина названия группы должна быть не меньше 5-ти и не больше 7-ми символов!'}
       />
 
       {status === 'loading' && (
@@ -82,16 +82,17 @@ const Container = ({
 
       {group && (
         isScheduleEmply(odd, even) ? (
-          status !== 'loading' &&
+          status !== 'loading'
+          && (
           <Typography variant='h6' align='center' gutterBottom>
             {`Расписание группы ${group} не найдено`}
           </Typography>
+          )
         ) : (
           <Typography variant='h6' align='center' gutterBottom>
             {`Расписание группы ${group}:`}
           </Typography>
-        ))
-      }
+        ))}
 
       {(status === 'success' || status === 'loading') && !isScheduleEmply(odd, even)
         && (
