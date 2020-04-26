@@ -97,7 +97,7 @@ const Header = ({
       <AppBar position='fixed'>
         <Toolbar className={classes.toolbar}>
           <Hidden lgUp>
-            <MobileHeader handleMenuShow={handleMenuShow} isAuth={isAuth} login={login} logOut={logOut} />
+            <MobileHeader handleMenuShow={handleMenuShow} />
           </Hidden>
           <Hidden mdDown>
             <DesktopHeader isAuth={isAuth} login={login} authExit={authExit} />
@@ -166,8 +166,8 @@ const Header = ({
               button
               color='inherit'
               onClick={() => {
-                setIsMenuShow(false)
                 authExit()
+                setIsMenuShow(false)
               }}
             >
               <Typography variant='h6' noWrap>
