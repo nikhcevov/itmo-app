@@ -31,7 +31,7 @@ const handler = async (req, res, next, session, message) => {
       const { group, semester } = req.query;
       const preparedScores = parseScores(scoresJSON, group, semester);
       res.send({
-        message,
+        message: 'success',
         variants,
         variant: withVariant(group, semester, variants),
         scores: preparedScores,
@@ -41,7 +41,7 @@ const handler = async (req, res, next, session, message) => {
     const { group, semester } = variants[variants.length - 1];
     const preparedScores = parseScores(scoresJSON, group, semester);
     res.send({
-      message,
+      message: 'success',
       variants,
       variant: withVariant(group, semester, variants),
       scores: preparedScores,

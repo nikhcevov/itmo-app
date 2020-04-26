@@ -18,7 +18,7 @@ function Copyright() {
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
       <Link color='inherit' href='/'>
-        gtfo-cdo
+        itmo-app
       </Link>
       {' '}
       {new Date().getFullYear()}
@@ -50,7 +50,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function SignIn(props) {
+export default function SignIn({
+  handleSubmit,
+  handleChange,
+  handleRemember,
+  credentials,
+  message,
+  status,
+  remember,
+}) {
   const classes = useStyles()
 
   return (
@@ -58,14 +66,14 @@ export default function SignIn(props) {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          {props.message === 'success' ? <CheckOutlinedIcon /> : <LockOutlinedIcon />}
+          {message === 'success' ? <CheckOutlinedIcon /> : <LockOutlinedIcon />}
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Sign in
+          Вход
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            value={props.credentials.login}
+            value={credentials.login}
             variant='outlined'
             margin='normal'
             required
@@ -76,11 +84,11 @@ export default function SignIn(props) {
             autoComplete='off'
             autoFocus
             color='secondary'
-            disabled={props.sent}
-            onChange={props.handleChange}
+            disabled={status === 'loading'}
+            onChange={handleChange}
           />
           <TextField
-            value={props.credentials.password}
+            value={credentials.password}
             variant='outlined'
             margin='normal'
             required
@@ -91,11 +99,11 @@ export default function SignIn(props) {
             id='password'
             autoComplete='current-password'
             color='secondary'
-            disabled={props.sent}
-            onChange={props.handleChange}
+            disabled={status === 'loading'}
+            onChange={handleChange}
           />
           <FormControlLabel
-            control={<Checkbox value='remember' color='secondary' checked={props.remember} onChange={props.handleRemember} />}
+            control={<Checkbox value='remember' color='secondary' checked={remember} onChange={handleRemember} />}
             label='Remember me'
           />
           <Button
@@ -104,13 +112,13 @@ export default function SignIn(props) {
             variant='contained'
             color='secondary'
             className={classes.submit}
-            disabled={props.sent}
-            onClick={props.handleSubmit}
+            disabled={status === 'loading'}
+            onClick={handleSubmit}
           >
-            Sign In
+            Войти
           </Button>
           <Typography className={classes.message} variant='h6'>
-            {props.message}
+            {message}
           </Typography>
         </form>
       </div>

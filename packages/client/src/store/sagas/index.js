@@ -3,6 +3,7 @@ import scheduleSaga from './scheduleSaga'
 import answersSaga from './answersSaga'
 import watchersSaga from './watchersSaga'
 import scoresSaga from './scoresSaga'
+import authSaga from './authSaga'
 
 
 export default function* root() {
@@ -11,5 +12,6 @@ export default function* root() {
     spawn(answersSaga),
     spawn(watchersSaga),
     spawn(scoresSaga),
+    spawn(authSaga),
   ])
 }
