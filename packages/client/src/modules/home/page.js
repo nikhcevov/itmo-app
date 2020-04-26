@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton'
 import ScrollUpButton from '../../components/ScrollUpButton'
 import LinkIconContainer from '../../components/LinkIconContainer'
 import Footer from '../../components/Footer'
-import SvgIcon from '../../components/SvgIcon'
 
 const useStyles = makeStyles((theme) => ({
   root: {

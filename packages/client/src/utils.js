@@ -13,7 +13,6 @@ export function useQuery() {
 }
 
 export async function fetcher(path) {
-  console.log(process.env.REACT_APP_HOST_API)
   const res = await fetch(process.env.REACT_APP_HOST_API + path, {
     credentials: 'include',
   })

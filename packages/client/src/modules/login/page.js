@@ -1,33 +1,47 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+
+import { useLocation, useHistory } from 'react-router-dom'
 import LoginForm from '../../components/LoginForm'
-import { fetcher } from '../../utils'
 
+const useStyles = makeStyles((theme) => ({
+  text: {
+    paddingTop: theme.spacing(4),
+  },
+}))
 
-export default function Login() {
+export default function Login({
+  status,
+  message,
+  isAuth,
+  logIn,
+  logOut,
+  login,
+}) {
   const history = useHistory()
+  useEffect(() => {
+    const lsLogin = window.localStorage.getItem('LOGIN')
+    const lsPassword = window.localStorage.getItem('PASSWORD')
+    if (lsLogin && lsPassword) {
+      logIn(lsLogin, lsPassword)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isAuth === true) history.push('/')
+  }, [isAuth])
+
+  const classes = useStyles()
   const [credentials, setCredentials] = useState({
     login: '',
     password: '',
   })
-  const [message, setMessage] = useState('')
-  const [sent, setSent] = useState(false)
   const [remember, setRemember] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
-    setMessage('')
-    setSent(true)
-    const data = await fetcher(
-      `/login?login=${credentials.login}&password=${credentials.password}&remember=${remember}`,
-    )
-    if (data.message === 'success') {
-      window.localStorage.setItem('LOGIN', data.login)
-      window.localStorage.setItem('PASSWORD', data.password)
-      history.push('/scores') // пока только scores
-    }
-    setSent(false)
-    setMessage(data.message)
+    logIn(credentials.login, credentials.password, remember)
   }
 
   const handleChange = (e) => {
@@ -42,14 +56,28 @@ export default function Login() {
   }
 
   return (
-    <LoginForm
-      handleSubmit={handleSubmit}
-      handleChange={handleChange}
-      handleRemember={handleRemember}
-      credentials={credentials}
-      message={message}
-      sent={sent}
-      remember={remember}
-    />
+    <>
+      {isAuth
+        ? (
+          <div>
+            <Typography align='center' className={classes.text} variant='h4'>
+              You authenticated as
+              {' '}
+              {login}
+              !
+            </Typography>
+          </div>
+        ) : (
+          <LoginForm
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            handleRemember={handleRemember}
+            credentials={credentials}
+            message={message}
+            status={status}
+            remember={remember}
+          />
+        )}
+    </>
   )
 }
