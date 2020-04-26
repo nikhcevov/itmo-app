@@ -167,7 +167,7 @@ const Header = ({
               color='inherit'
               onClick={() => {
                 setIsMenuShow(false)
-                logOut()
+                authExit()
               }}
             >
               <Typography variant='h6' noWrap>
