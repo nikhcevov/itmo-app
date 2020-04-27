@@ -1,20 +1,44 @@
-import { takeLatest, put, call } from 'redux-saga/effects'
-import { load } from '../actions/scoresActions'
-import { fetcher } from '../../utils'
+import {
+  takeLatest, put, call, select,
+} from 'redux-saga/effects'
+import { scoresActions } from '../actions'
+import { poster } from '../../utils'
+import { authSelectors } from '../selectors'
 
-function fetchScores(login, password, group, semester) {
-  return fetcher(`/scores?login=${login}&password=${password}&group=${group}&semester=${semester}`)
+function fetchScores(token, group, semester) {
+  return poster('/scores', {
+    token,
+    group,
+    semester,
+  })
 }
 
-function* workerLoadScores(action) {
+function* workerLoadScores({ payload: { group, semester } }) {
   try {
-    const { message, variants, variant, scores } = yield call(fetchScores, action.payload.login, action.payload.password, action.payload.group, action.payload.semester)
-    yield put(load.success({ message, variants, variant, scores }))
+    const token = yield select(authSelectors.getToken)
+
+    const {
+      message, variants, variant, scores,
+    } = yield call(
+      fetchScores,
+      token,
+      group,
+      semester,
+    )
+
+    yield put(
+      scoresActions.load.success({
+        message,
+        variants,
+        variant,
+        scores,
+      }),
+    )
   } catch (error) {
-    yield put(load.failed())
+    yield put(scoresActions.load.failed())
   }
 }
 
 export default function* watchLoadScores() {
-  yield takeLatest(load.types.BASE, workerLoadScores)
+  yield takeLatest(scoresActions.load.types.BASE, workerLoadScores)
 }

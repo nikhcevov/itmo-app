@@ -1,33 +1,38 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+
 import LoginForm from '../../components/LoginForm'
 import { fetcher } from '../../utils'
 
+import { authSelectors } from '../../store/selectors'
+import { authActions } from '../../store/actions'
 
-export default function Login() {
-  const history = useHistory()
+
+function Login({ setAuthToken, authToken, isLoggedIn }) {
   const [credentials, setCredentials] = useState({
     login: '',
     password: '',
   })
-  const [message, setMessage] = useState('')
+
+  const [error, setError] = useState('')
   const [sent, setSent] = useState(false)
   const [remember, setRemember] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
-    setMessage('')
+    setError('')
     setSent(true)
     const data = await fetcher(
       `/login?login=${credentials.login}&password=${credentials.password}&remember=${remember}`,
     )
-    if (data.message === 'success') {
-      window.localStorage.setItem('LOGIN', data.login)
-      window.localStorage.setItem('PASSWORD', data.password)
-      history.push('/scores') // пока только scores
+
+    if (data.status === 200) {
+      setAuthToken(data.token)
+    } else {
+      setError(data.message)
     }
     setSent(false)
-    setMessage(data.message)
   }
 
   const handleChange = (e) => {
@@ -41,15 +46,30 @@ export default function Login() {
     setRemember(e.target.checked)
   }
 
+  if (isLoggedIn) {
+    return <Redirect to='/' />
+  }
+
   return (
     <LoginForm
       handleSubmit={handleSubmit}
       handleChange={handleChange}
       handleRemember={handleRemember}
       credentials={credentials}
-      message={message}
+      message={error}
       sent={sent}
       remember={remember}
     />
   )
 }
+
+const mapStateToProps = (state) => ({
+  authToken: authSelectors.getToken(state),
+  isLoggedIn: authSelectors.isLoggedIn(state),
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setAuthToken: (token) => dispatch(authActions.login.base({ token })),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
