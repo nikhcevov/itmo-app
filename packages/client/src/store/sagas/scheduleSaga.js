@@ -8,8 +8,12 @@ function fetchShedule(group) {
 
 function* workerLoadSchedule(action) {
   try {
-    const { message, group, odd, even } = yield call(fetchShedule, action.payload.group)
-    yield put(load.success({ message, group, odd, even }))
+    const {
+      message, group, odd, even,
+    } = yield call(fetchShedule, action.payload.group)
+    yield put(load.success({
+      message, group, odd, even,
+    }))
   } catch (error) {
     yield put(load.failed())
   }

@@ -88,9 +88,8 @@ const MuiIconButton = (props) => {
 
 
 const DesktopHeader = ({
-  isAuth,
-  login,
-  authExit,
+  isLoggedIn,
+  logout
 }) => {
   const { pathname } = useLocation()
   const classes = useStyles()
@@ -106,8 +105,8 @@ const DesktopHeader = ({
   }
 
   const handleExit = () => {
+    logout()
     setAnchorEl(null)
-    authExit()
   }
 
   return (
@@ -129,7 +128,7 @@ const DesktopHeader = ({
           </g>
         </MuiSvgIcon>
       </Link>
-      {navRoutes.slice(1).map((route, index) => (
+      {navRoutes.slice(1).map((route) => (
         <MuiLink
           iscurrent={isCurrent(pathname, route.href)}
           key={route.name}
@@ -141,7 +140,7 @@ const DesktopHeader = ({
           </Typography>
         </MuiLink>
       ))}
-      {isAuth ? (
+      {isLoggedIn ? (
         <>
           <IconButton
             className={classes.profile}

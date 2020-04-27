@@ -63,20 +63,12 @@ const MuiListItem = (props) => {
 }
 
 const Header = ({
-  isAuth,
+  isLoggedIn,
   login,
   logIn,
-  logOut,
+  logout,
   clearScores,
 }) => {
-  useEffect(() => {
-    const lsLogin = window.localStorage.getItem('LOGIN')
-    const lsPassword = window.localStorage.getItem('PASSWORD')
-    if (lsLogin && lsPassword) {
-      logIn(lsLogin, lsPassword)
-    }
-  }, [])
-  const history = useHistory()
   const classes = useStyles()
   const { pathname } = useLocation()
 
@@ -84,12 +76,6 @@ const Header = ({
 
   function handleMenuShow() {
     setIsMenuShow(!isMenuShow)
-  }
-
-  const authExit = () => {
-    clearScores()
-    logOut()
-    history.push('/login')
   }
 
   return (
@@ -100,7 +86,7 @@ const Header = ({
             <MobileHeader handleMenuShow={handleMenuShow} />
           </Hidden>
           <Hidden mdDown>
-            <DesktopHeader isAuth={isAuth} login={login} authExit={authExit} />
+            <DesktopHeader logout={logout} isLoggedIn={isLoggedIn} />
           </Hidden>
         </Toolbar>
       </AppBar>
@@ -119,11 +105,11 @@ const Header = ({
       >
         <List className={classes.toolbarSpacing}>
           <ListItem>
-            { isAuth
+            { isLoggedIn
               ? (
                 <Typography variant='h5' className={classes.profile}>
                   @
-                  {login}
+                  hui
                 </Typography>
               )
               : (
@@ -142,7 +128,7 @@ const Header = ({
         </List>
         <Divider />
         <List>
-          {navRoutes.map((route, index) => (
+          {navRoutes.map((route) => (
             <MuiListItem
               button
               iscurrent={isCurrent(pathname, route.href)}
@@ -161,12 +147,11 @@ const Header = ({
         <Divider />
         <List>
 
-          { isAuth ? (
+          { isLoggedIn ? (
             <ListItem
               button
               color='inherit'
               onClick={() => {
-                authExit()
                 setIsMenuShow(false)
               }}
             >

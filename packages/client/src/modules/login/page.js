@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 
 import LoginForm from '../../components/LoginForm'
 
-import { authSelectors } from '../../store/selectors'
-import { authActions } from '../../store/actions'
 
+import { fetcher } from '../../utils'
 
 function Login({ setAuthToken, authToken, isLoggedIn }) {
   const [credentials, setCredentials] = useState({
@@ -62,13 +61,4 @@ function Login({ setAuthToken, authToken, isLoggedIn }) {
   )
 }
 
-const mapStateToProps = (state) => ({
-  authToken: authSelectors.getToken(state),
-  isLoggedIn: authSelectors.isLoggedIn(state),
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  setAuthToken: (token) => dispatch(authActions.login.base({ token })),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login

@@ -1,5 +1,5 @@
 import React, { PureComponent, forwardRef } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { NavLink as RouterLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import MuiLink from '@material-ui/core/Link'
 

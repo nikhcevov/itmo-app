@@ -1,19 +1,16 @@
 import { connect } from 'react-redux'
 import Login from './page'
 
-import { authActions } from '../../store/actions'
 import { authSelectors } from '../../store/selectors'
+import { authActions } from '../../store/actions'
 
 const mapStateToProps = (state) => ({
-  status: authSelectors.getStatus(state),
-  message: authSelectors.getMessage(state),
-  isAuth: authSelectors.getIsAuth(state),
-  login: authSelectors.getLogin(state),
+  authToken: authSelectors.getToken(state),
+  isLoggedIn: authSelectors.isLoggedIn(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  logIn: (login, password, remember = false) => dispatch(authActions.load.base({ login, password, remember })),
-  logOut: () => dispatch(authActions.logout()),
+  setAuthToken: (token) => dispatch(authActions.login.base({ token })),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

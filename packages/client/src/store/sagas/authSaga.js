@@ -1,5 +1,5 @@
 import { takeLatest, put, all } from 'redux-saga/effects'
-import { authActions } from '../actions'
+import { authActions, scoresActions } from '../actions'
 
 function* loginFlow({ payload: { token } }) {
   try {
@@ -26,8 +26,8 @@ function* initializeFlow() {
 function* logoutFlow() {
   try {
     localStorage.removeItem('token')
-
-    yield put(authActions.login.success())
+    yield put(scoresActions.reset.base())
+    yield put(authActions.logout.success())
   } catch (error) {
     yield put(authActions.logout.failed())
   }
