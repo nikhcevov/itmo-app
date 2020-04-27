@@ -1,47 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import { useLocation, useHistory } from 'react-router-dom'
 import LoginForm from '../../components/LoginForm'
 
-const useStyles = makeStyles((theme) => ({
-  text: {
-    paddingTop: theme.spacing(4),
-  },
-}))
+import { authSelectors } from '../../store/selectors'
+import { authActions } from '../../store/actions'
 
-export default function Login({
-  status,
-  message,
-  isAuth,
-  logIn,
-  logOut,
-  login,
-}) {
-  const history = useHistory()
-  useEffect(() => {
-    const lsLogin = window.localStorage.getItem('LOGIN')
-    const lsPassword = window.localStorage.getItem('PASSWORD')
-    if (lsLogin && lsPassword) {
-      logIn(lsLogin, lsPassword)
-    }
-  }, [])
 
-  useEffect(() => {
-    if (isAuth === true) history.push('/')
-  }, [isAuth])
-
-  const classes = useStyles()
+function Login({ setAuthToken, authToken, isLoggedIn }) {
   const [credentials, setCredentials] = useState({
     login: '',
     password: '',
   })
+
+  const [error, setError] = useState('')
+  const [sent, setSent] = useState(false)
   const [remember, setRemember] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
-    logIn(credentials.login, credentials.password, remember)
+    setError('')
+    setSent(true)
+    const data = await fetcher(
+      `/login?login=${credentials.login}&password=${credentials.password}&remember=${remember}`,
+    )
+
+    if (data.status === 200) {
+      setAuthToken(data.token)
+    } else {
+      setError(data.message)
+    }
+    setSent(false)
   }
 
   const handleChange = (e) => {
@@ -55,29 +45,30 @@ export default function Login({
     setRemember(e.target.checked)
   }
 
+  if (isLoggedIn) {
+    return <Redirect to='/' />
+  }
+
   return (
-    <>
-      {isAuth
-        ? (
-          <div>
-            <Typography align='center' className={classes.text} variant='h4'>
-              You authenticated as
-              {' '}
-              {login}
-              !
-            </Typography>
-          </div>
-        ) : (
-          <LoginForm
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
-            handleRemember={handleRemember}
-            credentials={credentials}
-            message={message}
-            status={status}
-            remember={remember}
-          />
-        )}
-    </>
+    <LoginForm
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      handleRemember={handleRemember}
+      credentials={credentials}
+      message={error}
+      sent={sent}
+      remember={remember}
+    />
   )
 }
+
+const mapStateToProps = (state) => ({
+  authToken: authSelectors.getToken(state),
+  isLoggedIn: authSelectors.isLoggedIn(state),
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setAuthToken: (token) => dispatch(authActions.login.base({ token })),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -1,12 +1,9 @@
 import { actionCreator } from '../utils'
 
-const prefix = 'login'
+const prefix = 'auth'
 
-export const AUTH_LOGOUT = 'AUTH_LOGOUT'
+export const login = actionCreator(`${prefix}/login`)
 
-export const load = actionCreator(`${prefix}/load`)
+export const logout = actionCreator(`${prefix}/logout`)
 
-export const logout = (payload) => ({
-  type: AUTH_LOGOUT,
-  payload,
-})
+export const initialize = actionCreator(`${prefix}/initialize`)

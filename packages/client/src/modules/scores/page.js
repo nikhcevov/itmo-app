@@ -31,23 +31,16 @@ const Scores = ({
   loadScores,
 }) => {
   const classes = useStyles()
-  const history = useHistory()
 
-  const [hookVariant, setHookVariant] = useState({
+  const [data, setData] = useState({
     codename: variant.codename || '',
     group: variant.group || '',
     semester: variant.semester || '',
   })
 
   useEffect(() => {
-    const login = window.localStorage.getItem('LOGIN')
-    const password = window.localStorage.getItem('PASSWORD')
-    if (login && password) {
-      loadScores(login, password, hookVariant.group, hookVariant.semester)
-    } else {
-      history.push('/login')
-    }
-  }, [hookVariant, loadScores])
+    loadScores(data.group, data.semester)
+  }, [data, loadScores])
 
   return (
     <>
@@ -59,8 +52,8 @@ const Scores = ({
             variants={variants}
             variant={variant}
             scores={scores}
-            hookVariant={hookVariant}
-            setHookVariant={setHookVariant}
+            hookVariant={data}
+            setHookVariant={setData}
           />
         ) : status === 'loading' ? (
           <div className={classes.spinner}>

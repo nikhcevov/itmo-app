@@ -41,7 +41,8 @@ const Answers = ({
         <Typography variant='body1' gutterBottom>
           Если вы хотите поделиться полезными материалами, мы с
           радостью их опубликуем. Пишите нам в&nbsp;
-          <a href='https://t.me/itmo_apps'>Telegram</a>.
+          <a href='https://t.me/itmo_apps'>Telegram</a>
+          .
         </Typography>
       </Container>
       {answers.length !== 0 ? (
@@ -61,8 +62,9 @@ const Answers = ({
 Answers.propTypes = {
   loadAnswers: PropTypes.func,
   answers: PropTypes.arrayOf(PropTypes.shape({
-
   })),
+  status: PropTypes.bool.isRequired,
+
 }
 
 Answers.defaultProps = {

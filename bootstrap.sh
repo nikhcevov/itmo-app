@@ -20,5 +20,6 @@ cd ../../
 
 echo '4. Generate server .envs'
 cd ./packages/server
-envsubst "$REGEX" <./.env.template &>./.env
+envsubst "$REGEX" <./.env.production.template &>./.env.production
+envsubst "$REGEX" <./.env.development.template &>./.env.development
 cd ../../

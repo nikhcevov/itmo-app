@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const constructUrl = (url) => process.env.HOST_API + url
+const constructUrl = (url) => process.env.REACT_APP_HOST_API + url
 
 const Answers = ({ answers }) => {
   const classes = useStyles()

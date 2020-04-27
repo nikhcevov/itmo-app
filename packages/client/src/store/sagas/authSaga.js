@@ -1,30 +1,42 @@
-import {
-  takeLatest, put, call, all,
-} from 'redux-saga/effects'
-import { load } from '../actions/authActions'
-import { clearScores } from '../actions/scoresActions'
-import { fetcher } from '../../utils'
+import { takeLatest, put, all } from 'redux-saga/effects'
+import { authActions } from '../actions'
 
-function fetchAuth(login, password, remember = false) {
-  return fetcher(`/login?login=${login}&password=${password}&remember=${remember}`)
-}
-
-function* workerLoadAuth(action) {
+function* loginFlow({ payload: { token } }) {
   try {
-    const { message, login, password } = yield call(fetchAuth, action.payload.login, action.payload.password, action.payload.remember)
-    if (message === 'success') {
-      yield put(load.success({ message, login, password }))
-    } else {
-      yield all([
-        put(load.failed({ message })),
-        put(clearScores()),
-      ])
-    }
+    localStorage.setItem('token', JSON.stringify(token))
+    yield put(authActions.login.success({ token }))
   } catch (error) {
-    yield put(load.failed({ message: error.message }))
+    yield put(authActions.login.failed({ token }))
   }
 }
 
-export default function* watchLoadAuth() {
-  yield takeLatest(load.types.BASE, workerLoadAuth)
+function* initializeFlow() {
+  try {
+    const savedToken = JSON.parse(localStorage.getItem('token'))
+    if (savedToken) {
+      yield put(authActions.initialize.success({ token: savedToken }))
+    } else {
+      yield put(authActions.initialize.failed())
+    }
+  } catch (error) {
+    yield put(authActions.initialize.failed())
+  }
+}
+
+function* logoutFlow() {
+  try {
+    localStorage.removeItem('token')
+
+    yield put(authActions.login.success())
+  } catch (error) {
+    yield put(authActions.logout.failed())
+  }
+}
+
+export default function* watchLoadAnswers() {
+  yield all([
+    yield takeLatest(authActions.login.types.BASE, loginFlow),
+    yield takeLatest(authActions.initialize.types.BASE, initializeFlow),
+    yield takeLatest(authActions.logout.types.BASE, logoutFlow),
+  ])
 }

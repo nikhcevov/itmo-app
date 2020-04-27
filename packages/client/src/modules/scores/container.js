@@ -12,7 +12,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  loadScores: (login, password, group, semester) => dispatch(scoresActions.load.base({ login, password, group, semester })),
+  loadScores: (group, semester) => dispatch(
+    scoresActions.load.base({
+      group,
+      semester,
+    }),
+  ),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scores)

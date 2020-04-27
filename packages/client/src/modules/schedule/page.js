@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-  }
+  },
 }))
 
 const Schedule = ({

@@ -19,3 +19,17 @@ export async function fetcher(path) {
   const json = await res.json()
   return json
 }
+
+export async function poster(path, data) {
+  const dick = await fetch(process.env.REACT_APP_HOST_API + path, {
+    credentials: 'include',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  const json = await dick.json()
+  return json
+}

@@ -1,38 +1,38 @@
 import { fromJS } from 'immutable'
-import { load, AUTH_LOGOUT } from '../actions/authActions'
+import { authActions } from '../actions'
 
 
 export const initialState = fromJS({
-  message: null,
-  status: null,
-  isAuth: null,
-  login: null,
+  token: '',
+  isLoggedIn: false,
+  initialized: false,
 })
 
 const schedule = (state = initialState, action) => {
   switch (action.type) {
-    case load.types.BASE: {
-      return state.set('status', 'loading').set('message', null)
+    case authActions.login.types.SUCCESS: {
+      const { token } = action.payload
+      return state.set('token', fromJS(token)).set('isLoggedIn', true)
     }
 
-    case load.types.SUCCESS: {
-      const { message, login, password } = action.payload
-      window.localStorage.setItem('LOGIN', login)
-      window.localStorage.setItem('PASSWORD', password)
-      return state.set('status', 'success').set('message', message).set('isAuth', true).set('login', login)
+    case authActions.logout.types.SUCCESS: {
+      return state.set('token', '').set('isLoggedIn', false)
     }
 
-    case load.types.FAILED: {
-      const { message } = action.payload
-      window.localStorage.removeItem('LOGIN')
-      window.localStorage.removeItem('PASSWORD')
-      return state.set('status', 'failed').set('message', message).set('isAuth', null).set('isAuth', null)
+    case authActions.initialize.types.SUCCESS: {
+      const { token } = action.payload
+      return state.merge(fromJS({
+        token,
+        isLoggedIn: true,
+        initialized: true,
+      }))
     }
 
-    case AUTH_LOGOUT: {
-      window.localStorage.removeItem('LOGIN')
-      window.localStorage.removeItem('PASSWORD')
-      return state.set('status', null).set('message', null).set('isAuth', false).set('login', null)
+    case authActions.initialize.types.FAILED: {
+      return state.merge(fromJS({
+        isLoggedIn: false,
+        initialized: true,
+      }))
     }
 
     default:

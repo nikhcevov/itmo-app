@@ -5,7 +5,6 @@ import watchersSaga from './watchersSaga'
 import scoresSaga from './scoresSaga'
 import authSaga from './authSaga'
 
-
 export default function* root() {
   yield all([
     spawn(scheduleSaga),
