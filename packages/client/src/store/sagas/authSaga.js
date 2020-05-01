@@ -1,12 +1,25 @@
 import { takeLatest, put, all } from 'redux-saga/effects'
 import { authActions, scoresActions } from '../actions'
+import { poster } from '../../utils'
 
-function* loginFlow({ payload: { token } }) {
+function fetchAuth(login, password) {
+  return poster('/login', {
+    login, password,
+  })
+}
+
+function* loginFlow(action) {
   try {
-    localStorage.setItem('token', JSON.stringify(token))
-    yield put(authActions.login.success({ token }))
+    const { login, password } = action.payload
+    const data = yield fetchAuth(login, password)
+    if (data.status === 200) {
+      localStorage.setItem('token', JSON.stringify(data.token))
+      yield put(authActions.login.success({ token: data.token }))
+    } else {
+      yield put(authActions.login.failed({ message: data.message }))
+    }
   } catch (error) {
-    yield put(authActions.login.failed({ token }))
+    yield put(authActions.login.failed({ message: error.message }))
   }
 }
 
@@ -33,7 +46,7 @@ function* logoutFlow() {
   }
 }
 
-export default function* watchLoadAnswers() {
+export default function* watchLoadAuth() {
   yield all([
     yield takeLatest(authActions.login.types.BASE, loginFlow),
     yield takeLatest(authActions.initialize.types.BASE, initializeFlow),

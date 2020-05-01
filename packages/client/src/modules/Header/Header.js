@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import Divider from '@material-ui/core/Divider'
@@ -10,10 +11,16 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
-import { useLocation, useHistory } from 'react-router-dom'
+import Slide from '@material-ui/core/Slide'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Button from '@material-ui/core/Button'
 
-import SvgIcon from '../SvgIcon'
-import Link from '../Link'
+import ImportantText from '../../components/ImportantText'
+import Link from '../../components/Link'
 import navRoutes from './routes.json'
 import MobileHeader from './Mobile'
 import DesktopHeader from './Desktop'
@@ -35,18 +42,35 @@ const useStyles = makeStyles((theme) => ({
   version: {
     flexGrow: 1,
   },
-  link: {
+  menuBtnClose: {
+    color: theme.palette.getContrastText(theme.palette.primary.main),
+  },
+  menuLink: {
     textDecoration: 'none',
-
-    backgroundColor: (props) => (props.iscurrent === 'true' ? theme.palette.secondary.main : 'inherit'),
+    color: theme.palette.getContrastText(theme.palette.primary.main),
+    backgroundColor: (props) => (props.iscurrent === 'true' ? theme.palette.action.selected : 'inherit'),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: (props) => (props.iscurrent === 'true' ? theme.palette.secondary.main : 'inherit'),
+      backgroundColor: (props) => (props.iscurrent === 'true' ? theme.palette.action.selected : 'inherit'),
     },
   },
   profile: {
     flexGrow: 1,
     color: theme.palette.secondary.main,
+  },
+  confirmTitle: {
+    textAlign: 'center',
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  confirmContent: {
+    textAlign: 'center',
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  confirmActions: {
+    justifyContent: 'space-between',
+    '& > button': {
+      color: theme.palette.getContrastText(theme.palette.background.paper),
+    },
   },
 }))
 
@@ -56,26 +80,40 @@ const MuiListItem = (props) => {
   const classes = useStyles(props)
   return (
     <ListItem
-      className={classes.link}
+      className={classes.menuLink}
       {...props}
     />
   )
 }
 
+const Transition = React.forwardRef((props, ref) => <Slide direction='up' ref={ref} {...props} />)
+
 const Header = ({
   isLoggedIn,
-  login,
-  logIn,
   logout,
-  clearScores,
 }) => {
   const classes = useStyles()
   const { pathname } = useLocation()
+  const [openCongirm, setOpenDialogConfirm] = useState(false)
+  const history = useHistory()
+
+  const handleOpenConfirm = () => {
+    setOpenDialogConfirm(true)
+  }
+  const handleCloseConfirm = () => {
+    setOpenDialogConfirm(false)
+  }
 
   const [isMenuShow, setIsMenuShow] = useState(false)
 
-  function handleMenuShow() {
+  const handleMenuShow = () => {
     setIsMenuShow(!isMenuShow)
+  }
+
+  const handleExit = () => {
+    handleCloseConfirm()
+    logout()
+    history.push('/login')
   }
 
   return (
@@ -86,7 +124,7 @@ const Header = ({
             <MobileHeader handleMenuShow={handleMenuShow} />
           </Hidden>
           <Hidden mdDown>
-            <DesktopHeader logout={logout} isLoggedIn={isLoggedIn} />
+            <DesktopHeader logout={logout} isLoggedIn={isLoggedIn} openConfirm={handleOpenConfirm} />
           </Hidden>
         </Toolbar>
       </AppBar>
@@ -109,7 +147,7 @@ const Header = ({
               ? (
                 <Typography variant='h5' className={classes.profile}>
                   @
-                  hui
+                  Your ID
                 </Typography>
               )
               : (
@@ -118,7 +156,7 @@ const Header = ({
                 </Typography>
               )}
             <IconButton
-              color='inherit'
+              className={classes.menuBtnClose}
               edge='start'
               onClick={() => setIsMenuShow(false)}
             >
@@ -128,14 +166,13 @@ const Header = ({
         </List>
         <Divider />
         <List>
-          {navRoutes.map((route) => (
+          {navRoutes.links.map((route) => (
             <MuiListItem
               button
               iscurrent={isCurrent(pathname, route.href)}
               component={Link}
               key={route.name}
               to={route.href}
-              color='inherit'
               onClick={() => setIsMenuShow(false)}
             >
               <Typography variant='h6' noWrap>
@@ -150,10 +187,11 @@ const Header = ({
           { isLoggedIn ? (
             <ListItem
               button
-              color='inherit'
               onClick={() => {
+                handleOpenConfirm()
                 setIsMenuShow(false)
               }}
+              className={classes.menuLink}
             >
               <Typography variant='h6' noWrap>
                 Выйти
@@ -166,7 +204,6 @@ const Header = ({
               component={Link}
               key='login'
               to='/login'
-              color='inherit'
               onClick={() => setIsMenuShow(false)}
             >
               <Typography variant='h6' noWrap>
@@ -176,6 +213,30 @@ const Header = ({
           )}
         </List>
       </Drawer>
+      <Dialog
+        open={openCongirm}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleCloseConfirm}
+      >
+        <DialogTitle className={classes.confirmTitle}>Подтвердите выход</DialogTitle>
+        <DialogContent>
+          <DialogContentText className={classes.confirmContent}>
+            Вы точно хотите выйти из аккаунта
+            {' '}
+            <ImportantText>Your ID</ImportantText>
+            ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions disableSpacing className={classes.confirmActions}>
+          <Button onClick={handleCloseConfirm}>
+            Нет
+          </Button>
+          <Button onClick={handleExit}>
+            Да
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }

@@ -1,23 +1,23 @@
 import { fromJS } from 'immutable'
-import { load } from '../actions/answersActions'
+import { answersActions } from '../actions'
 
 
 export const initialState = fromJS({
-  status: null,
+  status: '',
   answers: [],
 })
 
 const schedule = (state = initialState, action) => {
   switch (action.type) {
-    case load.types.BASE: {
+    case answersActions.load.types.BASE: {
       return state.set('status', 'loading')
     }
 
-    case load.types.SUCCESS: {
+    case answersActions.load.types.SUCCESS: {
       return state.merge(fromJS(action.payload)).set('status', 'success')
     }
 
-    case load.types.FAILED: {
+    case answersActions.load.types.FAILED: {
       return state.set('status', 'failed')
     }
 

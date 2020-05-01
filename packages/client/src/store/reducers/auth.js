@@ -3,6 +3,8 @@ import { authActions } from '../actions'
 
 
 export const initialState = fromJS({
+  status: '',
+  message: '',
   token: '',
   isLoggedIn: false,
   initialized: false,
@@ -10,13 +12,22 @@ export const initialState = fromJS({
 
 const schedule = (state = initialState, action) => {
   switch (action.type) {
+    case authActions.login.types.BASE: {
+      return state.set('status', 'loading').set('message', initialState.get('message'))
+    }
+
     case authActions.login.types.SUCCESS: {
       const { token } = action.payload
-      return state.set('token', fromJS(token)).set('isLoggedIn', true)
+      return state.set('token', token).set('status', 'success').set('isLoggedIn', true).set('message', initialState.get('message'))
+    }
+
+    case authActions.login.types.FAILED: {
+      const { message } = action.payload
+      return state.set('status', 'failed').set('message', message)
     }
 
     case authActions.logout.types.SUCCESS: {
-      return state.set('token', '').set('isLoggedIn', false)
+      return state.merge(initialState)
     }
 
     case authActions.initialize.types.SUCCESS: {

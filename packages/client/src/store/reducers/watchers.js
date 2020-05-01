@@ -1,20 +1,20 @@
 import { fromJS } from 'immutable'
-import { load } from '../actions/watchersActions'
+import { watchersActions } from '../actions'
 
 export const initialState = fromJS({
-  status: null,
+  status: '',
   watchers: [],
 })
 
 const watchers = (state = initialState, action) => {
   switch (action.type) {
-    case load.types.BASE: {
+    case watchersActions.load.types.BASE: {
       return state.set('status', 'loading')
     }
-    case load.types.SUCCESS: {
+    case watchersActions.load.types.SUCCESS: {
       return state.merge(fromJS(action.payload)).set('status', 'success')
     }
-    case load.types.FAILED: {
+    case watchersActions.load.types.FAILED: {
       return state.set('status', 'failed')
     }
     default:

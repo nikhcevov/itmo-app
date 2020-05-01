@@ -1,24 +1,36 @@
 import { takeLatest, put, call } from 'redux-saga/effects'
-import { load } from '../actions/scheduleActions'
-import { fetcher } from '../../utils'
+import { scheduleActions } from '../actions'
+import { poster } from '../../utils'
 
 function fetchShedule(group) {
-  return fetcher(`/schedule?group=${group}`)
+  return poster('/schedule', {
+    group,
+  })
 }
 
 function* workerLoadSchedule(action) {
   try {
-    const {
-      message, group, odd, even,
-    } = yield call(fetchShedule, action.payload.group)
-    yield put(load.success({
-      message, group, odd, even,
+    const data = yield call(fetchShedule, action.payload.group)
+
+    if (data.status === 200) {
+      yield put(scheduleActions.load.success({
+        message: data.message,
+        group: data.group,
+        odd: data.odd,
+        even: data.even,
+      }))
+    } else {
+      yield put(scheduleActions.load.failed({
+        message: data.message,
+      }))
+    }
+  } catch (e) {
+    yield put(scheduleActions.load.failed({
+      message: e.message,
     }))
-  } catch (error) {
-    yield put(load.failed())
   }
 }
 
 export default function* watchLoadSchedule() {
-  yield takeLatest(load.types.BASE, workerLoadSchedule)
+  yield takeLatest(scheduleActions.load.types.BASE, workerLoadSchedule)
 }

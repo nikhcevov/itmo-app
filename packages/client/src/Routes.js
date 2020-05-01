@@ -22,6 +22,7 @@ const Routes = ({ initialize }) => {
   }, [initialize])
 
   return (
+
     <BrowserRouter>
       <Layout>
         <Switch>

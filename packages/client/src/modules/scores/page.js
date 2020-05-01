@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
-import { useHistory } from 'react-router-dom'
-
 import SubjectScores from '../../components/SubjectScores'
 import Spinner from '../../components/Spinner'
 import ScrollUpButton from '../../components/ScrollUpButton'

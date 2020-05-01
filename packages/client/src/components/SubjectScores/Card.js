@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
+    color: theme.palette.getContrastText(theme.palette.background.paper),
   },
   progressWrap: {
     [theme.breakpoints.down('sm')]: {
@@ -30,12 +31,13 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: 'middle',
   },
   progressCircular: {
-    color: (props) => ((props.value === 0) ? 'gray' : theme.palette.secondary.main),
+    color: (props) => ((props.value === 0) ? 'gray' : theme.palette.action.selected),
     position: 'absolute',
     left: 0,
     top: 0,
   },
   progressPoints: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
     [theme.breakpoints.down('sm')]: {
       fontSize: '12px',
     },

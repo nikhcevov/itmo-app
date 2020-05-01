@@ -21,6 +21,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
   },
+  MenuItem: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+    backgroundColor: theme.palette.background.paper,
+    '&:hover': {
+      color: theme.palette.getContrastText(theme.palette.action.hover),
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
 }))
 
 const Container = ({
@@ -65,6 +73,7 @@ const Container = ({
     })
   }
 
+
   return (
     <div className={classes.container}>
       <FormControl>
@@ -77,6 +86,8 @@ const Container = ({
             <MenuItem
               key={v.codename}
               value={v.codename}
+              dense
+              className={classes.MenuItem}
             >
               {v.codename}
             </MenuItem>

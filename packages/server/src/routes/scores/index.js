@@ -83,7 +83,7 @@ const handler = async (req, res) => {
     }
   } catch (e) {
     res.status(466).send({
-      message: e,
+      message: e.message,
       status: 466,
       variants: [],
       variant: {},

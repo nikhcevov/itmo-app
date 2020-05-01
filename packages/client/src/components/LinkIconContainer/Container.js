@@ -1,12 +1,12 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import ScheduleIcon from '@material-ui/icons/Schedule'
-import CheckCircleOutlineOutlinedIcon from '@material-ui/icons/CheckCircleOutlineOutlined'
-import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined'
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined'
-import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 import Grid from '@material-ui/core/Grid'
+
+
+import ScheduleIcon from '@material-ui/icons/Schedule'
+import SchoolOutlinedIcon from '@material-ui/icons/SchoolOutlined'
+import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined'
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
 
 import Link from '../Link'
 
@@ -14,13 +14,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
   },
   linkIcon: {
-    color: 'white',
+    color: theme.palette.secondary.main,
     width: 100,
     height: 100,
     transform: 'scale(1)',
     transition: 'transform 0.3s, color 0.3s',
     '&:hover': {
-      color: theme.palette.secondary.main,
+      color: theme.palette.action.hover,
       transform: 'scale(1.1)',
     },
   },
@@ -32,7 +32,7 @@ const LinkIconContainer = () => {
   const links = [
     {
       icon: <ScheduleIcon className={classes.linkIcon} />,
-      name: 'Расписание занятий',
+      name: 'Расписание',
       href: '/schedule',
     },
 
@@ -43,7 +43,7 @@ const LinkIconContainer = () => {
     },
 
     {
-      icon: <CheckCircleOutlineOutlinedIcon className={classes.linkIcon} />,
+      icon: <SchoolOutlinedIcon className={classes.linkIcon} />,
       name: 'Баллы',
       href: '/scores',
     },
@@ -52,18 +52,6 @@ const LinkIconContainer = () => {
       icon: <VisibilityOutlinedIcon className={classes.linkIcon} />,
       name: 'Надзиратели',
       href: '/watchers',
-    },
-
-    {
-      icon: <MonetizationOnOutlinedIcon className={classes.linkIcon} />,
-      name: 'Помощь разработчикам',
-      href: '/sponsorship',
-    },
-
-    {
-      icon: <HelpOutlineIcon className={classes.linkIcon} />,
-      name: 'Вопросы',
-      href: '/',
     },
   ]
 
@@ -74,7 +62,7 @@ const LinkIconContainer = () => {
         direction='row'
         justify='space-around'
         alignItems='flex-start'
-        spacing={0}
+        spacing={3}
       >
 
         {links.map((link) => (

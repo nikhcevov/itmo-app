@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(2),
     zIndex: 50,
   },
+  arrow: {
+    color: theme.palette.getContrastText(theme.palette.secondary.main),
+  },
 }))
 
 const ScrollUpButton = () => {
@@ -29,7 +32,7 @@ const ScrollUpButton = () => {
     <Zoom in={trigger}>
       <div onClick={handleScrollTop} className={classes.root}>
         <Fab color='secondary' size='small'>
-          <KeyboardArrowUpIcon />
+          <KeyboardArrowUpIcon className={classes.arrow} />
         </Fab>
       </div>
     </Zoom>
