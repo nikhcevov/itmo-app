@@ -1,9 +1,9 @@
-import answers from './answers.json';
+import answers from './answers.json'
 
 const handler = async (req, res) => {
-  res.send({
-    answers
-  });
-};
+  res.status(200).send({
+    answers,
+  })
+}
 
-export default handler;
+export default handler

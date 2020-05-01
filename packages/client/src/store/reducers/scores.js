@@ -3,8 +3,8 @@ import { scoresActions } from '../actions'
 
 
 export const initialState = fromJS({
-  status: null,
-  message: null,
+  status: '',
+  message: '',
   variants: [],
   variant: {},
   scores: [],

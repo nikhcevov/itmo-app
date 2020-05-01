@@ -5,11 +5,11 @@ import path from 'path'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 
-import getSchedule from './routes/schedule'
+import scheduleController from './routes/schedule'
 import getWatchers from './routes/watchers'
 import getAnswers from './routes/answers'
 import scoresController from './routes/scores'
-import doLogin from './routes/login'
+import loginController from './routes/login'
 
 if (process.env.NODE_ENV === 'development') {
   dotenv.config({ path: path.join(__dirname, '../.env.development') })
@@ -42,7 +42,7 @@ app.use('/static', express.static(path.join(__dirname, '../static')))
 
 app.get('/', (req, res) => res.send('Hello world'))
 
-app.get('/schedule', getSchedule)
+app.post('/schedule', scheduleController)
 
 app.get('/watchers', getWatchers)
 
@@ -50,7 +50,7 @@ app.get('/answers', getAnswers)
 
 app.post('/scores', scoresController)
 
-app.get('/login', doLogin)
+app.post('/login', loginController)
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => console.log(`Itmo-app listening on port ${port}!`))

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   switchButtonGroup: {
-    marginBottom: theme.spacing(1),
+    marginBottom: theme.spacing(2),
   },
   spinner: {
     display: 'flex',
@@ -37,13 +37,19 @@ const Container = ({
   const [isOdd, setWeekType] = useState(true)
   const [isValid, setIsValid] = useState(true)
 
+  const isValidChars = (groupName) => /^[A-Za-z0-9]*$/g.test(groupName)
+
   const handleChange = (event) => {
-    if (event.target.value.length <= 4) {
-      if (isValid) setIsValid(false)
-      setHookGroup(event.target.value.toUpperCase())
-    } else if (event.target.value.length >= 5 && event.target.value.length <= 7) {
-      if (!isValid) setIsValid(true)
-      setHookGroup(event.target.value.toUpperCase())
+    if (isValidChars(event.target.value)) {
+      if (event.target.value.length <= 4) {
+        if (isValid) setIsValid(false)
+        setHookGroup(event.target.value.toUpperCase())
+      } else if (event.target.value.length >= 5 && event.target.value.length <= 7) {
+        if (!isValid) setIsValid(true)
+        setHookGroup(event.target.value.toUpperCase())
+      } else {
+        setIsValid(false)
+      }
     } else {
       setIsValid(false)
     }
@@ -71,7 +77,7 @@ const Container = ({
         color='secondary'
         className={classes.textField}
         error={!isValid}
-        helperText={!isValid && 'Длина названия группы должна быть не меньше 5-ти и не больше 7-ми символов!'}
+        helperText={!isValid && 'Название должно быть не меньше 5-ти и не больше 7-ми символов, а также в ЛАТИНСКОЙ раскладке!'}
       />
 
       {status === 'loading' && (
@@ -94,7 +100,7 @@ const Container = ({
           </Typography>
         ))}
 
-      {(status === 'success' || status === 'loading') && !isScheduleEmply(odd, even)
+      {!isScheduleEmply(odd, even)
         && (
         <ButtonGroup color='secondary' className={classes.switchButtonGroup} fullWidth>
           <Button

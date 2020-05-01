@@ -20,12 +20,16 @@ const useStyles = makeStyles((theme) => ({
   table: {
     padding: 0,
     '& th,td': {
-      borderBottom: `0px solid ${theme.palette.secondary.main}`,
+      borderBottom: '0px',
+    },
+    '& *': {
+      color: theme.palette.getContrastText(theme.palette.background.paper),
     },
   },
-  text: {
+  headerText: {
     textOverflow: 'ellipsis',
     overflow: 'hidden',
+    color: theme.palette.getContrastText(theme.palette.background.paper),
   },
 }))
 
@@ -52,10 +56,10 @@ const Modal = ({ open, data, onClose }) => {
       <Container className={classes.container}>
 
         <Hidden smUp>
-          <Typography className={classes.text} variant='h6' gutterBottom>
+          <Typography className={classes.headerText} variant='h6' gutterBottom>
             {data.name}
           </Typography>
-          <Typography className={classes.text} variant='h6' gutterBottom>
+          <Typography className={classes.headerText} variant='h6' gutterBottom>
             Итого:
             {' '}
             {data.totalScore || '0'}
@@ -65,10 +69,10 @@ const Modal = ({ open, data, onClose }) => {
         </Hidden>
 
         <Hidden xsDown>
-          <Typography className={classes.text} variant='h5' gutterBottom>
+          <Typography className={classes.headerText} variant='h5' gutterBottom>
             {data.name}
           </Typography>
-          <Typography className={classes.text} variant='h6' gutterBottom>
+          <Typography className={classes.headerText} variant='h6' gutterBottom>
             Итого:
             {' '}
             {data.totalScore || '0'}

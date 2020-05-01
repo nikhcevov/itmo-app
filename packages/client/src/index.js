@@ -1,22 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { ThemeProvider } from '@material-ui/core/styles'
-import Cookies from 'js-cookie'
 
+import MuiThemeProvider from './modules/ThemeProvider'
 import Routes from './Routes'
 import * as serviceWorker from './serviceWorker'
 
-import getTheme from './theme'
 import store from './store'
-
-const theme = getTheme(Cookies.get('theme'))
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider>
       <Routes />
-    </ThemeProvider>
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('root'),
 )

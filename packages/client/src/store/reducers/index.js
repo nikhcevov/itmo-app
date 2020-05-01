@@ -5,6 +5,7 @@ import answers from './answers'
 import watchers from './watchers'
 import scores from './scores'
 import auth from './auth'
+import theme from './theme'
 
 export default combineReducers({
   schedule,
@@ -12,4 +13,5 @@ export default combineReducers({
   watchers,
   scores,
   auth,
+  theme,
 })

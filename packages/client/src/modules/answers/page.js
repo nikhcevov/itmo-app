@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
+import Link from '@material-ui/core/Link'
 
 import ScrollUpButton from '../../components/ScrollUpButton'
 import ExpantionAnswers from '../../components/Answers'
+import ImportantText from '../../components/ImportantText'
 import Spinner from '../../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +43,11 @@ const Answers = ({
         <Typography variant='body1' gutterBottom>
           Если вы хотите поделиться полезными материалами, мы с
           радостью их опубликуем. Пишите нам в&nbsp;
-          <a href='https://t.me/itmo_apps'>Telegram</a>
+          <Link href='https://t.me/itmo_apps' underline='none'>
+            <ImportantText>
+              Telegram
+            </ImportantText>
+          </Link>
           .
         </Typography>
       </Container>
@@ -63,7 +69,7 @@ Answers.propTypes = {
   loadAnswers: PropTypes.func,
   answers: PropTypes.arrayOf(PropTypes.shape({
   })),
-  status: PropTypes.bool.isRequired,
+  status: PropTypes.string.isRequired,
 
 }
 

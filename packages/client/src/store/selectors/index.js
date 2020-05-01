@@ -3,6 +3,7 @@ import * as answersSelectors from './answersSelectors'
 import * as watchersSelectors from './watchersSelectors'
 import * as scoresSelectors from './scoresSelectors'
 import * as authSelectors from './authSelectors'
+import * as themeSelectors from './themeSelectors'
 
 export {
   scheduleSelectors,
@@ -10,4 +11,5 @@ export {
   watchersSelectors,
   scoresSelectors,
   authSelectors,
+  themeSelectors,
 }

@@ -31,8 +31,27 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+
+  weekDay: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  lesson: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  timeStart: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  timeEnd: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  room: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  address: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
   teacher: {
-    color: theme.palette.secondary.main,
+    color: theme.palette.text.important,
   },
 }))
 
@@ -40,9 +59,9 @@ const Card = ({ data }) => {
   const classes = useStyles()
 
   return (
-    <MuiCard className={classes.root}>
+    <MuiCard>
       <CardContent>
-        <Typography variant='h6' gutterBottom>
+        <Typography variant='h6' className={classes.weekDay} gutterBottom>
           {data.weekDay}
         </Typography>
         <TableContainer>
@@ -58,12 +77,12 @@ const Card = ({ data }) => {
                       alignItems='center'
                     >
                       <Grid item>
-                        <Typography variant='h5' noWrap>
+                        <Typography variant='h5' className={classes.timeStart} noWrap>
                           {row.timeStart}
                         </Typography>
                       </Grid>
                       <Grid item>
-                        <Typography variant='subtitle1' noWrap>
+                        <Typography variant='subtitle1' className={classes.timeEnd} noWrap>
                           {row.timeEnd}
                         </Typography>
                       </Grid>
@@ -77,7 +96,7 @@ const Card = ({ data }) => {
                       alignItems='flex-start'
                     >
                       <Grid item>
-                        <Typography variant='body1'>
+                        <Typography variant='body1' className={classes.lesson}>
                           {row.lesson}
                         </Typography>
                       </Grid>
@@ -93,7 +112,7 @@ const Card = ({ data }) => {
                       {(row.room !== '')
                         && (
                         <Grid item>
-                          <Typography variant='caption'>
+                          <Typography variant='caption' className={classes.address}>
                             {row.adress}
                           </Typography>
                         </Grid>
@@ -101,7 +120,7 @@ const Card = ({ data }) => {
                       {(row.room !== '')
                         && (
                         <Grid item>
-                          <Typography variant='caption'>
+                          <Typography variant='caption' className={classes.room}>
                             {row.room}
                           </Typography>
                         </Grid>

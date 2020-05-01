@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 
+import navLinks from './footer.json'
 import Link from '../Link'
 
 const useStyles = makeStyles((theme) => ({
@@ -11,22 +12,27 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 128,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    '& a': {
-      transition: 'color 0.2s',
-    },
-    '& a:hover': {
-      color: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
+  },
+  section: {
+    textAlign: 'center',
+    borderBottom: '1px solid',
+    borderBottomColor: theme.palette.getContrastText(theme.palette.primary.main),
+  },
+  sectionTitle: {
+    color: theme.palette.getContrastText(theme.palette.primary.main),
+  },
+  link: {
+    transition: 'color 0.2s',
+    color: theme.palette.getContrastText(theme.palette.primary.main),
+    '&:hover': {
+      color: theme.palette.action.hover,
       textDecoration: 'none',
     },
-    textAlign: 'center',
   },
-  extraInfo: {
+  copyright: {
     textAlign: 'center',
-  },
-  buttons: {
-    '& button': {
-      color: theme.palette.text.secondary,
-    },
+    color: theme.palette.getContrastText(theme.palette.primary.main),
   },
 }))
 
@@ -42,90 +48,35 @@ const Footer = () => {
         alignItems='flex-start'
         spacing={4}
       >
-        <Grid item>
+        {navLinks.map((section) => (
           <Grid
-            container
-            direction='column'
-            spacing={1}
+            item
+            className={classes.section}
+            key={section.title}
           >
-            <Grid item>
-              <Typography variant='body1' noWrap>
-                Приложение
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Link to='/wip' color='inherit'>
-                <Typography variant='body2' noWrap>
-                  О нас
-                </Typography>
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link to='/wip' color='inherit'>
-                <Typography variant='body2' noWrap>
-                  Связаться с разработчиками
-                </Typography>
-              </Link>
+            <Typography className={classes.sectionTitle} variant='body1' noWrap>
+              {section.title}
+            </Typography>
+            <Grid
+              container
+              direction='column'
+              spacing={1}
+            >
+              {section.links.map((link) => (
+                <Grid item key={link.label}>
+                  <Link to={link.href} className={classes.link} variant='body2' noWrap>
+                    {link.label}
+                  </Link>
+                </Grid>
+              ))}
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item>
-          <Grid
-            container
-            direction='column'
-            spacing={1}
-          >
-            <Grid item>
-              <Typography variant='body1' noWrap>
-                Помощь & поддержка
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Link to='/wip' color='inherit'>
-                <Typography variant='body2' noWrap>
-                  FAQ
-                </Typography>
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link to='/wip' color='inherit'>
-                <Typography variant='body2' noWrap>
-                  Спонсорство
-                </Typography>
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Grid
-            container
-            direction='column'
-            spacing={1}
-          >
-            <Grid item>
-              <Typography variant='body1' noWrap>
-                Руководство по установке
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Link to='/wip' color='inherit'>
-                <Typography variant='body2' noWrap>
-                  На персональный компьютер
-                </Typography>
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link to='/wip' color='inherit'>
-                <Typography variant='body2' noWrap>
-                  На мобильное устройство
-                </Typography>
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
+        ))}
         <Grid item xs={12}>
-          <Typography className={classes.extraInfo} variant='body2'>
-            © Itmo-app. Сделано с ❤️ для студентов.
+          <Typography className={classes.copyright} variant='body2'>
+            <span role='img' aria-label='copyright'>©</span>
+            {' '}
+            Itmo-app. Сделано с ❤️ для студентов.
           </Typography>
         </Grid>
       </Grid>

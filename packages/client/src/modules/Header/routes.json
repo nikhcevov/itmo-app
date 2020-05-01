@@ -1,4 +1,10 @@
-[
+{
+"login": {
+  "label": "Вход",
+  "name": "login",
+  "href": "/login"
+ },
+"links": [
   {
     "label": "Главная",
     "name": "index",
@@ -26,7 +32,8 @@
   },
   {
     "label": "Запись в ЦДО",
-    "name": "entry",
+    "name": "wip",
     "href": "/wip"
   }
 ]
+}

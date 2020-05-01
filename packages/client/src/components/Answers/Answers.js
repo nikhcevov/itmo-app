@@ -1,5 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+
+import Link from '@material-ui/core/Link'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
@@ -10,12 +12,24 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
+  name: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
+  moreIcon: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+  },
   answerLink: {
-    color: theme.palette.text.primary,
-    textDecoration: 'none',
-    transition: 'color 0.3s',
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+    transition: 'color 0.2s',
     '&:hover': {
-      color: 'red',
+      color: theme.palette.action.hover,
+    },
+  },
+  ul: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+    transition: 'color 0.2s',
+    '&:hover': {
+      color: theme.palette.action.selected,
     },
   },
 }))
@@ -30,22 +44,21 @@ const Answers = ({ answers }) => {
       {answers.map((subject, subIndex) => (
         <ExpansionPanel key={`sub${subIndex}`}>
           <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon className={classes.moreIcon} />}
           >
-            <Typography>{subject.name}</Typography>
+            <Typography className={classes.name}>{subject.name}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <ul>
               {subject.answers.map((answer, ansIndex) => (
-                <li key={`sub${subIndex}-ans${ansIndex}`}>
-                  <Typography>
-                    <a
-                      className={classes.answerLink}
-                      href={constructUrl(answer.url)}
-                    >
-                      {answer.name}
-                    </a>
-                  </Typography>
+                <li className={classes.ul} key={`sub${subIndex}-ans${ansIndex}`}>
+                  <Link
+                    className={classes.answerLink}
+                    href={constructUrl(answer.url)}
+                    underline='none'
+                  >
+                    {answer.name}
+                  </Link>
                 </li>
               ))}
             </ul>
