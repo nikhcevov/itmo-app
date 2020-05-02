@@ -60,7 +60,6 @@ const Footer = () => {
             <Grid
               container
               direction='column'
-              spacing={1}
             >
               {section.links.map((link) => (
                 <Grid item key={link.label}>

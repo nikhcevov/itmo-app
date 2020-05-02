@@ -27,7 +27,12 @@ const schedule = (state = initialState, action) => {
     }
 
     case authActions.logout.types.SUCCESS: {
-      return state.merge(initialState)
+      return state.merge(fromJS({
+        status: '',
+        message: '',
+        token: '',
+        isLoggedIn: false,
+      }))
     }
 
     case authActions.initialize.types.SUCCESS: {

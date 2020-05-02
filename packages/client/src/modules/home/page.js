@@ -67,13 +67,13 @@ const Home = () => {
           <Typography variant='h5' className={classes.title} gutterBottom>
             Добро пожаловать в
             {' '}
-            <ImportantText>ITMO-APP</ImportantText>
+            <ImportantText>ITMO&#8209;APP</ImportantText>
             !
           </Typography>
           <Typography variant='body1' className={classes.description} gutterBottom>
             Приложение-агрегатор
             {' '}
-            <ImportantText>ITMO-APP</ImportantText>
+            <ImportantText>ITMO&#8209;APP</ImportantText>
             {' '}
             разработано для облегчения
             взаимодействия студентов и аспирантов с основопологающими и часто

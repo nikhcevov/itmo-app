@@ -67,8 +67,8 @@ const Card = ({ data }) => {
         <TableContainer>
           <Table className={classes.table}>
             <TableBody>
-              {data.lessons.map((row) => (
-                <TableRow className={classes.row} key={row.timeStart}>
+              {data.lessons.map((row, index) => (
+                <TableRow className={classes.row} key={row.timeStart + index}>
                   <TableCell className={classes.leftCell} component='th' scope='row'>
                     <Grid
                       container

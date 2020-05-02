@@ -47,7 +47,6 @@ const Modal = ({ open, data, onClose }) => {
   return (
     <Dialog
       maxWidth={false}
-      className={classes.dialog}
       onClose={handleClose}
       open={open}
       scroll='body'
