@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoutBtn: {
     color: theme.palette.getContrastText(theme.palette.primary.main),
+    transition: 'color 0.3s',
     '&:hover': {
       color: theme.palette.action.hover,
     },
