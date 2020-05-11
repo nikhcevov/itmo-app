@@ -28,7 +28,7 @@ const Schedule = ({
   const [hookGroup, setHookGroup] = useState(queryGroup || group || '')
 
   useEffect(() => {
-    if (hookGroup.length >= 4 && hookGroup.length <= 7) { loadSchedule(hookGroup) }
+    if (hookGroup.length >= 5 && hookGroup.length <= 7) { loadSchedule(hookGroup) }
   }, [hookGroup, loadSchedule])
 
   return (
